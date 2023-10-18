@@ -3,7 +3,7 @@
     <fullName>AccountNumber__c</fullName>
     <description>Secondary Account number</description>
     <externalId>false</externalId>
-    <inlineHelpText>The account number</inlineHelpText>
+    <inlineHelpText>The secondary account number</inlineHelpText>
     <label>Account Number</label>
     <length>255</length>
     <required>false</required>
