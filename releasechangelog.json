@@ -1,0 +1,66 @@
+{
+    "orgs": [
+        {
+            "name": "sit",
+            "releases": [
+                {
+                    "names": [
+                        "Release-1.0"
+                    ],
+                    "buildNumber": 1,
+                    "hashId": "b09f56b567685fef4b1a59f8f1db182c6ee27215"
+                }
+            ],
+            "latestRelease": {
+                "names": [
+                    "Release-1.0"
+                ],
+                "buildNumber": 1,
+                "hashId": "b09f56b567685fef4b1a59f8f1db182c6ee27215"
+            },
+            "retryCount": 0
+        }
+    ],
+    "releases": [
+        {
+            "names": [
+                "Release-1.0"
+            ],
+            "buildNumber": 1,
+            "workItems": {},
+            "artifacts": [
+                {
+                    "name": "core",
+                    "to": "5c9a424e",
+                    "version": "1.0.0.6567604096",
+                    "latestCommitId": "5c9a424e",
+                    "commits": [
+                        {
+                            "commitId": "5c9a424e",
+                            "date": "2023-10-18T16:09:14-07:00",
+                            "author": "softectonic",
+                            "message": "Inline help text updated (#2)",
+                            "body": "* Field name updated\r\n\r\n* Field description updated\r\n\r\n* CI pool cofiguration updated\r\n\r\n* CI pool definition updated\r\n\r\n* Account number description updated\r\n\r\n* Inline help text updated\r\n\r\n* Inline help text updated"
+                        },
+                        {
+                            "commitId": "de2ed6f2",
+                            "date": "2023-10-17T23:20:48-07:00",
+                            "author": "softectonic",
+                            "message": "Feature/xyz (#1)",
+                            "body": "* Field name updated\r\n\r\n* Field description updated\r\n\r\n* CI pool cofiguration updated\r\n\r\n* CI pool definition updated\r\n\r\n* Account number description updated"
+                        },
+                        {
+                            "commitId": "713c156e",
+                            "date": "2023-10-17T19:25:54-07:00",
+                            "author": "softectonic",
+                            "message": "Initial commit",
+                            "body": ""
+                        }
+                    ]
+                }
+            ],
+            "hashId": "b09f56b567685fef4b1a59f8f1db182c6ee27215",
+            "date": "Thu Oct 19 2023 04:48:23 GMT+0000 (Coordinated Universal Time)"
+        }
+    ]
+}
