@@ -9,14 +9,21 @@
                     ],
                     "buildNumber": 1,
                     "hashId": "b09f56b567685fef4b1a59f8f1db182c6ee27215"
+                },
+                {
+                    "names": [
+                        "Release-1.0"
+                    ],
+                    "buildNumber": 2,
+                    "hashId": "0aeeebfc1f85c2bf0f90e258c5329229281fa5c8"
                 }
             ],
             "latestRelease": {
                 "names": [
                     "Release-1.0"
                 ],
-                "buildNumber": 1,
-                "hashId": "b09f56b567685fef4b1a59f8f1db182c6ee27215"
+                "buildNumber": 2,
+                "hashId": "0aeeebfc1f85c2bf0f90e258c5329229281fa5c8"
             },
             "retryCount": 0
         }
@@ -61,6 +68,40 @@
             ],
             "hashId": "b09f56b567685fef4b1a59f8f1db182c6ee27215",
             "date": "Thu Oct 19 2023 04:48:23 GMT+0000 (Coordinated Universal Time)"
+        },
+        {
+            "names": [
+                "Release-1.0"
+            ],
+            "buildNumber": 2,
+            "workItems": {},
+            "artifacts": [
+                {
+                    "name": "core",
+                    "from": "5c9a424e",
+                    "to": "83635e7e",
+                    "version": "1.0.0.6570422777",
+                    "latestCommitId": "83635e7e",
+                    "commits": [
+                        {
+                            "commitId": "83635e7e",
+                            "date": "2023-10-19T05:47:43+00:00",
+                            "author": "softectonic",
+                            "message": "Account name change",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "7fe7d7e8",
+                            "date": "2023-10-19T05:38:18+00:00",
+                            "author": "softectonic",
+                            "message": "Account number updated",
+                            "body": ""
+                        }
+                    ]
+                }
+            ],
+            "hashId": "0aeeebfc1f85c2bf0f90e258c5329229281fa5c8",
+            "date": "Thu Oct 19 2023 06:12:20 GMT+0000 (Coordinated Universal Time)"
         }
     ]
 }
