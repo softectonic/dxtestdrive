@@ -30,6 +30,40 @@
             "versionNumber": "1.0.0.0"
         },
         {
+            "path": "./src/package-di",
+            "package": "package-di",
+            "versionName": "Version 1.0.0",
+            "versionNumber": "1.0.0.NEXT"
+        },
+        {
+            "path": "./src/package-a",
+            "package": "package-a",
+            "versionName": "Version 1.0.0",
+            "versionNumber": "1.0.0.NEXT",
+            "dependencies": [
+                {
+                    "package": "package-di",
+                    "versionNumber": "1.0.0.LATEST"
+                }
+            ]
+        },
+        {
+            "path": "./src/package-b",
+            "package": "package-b",
+            "versionName": "Version 1.0.0",
+            "versionNumber": "1.0.0.NEXT",
+            "dependencies": [
+                {
+                    "package": "package-di",
+                    "versionNumber": "1.0.0.LATEST"
+                },
+                {
+                    "package": "package-a",
+                    "versionNumber": "1.0.0.LATEST"
+                }
+            ]
+        },
+        {
             "path": "./src-ui",
             "package": "src-ui",
             "versionNumber": "1.1.0.0",
