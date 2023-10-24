@@ -3,3 +3,5 @@ artifacts
 .sfdx
 .sf
 .npmrc
+
+authFile.json
