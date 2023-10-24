@@ -24,6 +24,7 @@ public with sharing class ServiceImplementationSettings
         public Metadata(){}
  
         // Construct from a concrete metadata instance
+        @TestVisible
         private Metadata(Service_Implementation__mdt metadata)
         {
             this.shipping = metadata.Shipping__c;

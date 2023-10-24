@@ -2,7 +2,7 @@
     "orgName": "DX@Scale Demo Org",
     "edition": "Developer",
     "hasSampleData": false,
-    "features": ["Communities", "Walkthroughs", "EnableSetPasswordInApi"],
+    "features": ["Communities", "ServiceCloud", "EinsteinGPTForDevelopers"],
     "settings": {
         "communitiesSettings": {
             "enableNetworksEnabled": true

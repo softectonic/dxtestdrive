@@ -27,21 +27,27 @@
       "path": "./src/core-crm",
       "package": "core",
       "versionName": "Version 1.0.0",
-      "versionNumber": "1.0.0.0"
+      "versionNumber": "1.0.0.0",
+      "ignoreOnStage": [
+        "prepare",
+        "validate",
+        "quickbuild",
+        "build"
+      ]
     },
     {
       "path": "src/package-di",
       "package": "package-di",
-      "versionName": "ver 0.1",
-      "versionNumber": "0.1.0.NEXT",
+      "versionName": "Version 1.0.0",
+      "versionNumber": "1.0.0.NEXT",
       "default": false,
       "versionDescription": ""
     },
     {
       "path": "src/package-a",
       "package": "package-a",
-      "versionName": "ver 0.1",
-      "versionNumber": "0.1.0.NEXT",
+      "versionName": "Version 1.0.0",
+      "versionNumber": "1.0.0.NEXT",
       "dependencies": [
         {
           "package": "package-di",

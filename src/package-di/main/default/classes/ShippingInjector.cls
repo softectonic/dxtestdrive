@@ -21,7 +21,8 @@ public abstract class ShippingInjector {
     */
     public static Object getService(String implName) {
         if (!implementations.containsKey(implName)) {
-            throw new UnknownImplementationException('Unkown Shipping implementation: '+ implName);
+            //throw new UnknownImplementationException('Unkown Shipping implementation: '+ implName);
+            return null;
         }
         return implementations.get(implName).newInstance();
     }
