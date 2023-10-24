@@ -9,7 +9,8 @@ public with sharing class ServiceImplementationSettings
         {
             List<Service_Implementation__mdt> implementationSettings = [SELECT Shipping__c FROM Service_Implementation__mdt LIMIT 1];
             if (implementationSettings.size() == 0) {
-                throw new ServiceMetadataException('Could not find Service_Implementation__mdt');
+                //throw new ServiceMetadataException('Could not find Service_Implementation__mdt');
+                return null;
             }
             settings = new Metadata(implementationSettings.get(0));
         }
