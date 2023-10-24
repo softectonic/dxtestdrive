@@ -1,6 +1,64 @@
 {
     "packageDirectories": [
         {
+            "path": "./src/es-base-objects",
+            "package": "es-base-objects",
+            "versionName": "Base Objects - Version 1.0.0",
+            "versionNumber": "1.0.0.NEXT",
+            "default": false
+        },
+        {
+            "path": "./src/es-base-code",
+            "package": "es-base-code",
+            "versionName": "Base Code - Version 1.0.0",
+            "versionNumber": "1.0.0.NEXT",
+            "default": false,
+            "dependencies": [
+                {
+                    "package": "es-base-objects",
+                    "versionNumber": "1.0.0.LATEST"
+                }
+            ]
+        },
+        {
+            "path": "./src/es-base-styles",
+            "package": "es-base-styles",
+            "versionName": "Base Styles - Version 1.0.0",
+            "versionNumber": "1.0.0.NEXT",
+            "default": false,
+            "dependencies": [
+                {
+                    "package": "es-base-objects",
+                    "versionNumber": "1.0.0.LATEST"
+                },
+                {
+                    "package": "es-base-code",
+                    "versionNumber": "1.0.0.LATEST"
+                }
+            ]
+        },
+        {
+            "path": "./src/es-space-mgmt",
+            "package": "es-space-mgmt",
+            "versionName": "Space Mgmt - Version 1.0.0",
+            "versionNumber": "1.0.0.NEXT",
+            "default": false,
+            "dependencies": [
+                {
+                    "package": "es-base-objects",
+                    "versionNumber": "1.0.0.LATEST"
+                },
+                {
+                    "package": "es-base-code",
+                    "versionNumber": "1.0.0.LATEST"
+                },
+                {
+                    "package": "es-base-styles",
+                    "versionNumber": "1.0.0.LATEST"
+                }
+            ]
+        },
+        {
             "path": "./src-env-specific-pre",
             "package": "src-env-specific-pre",
             "versionNumber": "1.0.0.0",
