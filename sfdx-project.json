@@ -27,7 +27,13 @@
             "path": "./src/core-crm",
             "package": "core",
             "versionName": "Version 1.0.0",
-            "versionNumber": "1.0.0.0"
+            "versionNumber": "1.0.0.0",
+            "ignoreOnStage": [
+                "prepare",
+                "validate",
+                "quickbuild",
+                "build"
+            ]
         },
         {
             "path": "./src-ui",
