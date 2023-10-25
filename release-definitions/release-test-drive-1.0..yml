@@ -6,5 +6,6 @@ artifacts:
   es-base-objects: 1.0.0-4
   es-base-styles: 1.0.0-4
   es-space-mgmt: 1.0.0-4
+promotePackagesBeforeDeploymentToOrg: prod
 changelog:
   SFDC-[0-9]{3,10}
