@@ -4,24 +4,10 @@
     "hasSampleData": false,
     "features": ["Communities", "ServiceCloud;ServiceWave;SalesWave", "EinsteinGPTForDevelopers"],
     "settings": {
-        "communitiesSettings": {
-            "enableNetworksEnabled": true
-        },
-        "experienceBundleSettings": {
-            "enableExperienceBundleMetadata": true
-        },
-        "lightningExperienceSettings": {
-            "enableS1DesktopEnabled": true
-        },
-        "mobileSettings": {
-            "enableS1EncryptedStoragePref2": false
-        },
-        "pathAssistantSettings": {
-            "pathAssistantEnabled": true
-        },
-        "userEngagementSettings": {
-            "enableOrchestrationInSandbox": true,
-            "enableShowSalesforceUserAssist": false
+        "orgPreferenceSettings": {
+          "s1DesktopEnabled": true,
+          "s1EncryptedStoragePref2": false,
+          "selfSetPasswordInApi": true
         }
-    }
+      }
 }
