@@ -6,6 +6,3 @@ artifacts:
   es-base-objects: 1.0.0-4
   es-base-styles: 1.0.0-4
   es-space-mgmt: 1.0.0-4
-promotePackagesBeforeDeploymentToOrg: prod
-changelog:
-  workItemFilter: "SFDC-/[0-9]+"
