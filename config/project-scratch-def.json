@@ -3,11 +3,5 @@
     "edition": "Developer",
     "hasSampleData": false,
     "features": ["Communities", "ServiceCloud;ServiceWave;SalesWave", "EinsteinGPTForDevelopers"],
-    "settings": {
-        "orgPreferenceSettings": {
-          "s1DesktopEnabled": true,
-          "s1EncryptedStoragePref2": false,
-          "selfSetPasswordInApi": true
-        }
-      }
+   
 }
