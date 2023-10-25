@@ -3,16 +3,16 @@
     {
       "path": "src/es-base-objects",
       "package": "es-base-objects",
-      "versionName": "ver 0.1",
-      "versionNumber": "0.1.0.NEXT",
+      "versionName": "Base Objects - Version 1.0.0",
+      "versionNumber": "1.0.0.NEXT",
       "default": false,
       "versionDescription": ""
     },
     {
       "path": "src/es-base-code",
       "package": "es-base-code",
-      "versionName": "ver 0.1",
-      "versionNumber": "0.1.0.NEXT",
+      "versionName": "Base Code - Version 1.0.0",
+      "versionNumber": "1.0.0.NEXT",
       "default": false,
       "dependencies": [
         {
@@ -25,8 +25,8 @@
     {
       "path": "src/es-base-styles",
       "package": "es-base-styles",
-      "versionName": "ver 0.1",
-      "versionNumber": "0.1.0.NEXT",
+      "versionName": "Base Styles - Version 1.0.0",
+      "versionNumber": "1.0.0.NEXT",
       "default": false,
       "dependencies": [
         {
@@ -142,7 +142,8 @@
   "packageAliases": {
     "es-base-objects": "0Ho8b000000sXybCAE",
     "es-base-code": "0Ho8b000000sXygCAE",
-    "es-base-styles": "0Ho8b000000sXylCAE"
+    "es-base-styles": "0Ho8b000000sXylCAE",
+    "es-space-mgmt": "0Ho8b000000sXyqCAE"
   },
   "plugins": {}
 }
