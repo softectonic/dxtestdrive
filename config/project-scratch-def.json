@@ -2,6 +2,5 @@
     "orgName": "DX@Scale Demo Org",
     "edition": "Developer",
     "hasSampleData": false,
-    "features": ["Communities", "ServiceCloud;ServiceWave;SalesWave", "EinsteinGPTForDevelopers"],
-   
+    "features": ["Communities", "ServiceCloud", "EinsteinGPTForDevelopers"],
 }
