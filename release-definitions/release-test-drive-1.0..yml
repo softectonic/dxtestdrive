@@ -8,4 +8,4 @@ artifacts:
   es-space-mgmt: 1.0.0-4
 promotePackagesBeforeDeploymentToOrg: prod
 changelog:
-  SFDC-[0-9]{3,10}
+  workItemFilter: "SFDC-/[0-9]+"
