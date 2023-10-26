@@ -35,6 +35,28 @@
                 "hashId": "a433f1804f9cfbb18e03546aeb4659eb1e932b1d"
             },
             "retryCount": 0
+        },
+        {
+            "name": "prod",
+            "releases": [
+                {
+                    "names": [
+                        "release-1.0.0",
+                        "release-2.0"
+                    ],
+                    "buildNumber": 3,
+                    "hashId": "a433f1804f9cfbb18e03546aeb4659eb1e932b1d"
+                }
+            ],
+            "latestRelease": {
+                "names": [
+                    "release-1.0.0",
+                    "release-2.0"
+                ],
+                "buildNumber": 3,
+                "hashId": "a433f1804f9cfbb18e03546aeb4659eb1e932b1d"
+            },
+            "retryCount": 0
         }
     ],
     "releases": [
