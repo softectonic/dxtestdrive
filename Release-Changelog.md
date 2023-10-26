@@ -1,4 +1,43 @@
-[![sit-Release-1.0-2(0)-green](https://img.shields.io/static/v1?label=sit&message=Release-1.0-2(0)&color=green)](#0aeeebfc1f85c2bf0f90e258c5329229281fa5c8) 
+[![sit-release-1.0.0-3(0)-green](https://img.shields.io/static/v1?label=sit&message=release-1.0.0-3(0)&color=green)](#a433f1804f9cfbb18e03546aeb4659eb1e932b1d) 
+<a id=a433f1804f9cfbb18e03546aeb4659eb1e932b1d></a>
+# release-1.0.0
+ Cumulative Release Number: <b>3</b> 
+
+Matching defintion first created or deployed to an org on: Thu Oct 26 2023 00:53:10 GMT+0000 (Coordinated Universal Time)
+ ### Artifacts :package:
+- **es-space-mgmt**     v1.0.0.4 (0c42568b)
+
+- **es-base-styles**     v1.0.0.4 (0c42568b)
+
+- **es-base-objects**     v1.0.0.4 (0c42568b)
+
+- **es-base-code**     v1.0.0.4 (0c42568b)
+
+### Work Items :gem:
+N/A
+
+### Commits :book:
+
+#### es-space-mgmt
+| Date       | Time     | Commit ID | Commit Message                |
+| ---------- | -------- | --------- | ----------------------------- |
+| 25/10/2023 | 03:55:14 | 5812cb2f  | sample app PR validation (#6) |
+
+#### es-base-styles
+| Date       | Time     | Commit ID | Commit Message                |
+| ---------- | -------- | --------- | ----------------------------- |
+| 25/10/2023 | 03:55:14 | 5812cb2f  | sample app PR validation (#6) |
+
+#### es-base-objects
+| Date       | Time     | Commit ID | Commit Message                |
+| ---------- | -------- | --------- | ----------------------------- |
+| 25/10/2023 | 03:55:14 | 5812cb2f  | sample app PR validation (#6) |
+
+#### es-base-code
+| Date       | Time     | Commit ID | Commit Message                |
+| ---------- | -------- | --------- | ----------------------------- |
+| 25/10/2023 | 03:55:14 | 5812cb2f  | sample app PR validation (#6) |
+
 <a id=0aeeebfc1f85c2bf0f90e258c5329229281fa5c8></a>
 # Release-1.0
  Cumulative Release Number: <b>2</b> 

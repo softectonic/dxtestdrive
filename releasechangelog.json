@@ -16,14 +16,21 @@
                     ],
                     "buildNumber": 2,
                     "hashId": "0aeeebfc1f85c2bf0f90e258c5329229281fa5c8"
+                },
+                {
+                    "names": [
+                        "release-1.0.0"
+                    ],
+                    "buildNumber": 3,
+                    "hashId": "a433f1804f9cfbb18e03546aeb4659eb1e932b1d"
                 }
             ],
             "latestRelease": {
                 "names": [
-                    "Release-1.0"
+                    "release-1.0.0"
                 ],
-                "buildNumber": 2,
-                "hashId": "0aeeebfc1f85c2bf0f90e258c5329229281fa5c8"
+                "buildNumber": 3,
+                "hashId": "a433f1804f9cfbb18e03546aeb4659eb1e932b1d"
             },
             "retryCount": 0
         }
@@ -102,6 +109,77 @@
             ],
             "hashId": "0aeeebfc1f85c2bf0f90e258c5329229281fa5c8",
             "date": "Thu Oct 19 2023 06:12:20 GMT+0000 (Coordinated Universal Time)"
+        },
+        {
+            "names": [
+                "release-1.0.0"
+            ],
+            "buildNumber": 3,
+            "workItems": {},
+            "artifacts": [
+                {
+                    "name": "es-space-mgmt",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": [
+                        {
+                            "commitId": "5812cb2f",
+                            "date": "2023-10-24T20:55:14-07:00",
+                            "author": "softectonic",
+                            "message": "sample app PR validation (#6)",
+                            "body": "* onfiguration files update\r\n\r\n* new packages added\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>\r\n\r\n* added more stuff\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>\r\n\r\n* sfdx-project.json file updated\r\n\r\n---------\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>"
+                        }
+                    ]
+                },
+                {
+                    "name": "es-base-styles",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": [
+                        {
+                            "commitId": "5812cb2f",
+                            "date": "2023-10-24T20:55:14-07:00",
+                            "author": "softectonic",
+                            "message": "sample app PR validation (#6)",
+                            "body": "* onfiguration files update\r\n\r\n* new packages added\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>\r\n\r\n* added more stuff\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>\r\n\r\n* sfdx-project.json file updated\r\n\r\n---------\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>"
+                        }
+                    ]
+                },
+                {
+                    "name": "es-base-objects",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": [
+                        {
+                            "commitId": "5812cb2f",
+                            "date": "2023-10-24T20:55:14-07:00",
+                            "author": "softectonic",
+                            "message": "sample app PR validation (#6)",
+                            "body": "* onfiguration files update\r\n\r\n* new packages added\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>\r\n\r\n* added more stuff\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>\r\n\r\n* sfdx-project.json file updated\r\n\r\n---------\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>"
+                        }
+                    ]
+                },
+                {
+                    "name": "es-base-code",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": [
+                        {
+                            "commitId": "5812cb2f",
+                            "date": "2023-10-24T20:55:14-07:00",
+                            "author": "softectonic",
+                            "message": "sample app PR validation (#6)",
+                            "body": "* onfiguration files update\r\n\r\n* new packages added\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>\r\n\r\n* added more stuff\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>\r\n\r\n* sfdx-project.json file updated\r\n\r\n---------\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>"
+                        }
+                    ]
+                }
+            ],
+            "hashId": "a433f1804f9cfbb18e03546aeb4659eb1e932b1d",
+            "date": "Thu Oct 26 2023 00:53:10 GMT+0000 (Coordinated Universal Time)"
         }
     ]
 }
