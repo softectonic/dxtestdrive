@@ -8,7 +8,7 @@
         <apexClass>reservationManagerController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <description>Access to the Easy Spaces Lightning app used for space management.</description>
+    <description>Access to the Easy Spaces Lightning app used for space management Demo.</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>SpaceManagementApp</label>
     <tabSettings>
