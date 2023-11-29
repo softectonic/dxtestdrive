@@ -4,7 +4,8 @@
     "version": "1.0.0",
 
     "scripts": {
-        "feature:rebase": "node scripts/rebaseFeature.js"
+        "feature:rebase": "node scripts/rebaseFeature.js",
+        "feature:merge": "node scripts/mergeFeature.js"
 
     }
 
