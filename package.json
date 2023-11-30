@@ -2,11 +2,13 @@
     "name": "dx-test-drive",
     "private": true,
     "version": "1.0.0",
-
     "scripts": {
         "feature:rebase": "node scripts/rebaseFeature.js",
-        "feature:merge": "node scripts/mergeFeature.js"
-
+        "feature:merge": "node scripts/mergeFeature.js",
+        "create:package": "node dist/createPackage.js"
+    },
+    "devDependencies": {
+        "@types/node": "^20.10.1",
+        "typescript": "^5.3.2"
     }
-
 }
