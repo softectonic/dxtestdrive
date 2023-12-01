@@ -1,4 +1,16 @@
-[![sit-release-2.0-3(0)-green](https://img.shields.io/static/v1?label=sit&message=release-2.0-3(0)&color=green)](#a433f1804f9cfbb18e03546aeb4659eb1e932b1d) [![prod-release-2.0-3(0)-green](https://img.shields.io/static/v1?label=prod&message=release-2.0-3(0)&color=green)](#a433f1804f9cfbb18e03546aeb4659eb1e932b1d) 
+[![sit-release-2.0-3(0)-green](https://img.shields.io/static/v1?label=sit&message=release-2.0-3(0)&color=green)](#a433f1804f9cfbb18e03546aeb4659eb1e932b1d) [![prod-release-2.5-4(0)-green](https://img.shields.io/static/v1?label=prod&message=release-2.5-4(0)&color=green)](#c1259b14d7c7dbf9a207173a2b96d0e0729859c6) 
+<a id=c1259b14d7c7dbf9a207173a2b96d0e0729859c6></a>
+# release-2.5
+ Cumulative Release Number: <b>4</b> 
+
+Matching defintion first created or deployed to an org on: Fri Dec 01 2023 22:12:44 GMT+0000 (Coordinated Universal Time)
+ ### Artifacts :package:
+### Work Items :gem:
+N/A
+
+### Commits :book:
+N/A
+
 <a id=a433f1804f9cfbb18e03546aeb4659eb1e932b1d></a>
 # release-1.0.0/release-2.0
  Cumulative Release Number: <b>3</b> 

@@ -46,15 +46,21 @@
                     ],
                     "buildNumber": 3,
                     "hashId": "a433f1804f9cfbb18e03546aeb4659eb1e932b1d"
+                },
+                {
+                    "names": [
+                        "release-2.5"
+                    ],
+                    "buildNumber": 4,
+                    "hashId": "c1259b14d7c7dbf9a207173a2b96d0e0729859c6"
                 }
             ],
             "latestRelease": {
                 "names": [
-                    "release-1.0.0",
-                    "release-2.0"
+                    "release-2.5"
                 ],
-                "buildNumber": 3,
-                "hashId": "a433f1804f9cfbb18e03546aeb4659eb1e932b1d"
+                "buildNumber": 4,
+                "hashId": "c1259b14d7c7dbf9a207173a2b96d0e0729859c6"
             },
             "retryCount": 0
         }
@@ -205,6 +211,57 @@
             ],
             "hashId": "a433f1804f9cfbb18e03546aeb4659eb1e932b1d",
             "date": "Thu Oct 26 2023 00:53:10 GMT+0000 (Coordinated Universal Time)"
+        },
+        {
+            "names": [
+                "release-2.5"
+            ],
+            "buildNumber": 4,
+            "workItems": {},
+            "artifacts": [
+                {
+                    "name": "es-space-mgmt",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-styles",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-objects",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-code",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "core",
+                    "from": "83635e7e",
+                    "to": "83635e7e",
+                    "version": "1.0.0.6570422777",
+                    "latestCommitId": "83635e7e",
+                    "commits": []
+                }
+            ],
+            "hashId": "c1259b14d7c7dbf9a207173a2b96d0e0729859c6",
+            "date": "Fri Dec 01 2023 22:12:44 GMT+0000 (Coordinated Universal Time)"
         }
     ]
 }
