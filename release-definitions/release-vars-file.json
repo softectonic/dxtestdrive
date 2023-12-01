@@ -1,0 +1,7 @@
+{
+    "releaseName": "release-2.0",
+    "releaseBranch": "main",
+    "releaseDefinitionsDir": "release-definitions",
+    "sfdxProjectFile": "sfdx-project.json",
+    "sourceTag": "0c42568"
+}
