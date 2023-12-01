@@ -47,19 +47,9 @@ jobs:
       - name: Generate Release Definition
         run: bash ./scripts/releaseDefinition.sh
 
-      # Wait for 30 seconds
-      - name: Wait for 60 seconds
-        run: sleep 30
-
-      # Check for the existence of the Release Definition File
-      - name: Check Release Definition File
-        run: |
-          RELEASE_DEF_PATH="$RELEASE_DEFINITIONS_DIR/${RELEASE_NAME}.yml"
-          if [ ! -f $RELEASE_DEF_PATH ]; then
-            echo "Release definition file not found: $RELEASE_DEF_PATH"
-            exit 1
-          fi
-          echo "RELEASE_DEF_PATH=$RELEASE_DEF_PATH" >> $GITHUB_ENV
+      # Wait for 10 seconds
+      - name: Wait for 10 seconds
+        run: sleep 10
 
       - name: Authenticate to PROD
         run: |
@@ -73,6 +63,6 @@ jobs:
 
       # Release to environment
       - name: 'Release to PROD'
-        run: 'sfp orchestrator:release -u prod -p ${{ env.RELEASE_DEF_PATH }} --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::"'
+        run: 'sfp orchestrator:release -u prod -p release-definitions/${{ env.RELEASE_NAME }}.yml --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::"'
         env:
          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
