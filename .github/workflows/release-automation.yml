@@ -47,6 +47,10 @@ jobs:
       - name: Generate Release Definition
         run: bash ./scripts/releaseDefinition.sh
 
+      # Wait for 30 seconds
+      - name: Wait for 30 seconds
+        run: sleep 30
+
       # Check for the existence of the Release Definition File
       - name: Check Release Definition File
         run: |
