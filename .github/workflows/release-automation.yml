@@ -1,0 +1,74 @@
+# DX@Scale CI/CD Template for GitHub
+#----------------------------------------------------------------------------------------------------
+# Maintained by @aly76 for DX@Scale
+# Follows reference pipeline available at docs.dxatscale.io
+# 
+#-----------------------------------------------------------------------------------------------------
+# To know more about dxatscale, visit https://docs.dxatscale.io
+# To know more on sfpowerscripts, visit- https://sfpowerscripts.dxatscale.io/
+# To know more on sfpowerkit, visit- https://github.com/Accenture/sfpowerkit
+
+
+# This pipeline is used to release a set of packages into respective environments
+# Changelog will be written to changelog branch
+
+name: 'Production Release Automation'
+
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'release-definitions/release-vars-file.json'
+
+jobs:  
+  PROD:
+    runs-on: ubuntu-latest
+    container: ghcr.io/dxatscale/sfpowerscripts
+    if: contains(github.ref,'refs/heads/main')
+    environment:
+      name: PROD
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      # Set environment variables from JSON file
+      - name: Set Release Variables
+        run: |
+          RELEASE_NAME=$(jq -r '.releaseName' release-definitions/release-vars-file.json)
+          RELEASE_DEFINITIONS_DIR=$(jq -r '.releaseDefinitionsDir' release-definitions/release-vars-file.json)
+          echo "RELEASE_NAME=$RELEASE_NAME" >> $GITHUB_ENV
+          echo "RELEASE_DEFINITIONS_DIR=$RELEASE_DEFINITIONS_DIR" >> $GITHUB_ENV
+
+      # Generate Release Definition
+      - name: Generate Release Definition
+        run: bash ./release-definitions/release-definition.sh
+
+      # Check for the existence of the Release Definition File
+      - name: Check Release Definition File
+        run: |
+          RELEASE_DEF_PATH="$RELEASE_DEFINITIONS_DIR/${RELEASE_NAME}*.json"
+          if [ ! -f $RELEASE_DEF_PATH ]; then
+            echo "Release definition file not found: $RELEASE_DEF_PATH"
+            exit 1
+          fi
+          echo "RELEASE_DEF_PATH=$RELEASE_DEF_PATH" >> $GITHUB_ENV
+
+      - name: Authenticate to PROD
+        run: |
+          echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
+          sf org login sfdx-url  -f ./authfile -a prod
+ 
+      # Authenticate to npm
+      - uses: actions/setup-node@v3
+        with:
+         registry-url: 'https://npm.pkg.github.com'
+
+      # Release to environment
+      - name: 'Release to PROD'
+        run: 'sfp orchestrator:release -u prod -p ${{ env.RELEASE_DEF_PATH }} --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::"'
+        env:
+         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
