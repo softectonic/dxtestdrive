@@ -11,5 +11,5 @@ SFDX_PROJECT_FILE=$(jq -r '.sfdxProjectFile' "$JSON_FILE")
 SOURCE_TAG=$(jq -r '.sourceTag' "$JSON_FILE")
 
 # Generate Release Definition
-sfp releasedefinition:generate -n "$RELEASE_NAME" -b "$RELEASE_BRANCH" -d "$RELEASE_DEFINITIONS_DIR" -f "$SFDX_PROJECT_FILE" -c "$SOURCE_TAG" --forcepush
+sfp releasedefinition:generate -n "$RELEASE_NAME" -b "$RELEASE_BRANCH" -d "$RELEASE_DEFINITIONS_DIR" -f "$SFDX_PROJECT_FILE" -c "$SOURCE_TAG"
 
