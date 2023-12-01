@@ -45,7 +45,7 @@ jobs:
 
       # Generate Release Definition
       - name: Generate Release Definition
-        run: bash ./release-definitions/release-definition.sh
+        run: bash ./scripts/releaseDefinition.sh
 
       # Check for the existence of the Release Definition File
       - name: Check Release Definition File
