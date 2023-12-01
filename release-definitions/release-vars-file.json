@@ -1,5 +1,5 @@
 {
-    "releaseName": "release-2.1",
+    "releaseName": "release-2.2",
     "releaseBranch": "main",
     "releaseDefinitionsDir": "release-definitions",
     "sfdxProjectFile": "sfdx-project.json",

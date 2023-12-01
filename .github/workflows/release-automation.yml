@@ -50,7 +50,7 @@ jobs:
       # Check for the existence of the Release Definition File
       - name: Check Release Definition File
         run: |
-          RELEASE_DEF_PATH="$RELEASE_DEFINITIONS_DIR/${RELEASE_NAME}*.json"
+          RELEASE_DEF_PATH="$RELEASE_DEFINITIONS_DIR/${RELEASE_NAME}.json"
           if [ ! -f $RELEASE_DEF_PATH ]; then
             echo "Release definition file not found: $RELEASE_DEF_PATH"
             exit 1
