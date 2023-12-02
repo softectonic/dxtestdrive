@@ -45,9 +45,7 @@ jobs:
 
       # Generate Release Definition
       - name: Generate Release Definition
-        run: |
-          RELEASE_DEF_OUTPUT=$(bash ./scripts/releaseDefinition.sh)
-          echo "Generated release definition output: $RELEASE_DEF_OUTPUT"
+        run: bash ./scripts/releaseDefinition.sh
 
       # Wait for 10 seconds
       - name: Wait for 10 seconds
