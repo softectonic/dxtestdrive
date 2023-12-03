@@ -1,16 +1,19 @@
-name: Prepare Release Definition
+name: Release Definition Prep
 
 on:
-  pull_request:
+  push:
     branches:
       - main
     paths:
       - 'release-definitions/release-vars-file.json'
 
 jobs:
-  prepare-release-definition:
-    if: github.event.pull_request.merged == true
+  ReleaseDefinitionPrep:
+    name: 'Release Definition Prep'
     runs-on: ubuntu-latest
+    container: ghcr.io/dxatscale/sfpowerscripts
+    if: contains(github.ref,'refs/heads/main')
+    
     steps:
       - uses: actions/checkout@v2
       - name: Generate Release Definition
