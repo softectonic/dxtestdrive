@@ -1,0 +1,17 @@
+name: Generate Release Definition
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'release-definitions/release-vars-file.json'
+
+jobs:
+  generate-release-definition:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Generate Release Definition
+        run: bash ./scripts/releaseDefinition.sh

@@ -1,0 +1,39 @@
+name: Release to Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      releaseFileName:
+        description: 'Path to release definition file'
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    container: ghcr.io/dxatscale/sfpowerscripts
+    if: contains(github.ref,'refs/heads/main')
+    environment:
+      name: PROD
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Authenticate to PROD
+        run: |
+          echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
+          sf org login sfdx-url  -f ./authfile -a prod
+
+      # Authenticate to npm
+      - uses: actions/setup-node@v3
+        with:
+          registry-url: 'https://npm.pkg.github.com'
+
+      # Release to environment  
+      - name: Release to PROD
+        run: |
+          RELEASE_DEF_PATH="release-definitions/${{ github.event.inputs.releaseFileName }}"
+          sfp orchestrator:release -u prod -p $RELEASE_DEF_PATH --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
