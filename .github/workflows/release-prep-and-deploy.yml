@@ -12,7 +12,7 @@
 # This pipeline is used to release a set of packages into respective environments
 # Changelog will be written to changelog branch
 
-name: 'Production Release Automation'
+name: 'Release Prep and Deploy'
 
 
 on:
