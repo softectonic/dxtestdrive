@@ -1,4 +1,4 @@
-name: Generate Release Definition
+name: Prepare Release Definition
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
       - 'release-definitions/release-vars-file.json'
 
 jobs:
-  generate-release-definition:
+  prepare-release-definition:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
