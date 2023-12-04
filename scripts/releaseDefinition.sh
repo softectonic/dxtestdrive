@@ -54,6 +54,7 @@ DIRECTORY=${2:-$default_directory}
 CONFIG_FILE=${3:-$default_config_file}
 BRANCH=${branch_name}
 SOURCE_TAG=${github_sha}
+GIT_REF=${github_ref}
 
 
 # Check if releaseName is the placeholder and replace it with today's date
@@ -66,6 +67,7 @@ echo "Branch: $BRANCH"
 echo "Directory: $DIRECTORY"
 echo "Config File: $CONFIG_FILE"
 echo "Source Tag: $SOURCE_TAG"
+echo "Git Ref: $GIT_REF"
 
 # Generate Release Definition
 sfp releasedefinition:generate -n "$RELEASE_NAME" -b "$BRANCH" -d "$DIRECTORY" -f "$CONFIG_FILE" -c "$SOURCE_TAG"
