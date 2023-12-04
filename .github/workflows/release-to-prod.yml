@@ -33,7 +33,7 @@ jobs:
       # Release to environment  
       - name: Release to PROD
         run: |
-          RELEASE_DEF_PATH="release-definitions/${{ github.event.inputs.releaseFileName }}"
+          RELEASE_DEF_PATH="${{ github.event.inputs.releaseFileName }}"
           sfp orchestrator:release -u prod -p $RELEASE_DEF_PATH --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
