@@ -1,3 +1,19 @@
+# Generate Release Definition Workflow
+#
+# This workflow is responsible for automatically generating the release definition file.
+# It is triggered when changes to 'release-vars-file.json' are merged into the main branch.
+# The workflow runs a script that generates a release definition file based on the 
+# parameters specified in 'release-vars-file.json'. The generated file is committed to the 
+# repository, allowing for manual review and modifications before the deployment process.
+#
+# Workflow Triggers:
+# - Pull request merge into the main branch, specifically when changes are made to 'release-vars-file.json'.
+#
+# Workflow Steps:
+# 1. Checkout the repository.
+# 2. Run the script to generate the release definition file
+#
+
 name: Release Definition Prep
 
 on:

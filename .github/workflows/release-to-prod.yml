@@ -1,3 +1,20 @@
+# Deploy to Production Workflow
+#
+# This workflow handles the deployment of the release to the production environment.
+# It is manually triggered and allows the user to specify the release definition file to be used.
+# The specified file should be a previously generated and manually reviewed release definition file
+# located in the 'release-definitions' directory. This approach ensures that deployments to 
+# production are conducted with caution and after necessary approvals.
+#
+# Workflow Triggers:
+# - Manually triggered via GitHub's workflow_dispatch event.
+# - Allows input for specifying the release definition file name.
+#
+# Workflow Steps:
+# 1. Checkout the repository.
+# 2. Deploy the release using the specified release definition file.
+#
+
 name: Release to Prod
 
 on:
