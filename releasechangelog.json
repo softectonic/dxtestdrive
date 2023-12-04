@@ -49,7 +49,8 @@
                 },
                 {
                     "names": [
-                        "release-2.5"
+                        "release-2.5",
+                        "release-2.10"
                     ],
                     "buildNumber": 4,
                     "hashId": "c1259b14d7c7dbf9a207173a2b96d0e0729859c6"
@@ -57,7 +58,8 @@
             ],
             "latestRelease": {
                 "names": [
-                    "release-2.5"
+                    "release-2.5",
+                    "release-2.10"
                 ],
                 "buildNumber": 4,
                 "hashId": "c1259b14d7c7dbf9a207173a2b96d0e0729859c6"
@@ -214,7 +216,8 @@
         },
         {
             "names": [
-                "release-2.5"
+                "release-2.5",
+                "release-2.10"
             ],
             "buildNumber": 4,
             "workItems": {},
