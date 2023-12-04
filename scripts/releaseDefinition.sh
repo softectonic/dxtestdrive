@@ -53,7 +53,8 @@ RELEASE_NAME=${1:-release-$today}
 DIRECTORY=${2:-$default_directory}
 CONFIG_FILE=${3:-$default_config_file}
 BRANCH=${branch_name}
-SOURCE_TAG=${github_sha}
+#SOURCE_TAG=${github_sha}
+SOURCE_TAG=${branch_name}
 
 # Check if releaseName is the placeholder and replace it with today's date
 if [ "$RELEASE_NAME" == "release-placeholder" ]; then
