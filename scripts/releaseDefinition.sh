@@ -34,23 +34,22 @@
 # Default values
 today=$(date +"%m%d%Y")
 default_branch=$(git rev-parse --abbrev-ref HEAD)
+default_source_tag=$(git rev-parse HEAD)
 default_directory="release-definitions"
 default_config_file="${default_directory}/release-template.yml"
-default_source_tag=$(git rev-parse HEAD)
 
-# Command-line arguments or default values
+# Use provided values or defaults
 RELEASE_NAME=${1:-release-$today}
-BRANCH=${2:-$default_branch}
-DIRECTORY=${3:-$default_directory}
-CONFIG_FILE=${4:-$default_config_file}
-SOURCE_TAG=${5:-$default_source_tag}
+DIRECTORY=${2:-$default_directory}
+CONFIG_FILE=${3:-$default_config_file}
+BRANCH=$default_branch
+SOURCE_TAG=$default_source_tag
 
 # Check if releaseName is the placeholder and replace it with today's date
 if [ "$RELEASE_NAME" == "release-placeholder" ]; then
     RELEASE_NAME="release-$today"
 fi
 
-# Rest of your script that uses these variables
 echo "Release Name: $RELEASE_NAME"
 echo "Branch: $BRANCH"
 echo "Directory: $DIRECTORY"

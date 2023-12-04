@@ -23,10 +23,6 @@ on:
         description: 'Release Name'
         required: false
         default: 'release-placeholder'
-      branch:
-        description: 'Branch to which release definition file is written'
-        required: false
-        default: '${{ github.ref }}'
       directory:
         description: 'Directory to which release definition file is written'
         required: false
@@ -35,10 +31,6 @@ on:
         description: 'Path to the config file'
         required: false
         default: 'release-definitions/release-template.yml'
-      sourceTag:
-        description: 'Source Tag'
-        required: false
-        default: '${{ github.sha }}'
 
 jobs:
   generate-release-definition:
@@ -47,4 +39,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Generate Release Definition
-        run: bash ./scripts/releaseDefinition.sh ${{ github.event.inputs.releaseName }} ${{ github.event.inputs.branch }} ${{ github.event.inputs.directory }} ${{ github.event.inputs.configFile }} ${{ github.event.inputs.sourceTag }}
+        run: bash ./scripts/releaseDefinition.sh "${{ github.event.inputs.releaseName }}" "${{ github.event.inputs.directory }}" "${{ github.event.inputs.configFile }}"
