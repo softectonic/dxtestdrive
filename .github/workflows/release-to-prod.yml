@@ -8,7 +8,7 @@ on:
         required: true
 
 jobs:
-  deploy:
+  PROD:
     runs-on: ubuntu-latest
     container: ghcr.io/dxatscale/sfpowerscripts
     if: contains(github.ref,'refs/heads/main')

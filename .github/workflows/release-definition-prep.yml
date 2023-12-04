@@ -8,7 +8,7 @@ on:
       - 'release-definitions/release-vars-file.json'
 
 jobs:
-  ReleaseDefinitionPrep:
+  RELEASE_DEFN_PREP:
     name: 'Release Definition Prep'
     runs-on: ubuntu-latest
     container: ghcr.io/dxatscale/sfpowerscripts
