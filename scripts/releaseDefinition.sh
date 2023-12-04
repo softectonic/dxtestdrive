@@ -38,12 +38,22 @@ default_source_tag=$(git rev-parse HEAD)
 default_directory="release-definitions"
 default_config_file="${default_directory}/release-template.yml"
 
+# GitHub environment variables
+github_ref=${GITHUB_REF:-}
+github_sha=${GITHUB_SHA:-}
+
+# Extract branch name from GITHUB_REF
+branch_name=""
+if [[ "$github_ref" == refs/heads/* ]]; then
+  branch_name=${github_ref#refs/heads/}
+fi
+
 # Use provided values or defaults
 RELEASE_NAME=${1:-release-$today}
 DIRECTORY=${2:-$default_directory}
 CONFIG_FILE=${3:-$default_config_file}
-BRANCH=$default_branch
-SOURCE_TAG=$default_source_tag
+BRANCH=${branch_name}
+SOURCE_TAG=${github_sha}
 
 # Check if releaseName is the placeholder and replace it with today's date
 if [ "$RELEASE_NAME" == "release-placeholder" ]; then
