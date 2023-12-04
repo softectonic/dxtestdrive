@@ -20,15 +20,43 @@
 #
 
 # Path to JSON file
-JSON_FILE="release-definitions/release-vars-file.json"
+#JSON_FILE="release-definitions/release-vars-file.json"
 
 # Read variables from JSON file
-RELEASE_NAME=$(jq -r '.releaseName' "$JSON_FILE")
-RELEASE_BRANCH=$(jq -r '.releaseBranch' "$JSON_FILE")
-RELEASE_DEFINITIONS_DIR=$(jq -r '.releaseDefinitionsDir' "$JSON_FILE")
-SFDX_PROJECT_FILE=$(jq -r '.sfdxProjectFile' "$JSON_FILE")
-SOURCE_TAG=$(jq -r '.sourceTag' "$JSON_FILE")
+#RELEASE_NAME=$(jq -r '.releaseName' "$JSON_FILE")
+#RELEASE_BRANCH=$(jq -r '.releaseBranch' "$JSON_FILE")
+#RELEASE_DEFINITIONS_DIR=$(jq -r '.releaseDefinitionsDir' "$JSON_FILE")
+#SFDX_PROJECT_FILE=$(jq -r '.sfdxProjectFile' "$JSON_FILE")
+#SOURCE_TAG=$(jq -r '.sourceTag' "$JSON_FILE")
+
+#!/bin/bash
+
+# Default values
+today=$(date +"%m%d%Y")
+default_branch=$(git rev-parse --abbrev-ref HEAD)
+default_directory="release-definitions"
+default_config_file="${default_directory}/release-template.yml"
+default_source_tag=$(git rev-parse HEAD)
+
+# Command-line arguments or default values
+RELEASE_NAME=${1:-release-$today}
+BRANCH=${2:-$default_branch}
+DIRECTORY=${3:-$default_directory}
+CONFIG_FILE=${4:-$default_config_file}
+SOURCE_TAG=${5:-$default_source_tag}
+
+# Check if releaseName is the placeholder and replace it with today's date
+if [ "$RELEASE_NAME" == "release-placeholder" ]; then
+    RELEASE_NAME="release-$today"
+fi
+
+# Rest of your script that uses these variables
+echo "Release Name: $RELEASE_NAME"
+echo "Branch: $BRANCH"
+echo "Directory: $DIRECTORY"
+echo "Config File: $CONFIG_FILE"
+echo "Source Tag: $SOURCE_TAG"
 
 # Generate Release Definition
-sfp releasedefinition:generate -n "$RELEASE_NAME" -b "$RELEASE_BRANCH" -d "$RELEASE_DEFINITIONS_DIR" -f "$SFDX_PROJECT_FILE" -c "$SOURCE_TAG"
+sfp releasedefinition:generate -n "$RELEASE_NAME" -b "$BRANCH" -d "$DIRECTORY" -f "$CONFIG_FILE" -c "$SOURCE_TAG"
 

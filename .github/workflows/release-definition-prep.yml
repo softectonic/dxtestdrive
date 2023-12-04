@@ -17,20 +17,34 @@
 name: Release Definition Prep
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'release-definitions/release-vars-file.json'
+  workflow_dispatch:
+    inputs:
+      releaseName:
+        description: 'Release Name'
+        required: false
+        default: 'release-placeholder'
+      branch:
+        description: 'Branch to which release definition file is written'
+        required: false
+        default: '${{ github.ref }}'
+      directory:
+        description: 'Directory to which release definition file is written'
+        required: false
+        default: 'release-definitions'
+      configFile:
+        description: 'Path to the config file'
+        required: false
+        default: 'release-definitions/release-template.yml'
+      sourceTag:
+        description: 'Source Tag'
+        required: false
+        default: '${{ github.sha }}'
 
 jobs:
-  RELEASE_DEFN_PREP:
-    name: 'Release Definition Prep'
+  generate-release-definition:
     runs-on: ubuntu-latest
     container: ghcr.io/dxatscale/sfpowerscripts
-    if: contains(github.ref,'refs/heads/main')
-    
     steps:
       - uses: actions/checkout@v2
       - name: Generate Release Definition
-        run: bash ./scripts/releaseDefinition.sh
+        run: bash ./scripts/releaseDefinition.sh ${{ github.event.inputs.releaseName }} ${{ github.event.inputs.branch }} ${{ github.event.inputs.directory }} ${{ github.event.inputs.configFile }} ${{ github.event.inputs.sourceTag }}
