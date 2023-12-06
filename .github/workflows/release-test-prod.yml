@@ -23,7 +23,7 @@ on:
     branches:
       - main
     paths:
-      - '**release-def*.yml' # Trigger for any yml file containing 'release-def'
+      - 'release-definitions/*.yml' # Trigger for any yml file containing 'release-def'
 
 jobs:
   PROD:
@@ -38,16 +38,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Find the release definition file
-      - name: Find Release Definition File
-        id: find_file
-        run: |
-          RELEASE_DEF_PATH=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.event.after }} | grep 'release-def' | head -n 1)
-          if [ -z "$RELEASE_DEF_PATH" ]; then
-            echo "Release definition file not found."
-            exit 1
-          fi
-          echo "RELEASE_DEF_PATH=$RELEASE_DEF_PATH" >> $GITHUB_ENV
+      # Set the file name based on today's date
+      - name: Set Release Definition Filename
+        run: echo "RELEASE_DEF_PATH=release-definitions/release-$(date +'%m%d%Y').yml" >> $GITHUB_ENV
 
       - name: Authenticate to PROD
         run: |
