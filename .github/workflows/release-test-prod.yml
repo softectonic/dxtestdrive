@@ -1,0 +1,57 @@
+# Deploy to Production Workflow
+#
+# This workflow handles the deployment of the release to the production environment.
+# It is manually triggered and allows the user to specify the release definition file to be used.
+# The specified file should be a previously generated and manually reviewed release definition file
+# located in the 'release-definitions' directory. This approach ensures that deployments to 
+# production are conducted with caution and after necessary approvals.
+#
+# Workflow Triggers:
+# - Manually triggered via GitHub's workflow_dispatch event.
+# - Allows input for specifying the release definition file name.
+#
+# Workflow Steps:
+# 1. Checkout the repository.
+# 2. Deploy the release using the specified release definition file.
+#
+
+name: Release Test Production
+
+on:
+  pull_request:
+    types: [opened, closed]
+    branches:
+      - main
+    paths:
+      - '**release-def*.yml' # Trigger for any yml file containing 'release-def'
+
+jobs:
+  PROD:
+    runs-on: ubuntu-latest
+    container: ghcr.io/dxatscale/sfpowerscripts
+    if: github.event.pull_request.merged == true
+    environment:
+      name: PROD
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Authenticate to PROD
+        run: |
+          echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
+          sf org login sfdx-url  -f ./authfile -a prod
+
+      # Authenticate to npm
+      - uses: actions/setup-node@v3
+        with:
+          registry-url: 'https://npm.pkg.github.com'
+
+      # Release to environment  
+      - name: Release to PROD
+        run: |
+          RELEASE_DEF_PATH="${{ github.event.inputs.releaseFileName }}"
+          sfp orchestrator:release -u prod -p $RELEASE_DEF_PATH --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
