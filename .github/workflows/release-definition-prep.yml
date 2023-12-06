@@ -22,7 +22,7 @@ on:
       releaseName:
         description: 'Release Name'
         required: false
-        default: 'release-placeholder'
+        default: 'release-def'
       directory:
         description: 'Directory to which release definition file is written'
         required: false
