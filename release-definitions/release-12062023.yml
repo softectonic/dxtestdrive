@@ -1,0 +1,5 @@
+release: release-12062023
+skipIfAlreadyInstalled: true
+skipArtifactUpdate: false
+artifacts: {}
+promotePackagesBeforeDeploymentToOrg: prod
