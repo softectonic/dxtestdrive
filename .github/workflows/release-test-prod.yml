@@ -19,7 +19,7 @@ name: Release Test Production
 
 on:
   pull_request:
-    types: [opened, closed]
+    types: [closed]
     branches:
       - main
     paths:
@@ -37,6 +37,17 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
+      # Find the release definition file
+      - name: Find Release Definition File
+        id: find_file
+        run: |
+          RELEASE_DEF_PATH=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.event.after }} | grep 'release-def' | head -n 1)
+          if [ -z "$RELEASE_DEF_PATH" ]; then
+            echo "Release definition file not found."
+            exit 1
+          fi
+          echo "RELEASE_DEF_PATH=$RELEASE_DEF_PATH" >> $GITHUB_ENV
 
       - name: Authenticate to PROD
         run: |
