@@ -22,7 +22,7 @@ on:
     branches:
       - main
     paths:
-      - 'release-definitions/release-def*.yml'
+      - '**release-def.yml'
 
 jobs:
   set_release_def_path:
@@ -34,7 +34,7 @@ jobs:
       - name: Find Release Definition File
         id: find_file
         run: |
-          RELEASE_DEF_PATH=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep 'release-definitions/release-def' | head -n 1)
+          RELEASE_DEF_PATH=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep 'release-def' | head -n 1)
           if [ -z "$RELEASE_DEF_PATH" ]; then
             echo "Release definition file not found."
             exit 1
