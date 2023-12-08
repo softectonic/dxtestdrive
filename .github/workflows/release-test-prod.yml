@@ -22,21 +22,25 @@ on:
     branches:
       - main
     paths:
-      - 'release-definitions/release-def_*.yml'
+      - 'release-definitions/release-def*.yml'
 
 jobs:
   set_release_def_path:
     runs-on: ubuntu-latest
     outputs:
-      release_def_path: ${{ steps.set_release_def_path.outputs.release_def_path }}
+      release_def_path: ${{ steps.find_file.outputs.file_path }}
     steps:
       - uses: actions/checkout@v2
-      - name: Determine Release Definition Path
-        id: set_release_def_path
+      - name: Find Release Definition File
+        id: find_file
         run: |
-          RELEASE_DEF_PATH="release-definitions/release-def_$(date +'%m%d%Y').yml"
+          RELEASE_DEF_PATH=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep 'release-definitions/release-def' | head -n 1)
+          if [ -z "$RELEASE_DEF_PATH" ]; then
+            echo "Release definition file not found."
+            exit 1
+          fi
           echo "RELEASE_DEF_PATH=$RELEASE_DEF_PATH" >> $GITHUB_ENV
-          echo "::set-output name=release_def_path::$RELEASE_DEF_PATH"
+          echo "::set-output name=file_path::$RELEASE_DEF_PATH"
 
   PROD:
     needs: set_release_def_path
