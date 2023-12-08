@@ -42,7 +42,6 @@ jobs:
     needs: set_release_def_path
     runs-on: ubuntu-latest
     container: ghcr.io/dxatscale/sfpowerscripts
-    if: github.event.pull_request.merged == true
     environment:
       name: PROD
 
