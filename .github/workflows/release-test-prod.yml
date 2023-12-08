@@ -22,10 +22,27 @@ on:
     branches:
       - main
     paths:
-      - 'release-definitions/release-def.yml'
+      - 'release-definitions/*_release_v*.yml'
 
 jobs:
+  determine-file-path:
+    runs-on: ubuntu-latest
+    outputs:
+      release_def_file: ${{ steps.find_file.outputs.file_path }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Find Release Definition File
+        id: find_file
+        run: |
+          FILE_PATH=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.event.after }} | grep 'release-definitions/.*_release_v.*\.yml' | head -n 1)
+          if [ -z "$FILE_PATH" ]; then
+            echo "Release definition file not found."
+            exit 1
+          fi
+          echo "::set-output name=file_path::$FILE_PATH"
+
   PROD:
+    needs: determine-file-path
     runs-on: ubuntu-latest
     container: ghcr.io/dxatscale/sfpowerscripts
     environment:
@@ -49,7 +66,7 @@ jobs:
       # Release to environment  
       - name: Release to PROD
         run: |
-          RELEASE_DEF_PATH=release-definitions/release-def.yml
+          RELEASE_DEF_FILE="${{ needs.determine-file-path.outputs.release_def_file }}"
           sfp orchestrator:release -u prod -p $RELEASE_DEF_PATH --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
