@@ -36,7 +36,7 @@ jobs:
       - name: Find Release Definition File
         id: find_file
         run: |
-          FILE_PATH=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.event.after }} | grep 'release-definitions/.*_release_v.*\.yml' | head -n 1)
+          FILE_PATH=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.event.after }} | grep 'release-definitions/*_release_v*\.yml' | head -n 1)
           if [ -z "$FILE_PATH" ]; then
             echo "Release definition file not found."
             exit 1
