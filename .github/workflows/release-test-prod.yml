@@ -21,8 +21,8 @@ on:
   push:
     branches:
       - main
-    #paths:
-    #  - 'release-definitions/*_release_v*.yml'
+    paths:
+      - 'release-definitions/*_release_v*.yml'
 
 jobs:
   determine-file-path:
@@ -31,6 +31,8 @@ jobs:
       release_def_file: ${{ steps.find_file.outputs.file_path }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Fetches all history for all branches and tags    
       - name: Find Release Definition File
         id: find_file
         run: |
