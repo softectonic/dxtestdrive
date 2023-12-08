@@ -22,28 +22,10 @@ on:
     branches:
       - main
     paths:
-      - '**release-def.yml'
+      - 'release-definitions/release-def.yml'
 
 jobs:
-  set_release_def_path:
-    runs-on: ubuntu-latest
-    outputs:
-      release_def_path: ${{ steps.find_file.outputs.file_path }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Find Release Definition File
-        id: find_file
-        run: |
-          RELEASE_DEF_PATH=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep 'release-def' | head -n 1)
-          if [ -z "$RELEASE_DEF_PATH" ]; then
-            echo "Release definition file not found."
-            exit 1
-          fi
-          echo "RELEASE_DEF_PATH=$RELEASE_DEF_PATH" >> $GITHUB_ENV
-          echo "::set-output name=file_path::$RELEASE_DEF_PATH"
-
   PROD:
-    needs: set_release_def_path
     runs-on: ubuntu-latest
     container: ghcr.io/dxatscale/sfpowerscripts
     environment:
@@ -53,10 +35,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
-      # Set the file name based on today's date
-      #- name: Set Release Definition Filename
-      #  run: echo "RELEASE_DEF_PATH=release-definitions/release-$(date +'%m%d%Y').yml" >> $GITHUB_ENV
 
       - name: Authenticate to PROD
         run: |
@@ -71,7 +49,7 @@ jobs:
       # Release to environment  
       - name: Release to PROD
         run: |
-          RELEASE_DEF_PATH="${{ needs.prepare-release-definition.outputs.release_def_path }}"
+          RELEASE_DEF_PATH=release-definitions/release-def.yml
           sfp orchestrator:release -u prod -p $RELEASE_DEF_PATH --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
