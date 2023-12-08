@@ -59,7 +59,7 @@ GIT_REF=${github_ref}
 
 # Check if releaseName is the placeholder and replace it with today's date
 if [ "$RELEASE_NAME" == "release-placeholder" ]; then
-    RELEASE_NAME="release-$today"
+    RELEASE_NAME="release-def_$today"
 fi
 
 echo "Release Name: $RELEASE_NAME"

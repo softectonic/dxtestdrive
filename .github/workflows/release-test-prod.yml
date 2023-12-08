@@ -18,12 +18,11 @@
 name: Test Production Release
 
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches:
       - main
     paths:
-      - 'release-definitions/*.yml' # Trigger for any yml file containing 'release-def'
+      - 'release-definitions/release-def_*.yml'
 
 jobs:
   set_release_def_path:
@@ -35,11 +34,12 @@ jobs:
       - name: Determine Release Definition Path
         id: set_release_def_path
         run: |
-          RELEASE_DEF_PATH="release-definitions/release-$(date +'%m%d%Y').yml"
+          RELEASE_DEF_PATH="release-definitions/release-def_$(date +'%m%d%Y').yml"
           echo "RELEASE_DEF_PATH=$RELEASE_DEF_PATH" >> $GITHUB_ENV
           echo "::set-output name=release_def_path::$RELEASE_DEF_PATH"
 
   PROD:
+    needs: set_release_def_path
     runs-on: ubuntu-latest
     container: ghcr.io/dxatscale/sfpowerscripts
     if: github.event.pull_request.merged == true
