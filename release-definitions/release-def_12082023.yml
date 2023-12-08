@@ -1,0 +1,10 @@
+release: release-def_12082023
+skipIfAlreadyInstalled: true
+skipArtifactUpdate: false
+artifacts:
+  core: 1.0.0-6570422777
+  es-base-code: 1.0.0-4
+  es-base-objects: 1.0.0-4
+  es-base-styles: 1.0.0-4
+  es-space-mgmt: 1.0.0-4
+promotePackagesBeforeDeploymentToOrg: prod
