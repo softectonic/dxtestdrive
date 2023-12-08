@@ -15,7 +15,7 @@
 # 2. Deploy the release using the specified release definition file.
 #
 
-name: Release Test Production
+name: Test Production Release
 
 on:
   pull_request:
@@ -26,6 +26,19 @@ on:
       - 'release-definitions/*.yml' # Trigger for any yml file containing 'release-def'
 
 jobs:
+  set_release_def_path:
+    runs-on: ubuntu-latest
+    outputs:
+      release_def_path: ${{ steps.set_release_def_path.outputs.release_def_path }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Determine Release Definition Path
+        id: set_release_def_path
+        run: |
+          RELEASE_DEF_PATH="release-definitions/release-$(date +'%m%d%Y').yml"
+          echo "RELEASE_DEF_PATH=$RELEASE_DEF_PATH" >> $GITHUB_ENV
+          echo "::set-output name=release_def_path::$RELEASE_DEF_PATH"
+
   PROD:
     runs-on: ubuntu-latest
     container: ghcr.io/dxatscale/sfpowerscripts
@@ -39,8 +52,8 @@ jobs:
           fetch-depth: 0
 
       # Set the file name based on today's date
-      - name: Set Release Definition Filename
-        run: echo "RELEASE_DEF_PATH=release-definitions/release-$(date +'%m%d%Y').yml" >> $GITHUB_ENV
+      #- name: Set Release Definition Filename
+      #  run: echo "RELEASE_DEF_PATH=release-definitions/release-$(date +'%m%d%Y').yml" >> $GITHUB_ENV
 
       - name: Authenticate to PROD
         run: |
@@ -55,7 +68,7 @@ jobs:
       # Release to environment  
       - name: Release to PROD
         run: |
-          RELEASE_DEF_PATH="${{ github.event.inputs.releaseFileName }}"
+          RELEASE_DEF_PATH="${{ needs.prepare-release-definition.outputs.release_def_path }}"
           sfp orchestrator:release -u prod -p $RELEASE_DEF_PATH --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
