@@ -21,8 +21,8 @@ on:
   push:
     branches:
       - main
-    paths:
-      - '**_release_v*.yml'
+    #paths:
+    #  - 'release-definitions/*_release_v*\.yml'
 
 jobs:
   determine-file-path:
