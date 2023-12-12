@@ -27,13 +27,13 @@ on:
 
 jobs:
   PROD:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    container: ghcr.io/dxatscale/sfpowerscripts
+    
     defaults:
       run:
         working-directory: release-definitions
-    
-        container: ghcr.io/dxatscale/sfpowerscripts
+           
     environment:
       name: PROD
 
