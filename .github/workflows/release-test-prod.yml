@@ -19,6 +19,7 @@ name: Test Production Release
 
 on:
   pull_request:
+    types: [closed]
     branches:
       - main
     paths:
@@ -48,6 +49,6 @@ jobs:
 
       # Release to environment  
       - name: Release to PROD
-        run: sfp orchestrator:release -u prod -p release-definitions/plan_release_def.yml --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::"
+        run: sfp orchestrator:release -u prod -p release-definitions/release_def.yml --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
