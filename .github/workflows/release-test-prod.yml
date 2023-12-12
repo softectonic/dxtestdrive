@@ -22,7 +22,7 @@ on:
     branches:
       - main
     paths:
-      - '**/plan_release_def.yml'
+      - '*/plan_release_def.yml'
 
 jobs:
   PROD:

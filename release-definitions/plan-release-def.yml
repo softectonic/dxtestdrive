@@ -1,5 +1,5 @@
 release: plan_release_def
-skipIfAlreadyInstalled: false
+skipIfAlreadyInstalled: true
 skipArtifactUpdate: false
 artifacts:
   es-base-code: 1.0.0-4
