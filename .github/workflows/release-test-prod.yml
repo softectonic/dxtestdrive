@@ -18,10 +18,11 @@
 name: Test Production Release
 
 on:
-  push:
+  pull_request:
     branches:
       - main
-  pull_request:
+    paths:
+      - 'release-definitions/release-def.yml'
 
 jobs:
   PROD:
@@ -35,16 +36,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: dorny/paths-filter@v2.11.1
-        id: changes
-        with:
-          filters: |
-            src:
-              - 'release-definitions/release-def.yml'
-
       - name: Authenticate to PROD
-        # run only if some file in 'src' folder was changed
-        if: steps.changes.outputs.src == 'true'
         run: |
           echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url  -f ./authfile -a prod
