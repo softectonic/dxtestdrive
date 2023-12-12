@@ -22,10 +22,8 @@ on:
     types: [closed]
     branches:
       - main
-
-defaults:
-  run:
-    working-directory: release-definitions
+    paths:
+      - release-definitions/release*.yml
 
 jobs:
   PROD:
