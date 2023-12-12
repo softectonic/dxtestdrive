@@ -1,4 +1,4 @@
-release: release-1.0.0
+release: plan_release_def
 skipIfAlreadyInstalled: true
 skipArtifactUpdate: false
 artifacts:
