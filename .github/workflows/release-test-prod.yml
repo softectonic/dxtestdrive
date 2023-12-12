@@ -21,8 +21,8 @@ on:
   push:
     branches:
       - main
-    paths:
-      - '*/plan_release_def.yml'
+    #paths:
+    #  - 'release-definitions/plan_release_def.yml'
 
 jobs:
   PROD:
