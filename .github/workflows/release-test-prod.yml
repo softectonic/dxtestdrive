@@ -41,7 +41,6 @@ jobs:
           fetch-depth: 0
 
       - name: Authenticate to PROD
-        if: steps.filter.outputs.release-definitions == 'true'
         run: |
           echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url  -f ./authfile -a prod
