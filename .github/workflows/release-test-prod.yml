@@ -25,15 +25,15 @@ on:
     branches:
       - main
 
+defaults:
+  run:
+    working-directory: release-definitions
+
 jobs:
   PROD:
     runs-on: ubuntu-latest
     container: ghcr.io/dxatscale/sfpowerscripts
-    
-    defaults:
-      run:
-        working-directory: release-definitions
-           
+         
     environment:
       name: PROD
 
@@ -41,13 +41,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-        
-      - uses: dorny/paths-filter@v2
-        id: filter
-        with:
-          filters: |
-            release-definitions:
-              - 'release-definitions/release-def.yml'
 
       - name: Authenticate to PROD
         if: steps.filter.outputs.release-definitions == 'true'
