@@ -1,4 +1,4 @@
-release: release_def
+release: release-def
 skipIfAlreadyInstalled: true
 skipArtifactUpdate: false
 artifacts:
