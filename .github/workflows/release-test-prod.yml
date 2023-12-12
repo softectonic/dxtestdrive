@@ -18,18 +18,22 @@
 name: Test Production Release
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
-    types: [closed]
-    paths:
-      - 'release-definitions/release-def.yml'
 
 jobs:
   PROD:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    container: ghcr.io/dxatscale/sfpowerscripts
+    defaults:
+      run:
+        working-directory: release-definitions
+    
+        container: ghcr.io/dxatscale/sfpowerscripts
     environment:
       name: PROD
 
@@ -37,8 +41,16 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+        
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            release-definitions:
+              - 'release-definitions/release-def.yml'
 
       - name: Authenticate to PROD
+        if: steps.filter.outputs.release-definitions == 'true'
         run: |
           echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url  -f ./authfile -a prod
