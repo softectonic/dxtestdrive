@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 # Script: release-definition.sh
 # 
@@ -28,8 +28,6 @@
 #RELEASE_DEFINITIONS_DIR=$(jq -r '.releaseDefinitionsDir' "$JSON_FILE")
 #SFDX_PROJECT_FILE=$(jq -r '.sfdxProjectFile' "$JSON_FILE")
 #SOURCE_TAG=$(jq -r '.sourceTag' "$JSON_FILE")
-
-#!/bin/bash
 
 # Default values
 today=$(date +"%m%d%Y")
