@@ -52,7 +52,9 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
 
       # Release to environment  
-      - name: Release to PROD
-        run: sfp orchestrator:release -u prod -p 'release-definitions/release-def.yml' --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::"
+      - name: Release to PROD 
+        run: |
+          RELEASE_DEF_PATH="release-definitions/release-def.yml"
+          sfp orchestrator:release -u prod -p $RELEASE_DEF_PATH --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
