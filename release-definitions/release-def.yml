@@ -1,7 +1,0 @@
-release: release-def
-skipIfAlreadyInstalled: true
-skipArtifactUpdate: false
-artifacts:
-  es-base-styles: 1.0.0-4
-  es-space-mgmt: 1.0.0-4
-promotePackagesBeforeDeploymentToOrg: prod
