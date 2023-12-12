@@ -41,11 +41,10 @@ jobs:
           filters: |
             src:
               - 'release-definitions/release-def.yml'
-    
-      # run only if some file in 'src' folder was changed
-      - if: steps.changes.outputs.src == 'true'
 
       - name: Authenticate to PROD
+        # run only if some file in 'src' folder was changed
+        if: steps.changes.outputs.src == 'true'
         run: |
           echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url  -f ./authfile -a prod
