@@ -17,7 +17,11 @@
 
 name: Test Production Release
 
-on: pull_request
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
   PROD:
