@@ -58,9 +58,9 @@ GIT_REF=${github_ref}
 
 
 # Check if releaseName is the placeholder and replace it with today's date
-if [ "$RELEASE_NAME" == "<projectName>_release_v<version>" ]; then
-    RELEASE_NAME="_release_v$today"
-fi
+#if [ "$RELEASE_NAME" == "<projectName>_release_v<version>" ]; then
+#    RELEASE_NAME="_release_v$today"
+#fi
 
 echo "Release Name: $RELEASE_NAME"
 echo "Branch: $BRANCH"
