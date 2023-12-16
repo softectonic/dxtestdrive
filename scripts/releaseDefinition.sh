@@ -36,8 +36,8 @@ default_config_file="${default_directory}/config.yml"
 # Use provided values or defaults
 CONFIG_FILE=${1:-$default_config_file}
 RELEASE_NAME="release"
-DIRECTORY="release-definition"
-BRANCH="release-definitions"
+DIRECTORY="release-definitions"
+BRANCH="release-definition"
 SOURCE_TAG="main"
 
 
