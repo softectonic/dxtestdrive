@@ -32,7 +32,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0 # Fetches all history for all branches and tags
+          fetch-depth: 0 
+          persist-credentials: true
+
+      - name: Configure Git Safe Directory
+        run: git config --global --add safe.directory /__w/dxtestdrive/dxtestdrive
 
       - name: Check if Release Definition Branch Exists
         id: check_branch
