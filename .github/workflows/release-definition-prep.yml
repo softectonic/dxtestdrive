@@ -41,7 +41,7 @@ jobs:
       - name: Check if Release Definition Branch Exists
         id: check_branch
         run: |
-          if git ls-remote --heads origin release-definition; then
+          if git ls-remote --heads origin release-definition | grep -q 'refs/heads/release-definition'; then
             echo "Branch exists, deleting..."
             git push origin --delete release-definition
           else
