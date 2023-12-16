@@ -22,7 +22,7 @@ on:
     branches:
       - main
     paths:
-      - release-definitions/releas*.yml
+      - 'release-definitions/release.yml'
 
 jobs:
   PROD:
