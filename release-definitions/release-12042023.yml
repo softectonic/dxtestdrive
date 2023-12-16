@@ -1,5 +1,0 @@
-release: release-12042023
-skipIfAlreadyInstalled: true
-skipArtifactUpdate: false
-artifacts: {}
-promotePackagesBeforeDeploymentToOrg: prod

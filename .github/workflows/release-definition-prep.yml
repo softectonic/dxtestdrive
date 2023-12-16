@@ -19,21 +19,14 @@ name: Release Definition Prep
 on:
   workflow_dispatch:
     inputs:
-      releaseName:
-        description: 'Release Name'
-        required: false
-        default: 'release_def'
-      directory:
-        description: 'Directory to which release definition file is written'
-        required: false
-        default: 'release-definitions'
       configFile:
         description: 'Path to the config file'
         required: false
-        default: 'release-definitions/release-template.yml'
+        default: 'release-definitions/config.yml'
 
 jobs:
-  generate-release-definition:
+  create-branch-and-generate-release-definition:
+    name: 'Prepare Release Definition'
     runs-on: ubuntu-latest
     container: ghcr.io/dxatscale/sfpowerscripts
     steps:
@@ -41,5 +34,20 @@ jobs:
         with:
           fetch-depth: 0 # Fetches all history for all branches and tags
 
+      - name: Check if Release Definition Branch Exists
+        id: check_branch
+        run: |
+          if git ls-remote --heads origin release-definition; then
+            echo "Branch exists, deleting..."
+            git push origin --delete release-definition
+          else
+            echo "Branch does not exist." 
+          fi
+
+      - name: Create Release Definition Branch
+        run: |
+            git branch release-definition origin/main
+            git push origin release-definition
+
       - name: Generate Release Definition
-        run: bash ./scripts/releaseDefinition.sh "${{ github.event.inputs.releaseName }}" "${{ github.event.inputs.directory }}" "${{ github.event.inputs.configFile }}"
+        run: bash ./scripts/releaseDefinition.sh "${{ github.event.inputs.configFile }}"

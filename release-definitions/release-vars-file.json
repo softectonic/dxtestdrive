@@ -1,7 +1,0 @@
-{
-    "releaseName": "release-2.10",
-    "releaseBranch": "main",
-    "releaseDefinitionsDir": "release-definitions",
-    "sfdxProjectFile": "sfdx-project.json",
-    "sourceTag": "es-base-code_v1.0.0.4"
-}

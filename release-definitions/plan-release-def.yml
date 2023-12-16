@@ -1,9 +1,0 @@
-release: plan_release_def
-skipIfAlreadyInstalled: false
-skipArtifactUpdate: false
-artifacts:
-  es-base-code: 1.0.0-4
-  es-base-objects: 1.0.0-4
-  es-base-styles: 1.0.0-4
-  es-space-mgmt: 1.0.0-4
-promotePackagesBeforeDeploymentToOrg: prod
