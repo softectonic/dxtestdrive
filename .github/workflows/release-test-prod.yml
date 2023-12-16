@@ -18,11 +18,11 @@
 name: Test Production Release
 
 on:
-  pull_request:
+  push:
     branches:
       - main
     paths:
-      - 'release-definitions/relea*.yml'
+      - 'release.yml'
 
 jobs:
   PROD:
