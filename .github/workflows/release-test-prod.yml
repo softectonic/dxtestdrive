@@ -15,14 +15,14 @@
 # 2. Deploy the release using the specified release definition file.
 #
 
-name: Test Production Release
+name: Testing Production Release
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'release.yml'
+      - 'release-definitions/release.yml'
 
 jobs:
   PROD:
