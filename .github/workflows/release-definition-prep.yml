@@ -53,17 +53,5 @@ jobs:
             git branch release-definition origin/main
             git push origin release-definition
 
-      - name: Check and Delete release.yml in Release Definition Branch
-        run: |
-          git fetch origin release-definition
-          git checkout release-definition
-          git config user.email "softectonic@gmail.com"
-          git config user.name "softectonic"
-          if [ -f "release-definitions/release.yml" ]; then
-            git rm release-definitions/release.yml
-            git commit -m "Remove existing release.yml"
-            git push origin release-definition
-          fi
-
       - name: Generate Release Definition
         run: bash ./scripts/releaseDefinition.sh "${{ github.event.inputs.configFile }}"
