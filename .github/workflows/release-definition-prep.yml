@@ -57,6 +57,8 @@ jobs:
         run: |
           git fetch origin release-definition
           git checkout release-definition
+          git config user.email "softectonic@gmail.com"
+          git config user.name "softectonic"
           if [ -f "release-definitions/release.yml" ]; then
             git rm release-definitions/release.yml
             git commit -m "Remove existing release.yml"
