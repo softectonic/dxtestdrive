@@ -1,3 +1,2 @@
 releasedefinitionProperties:
   skipIfAlreadyInstalled: true
-  promotePackagesBeforeDeploymentToOrg: "prod"

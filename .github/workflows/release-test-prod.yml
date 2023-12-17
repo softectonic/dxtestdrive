@@ -15,14 +15,14 @@
 # 2. Deploy the release using the specified release definition file.
 #
 
-name: Test Production Release
+name: Testing Production Release
 
 on:
   push:
     branches:
       - main
     paths:
-      - release-definitions/release*.yml
+      - 'release-definitions/release.yml'
 
 jobs:
   PROD:
@@ -50,7 +50,7 @@ jobs:
       # Release to environment  
       - name: Release to PROD 
         run: |
-          RELEASE_DEF_PATH="release-definitions/release-def.yml"
+          RELEASE_DEF_PATH="release-definitions/release.yml"
           sfp orchestrator:release -u prod -p $RELEASE_DEF_PATH --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
