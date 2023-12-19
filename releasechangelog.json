@@ -51,10 +51,12 @@
                     "names": [
                         "release-2.5",
                         "release-2.10",
-                        "release-def"
+                        "release-def",
+                        "release"
                     ],
                     "buildNumber": 4,
-                    "hashId": "c1259b14d7c7dbf9a207173a2b96d0e0729859c6"
+                    "hashId": "c1259b14d7c7dbf9a207173a2b96d0e0729859c6",
+                    "date": "Tue, 19 Dec 2023 22:59:42 GMT"
                 },
                 {
                     "names": [
@@ -66,12 +68,16 @@
             ],
             "latestRelease": {
                 "names": [
+                    "release-2.5",
+                    "release-2.10",
+                    "release-def",
                     "release"
                 ],
-                "buildNumber": 5,
-                "hashId": "a9d010a40e9a25a11ec0e0b55288c423d7a9059c"
+                "buildNumber": 4,
+                "hashId": "c1259b14d7c7dbf9a207173a2b96d0e0729859c6",
+                "date": "Tue, 19 Dec 2023 22:59:42 GMT"
             },
-            "retryCount": 1
+            "retryCount": 0
         }
     ],
     "releases": [
@@ -225,7 +231,8 @@
             "names": [
                 "release-2.5",
                 "release-2.10",
-                "release-def"
+                "release-def",
+                "release"
             ],
             "buildNumber": 4,
             "workItems": {},
