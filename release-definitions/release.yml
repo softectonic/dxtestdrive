@@ -1,5 +1,5 @@
 release: release
-skipIfAlreadyInstalled: true
+skipIfAlreadyInstalled: false
 skipArtifactUpdate: false
 artifacts:
   core: 1.0.0-6570422777
