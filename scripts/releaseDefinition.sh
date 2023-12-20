@@ -46,10 +46,10 @@ SOURCE_TAG="main"
 #    RELEASE_NAME="release-$today"
 #fi
 
+echo "Config File: $CONFIG_FILE"
 echo "Release Name: $RELEASE_NAME"
 echo "Branch: $BRANCH"
 echo "Directory: $DIRECTORY"
-echo "Config File: $CONFIG_FILE"
 echo "Source Tag: $SOURCE_TAG"
 
 # Checkout to the new branch
