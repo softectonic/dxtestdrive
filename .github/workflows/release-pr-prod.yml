@@ -15,17 +15,17 @@
 # 2. Deploy the release using the specified release definition file.
 #
 
-name: Testing Production Release
+name: PR Release Test
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - main
-    paths:
-      - "release-definitions/release*"
 
 jobs:
   PROD:
+    if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'release-definition'
     runs-on: ubuntu-latest
     container: ghcr.io/dxatscale/sfpowerscripts
          
