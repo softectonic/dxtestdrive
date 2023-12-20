@@ -43,7 +43,7 @@ jobs:
           SOURCE_BRANCH=$(git branch -r --contains ${{ github.sha }} | grep 'release-definition' || true)
           if [[ -z "$SOURCE_BRANCH" ]]; then
             echo "Source branch is not release-definition. Exiting..."
-            exit 0
+            exit 78
           fi
 
       - name: Authenticate to PROD
