@@ -21,6 +21,7 @@
 
 
 # Default values
+default_directory="release-definitions"
 default_config_file="${default_directory}/config.yml"
 
 # GitHub environment variables
