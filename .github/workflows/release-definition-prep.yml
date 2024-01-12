@@ -53,16 +53,19 @@ jobs:
             git branch release-definition origin/main
             git push origin release-definition
 
-      - name: Ensure Release Definitions Directory Exists
-        run: mkdir -p release-definitions
-
-      - name: Generate Release Definition
+      - name: Generate Release Definition and Create Log File
         run: |
-            sfp releasedefinition:generate -n release -b release-definition -d release-definitions -f ${{ github.event.inputs.configFile }} -c main | tee ./release.log
+            sfp releasedefinition:generate -n release -b release-definition -d release-definitions -f ${{ github.event.inputs.configFile }} -c main > release.log
+            cat release.log
+
+      - name: Clean Log File and Extract Content
+        run: |
             sed 's/\x1b\[[0-9;]*m//g' release.log > cleaned_release.log
             cat cleaned_release.log | sed -n '/release: release/,/workItemUrl: https:\/\/jira.apps.eop.gov\/browse/p' > release-definitions/release.yml
-        env:
-         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: List Current Directory Contents
+        run: ls -la
+
 
       - name: Commit required content and push
         run: |
