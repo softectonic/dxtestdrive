@@ -57,7 +57,7 @@ echo "Source Tag: $SOURCE_TAG"
 #git checkout release-definition
 
 # Generate Release Definition
-sfp releasedefinition:generate -n "$RELEASE_NAME" -b "$BRANCH" -d "$DIRECTORY" -f "$CONFIG_FILE" -c "$SOURCE_TAG" | tee $DIRECTORY/release.log
-sed 's/\x1b\[[0-9;]*m//g' $DIRECTORY/release.log > $DIRECTORY/cleaned_release.log
-cat $DIRECTORY/cleaned_release.log | sed -n '/release: release/,/workItemUrl: https:\/\/jira.apps.eop.gov\/browse/p' > $DIRECTORY/release.yml
+sfp releasedefinition:generate -n "$RELEASE_NAME" -b "$BRANCH" -d "$DIRECTORY" -f "$CONFIG_FILE" -c "$SOURCE_TAG" | tee release-definitions/output.log
+sed 's/\x1b\[[0-9;]*m//g' release-definitions/output.log > release-definitions/cleaned_output.log
+cat release-definitions/cleaned_output.log | sed -n '/release: release/,/workItemUrl: https:\/\/jira.apps.eop.gov\/browse/p' > release-definitions/release.yml
 
