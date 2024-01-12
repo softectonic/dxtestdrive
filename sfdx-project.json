@@ -88,13 +88,9 @@
       "path": "./src/core-crm",
       "package": "core",
       "versionName": "Version 1.0.0",
-      "versionNumber": "1.0.0.0",
-      "ignoreOnStage": [
-        "prepare",
-        "validate",
-        "quickbuild",
-        "build"
-      ]
+      "versionNumber": "1.0.0.NEXT",
+      "default": false,
+      "versionDescription": ""
     },
     {
       "path": "./src-ui",
@@ -143,7 +139,8 @@
     "es-base-objects": "0Ho8b000000sXybCAE",
     "es-base-code": "0Ho8b000000sXygCAE",
     "es-base-styles": "0Ho8b000000sXylCAE",
-    "es-space-mgmt": "0Ho8b000000sXyqCAE"
+    "es-space-mgmt": "0Ho8b000000sXyqCAE",
+    "core-crm": "0Ho8b000000sXyqCAE"
   },
   "plugins": {}
 }
