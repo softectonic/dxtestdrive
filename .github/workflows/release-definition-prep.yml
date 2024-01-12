@@ -55,3 +55,9 @@ jobs:
 
       - name: Generate Release Definition
         run: bash ./scripts/releaseDefinition.sh "${{ github.event.inputs.configFile }}"
+
+      - name: Commit required content and push
+        run: |
+          git add release.yml
+          git commit -m "Update release definition"
+          git push origin release-definition
