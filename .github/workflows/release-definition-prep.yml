@@ -64,6 +64,6 @@ jobs:
 
       - name: Commit required content and push
         run: |
-          git add release.yml
+          git add release-definitions/release.yml
           git commit -m "Update release definition"
           git push origin release-definition
