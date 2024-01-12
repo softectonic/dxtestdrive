@@ -58,9 +58,8 @@ jobs:
             sfp releasedefinition:generate -n release -b release-definition -d release-definitions -f ${{ github.event.inputs.configFile }} -c main | tee release-definitions/out.log
             sed 's/\x1b\[[0-9;]*m//g' release-definitions/out.log > release-definitions/cleaned_out.log
             cat release-definitions/cleaned_out.log | sed -n '/release: release/,/workItemUrl: https:\/\/jira.apps.eop.gov\/browse/p' > release-definitions/release.yml
-
-      - name: Configure Git Safe Directory
-        run: git config --global --add safe.directory /__w/dxtestdrive/dxtestdrive
+        env:
+         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit required content and push
         run: |
