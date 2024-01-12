@@ -1,2 +1,6 @@
 releasedefinitionProperties:
   skipIfAlreadyInstalled: true
+  changelog:
+    workItemFilters:
+      - SFDC-[0-9]{3,10}
+    workItemUrl: https://jira.apps.eop.gov/browse
