@@ -56,6 +56,9 @@ jobs:
       - name: Generate Release Definition
         run: bash ./scripts/releaseDefinition.sh "${{ github.event.inputs.configFile }}"
 
+      - name: Configure Git Safe Directory
+        run: git config --global --add safe.directory /__w/dxtestdrive/dxtestdrive
+
       - name: Commit required content and push
         run: |
           git add release.yml
