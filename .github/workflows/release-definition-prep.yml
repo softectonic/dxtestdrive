@@ -36,7 +36,7 @@ jobs:
           persist-credentials: true
 
       - name: Configure Git Safe Directory
-        run: git config --global --add safe.directory /__w/dxtestdrive/dxtestdrive
+        run: git config --global --add safe.directory ${{ github.workspace }}
 
       - name: Check if Release Definition Branch Exists
         id: check_branch
@@ -53,6 +53,9 @@ jobs:
             git branch release-definition origin/main
             git push origin release-definition
 
+      - name: Ensure Release Definitions Directory Exists
+        run: mkdir -p release-definitions
+
       - name: Generate Release Definition
         run: |
             sfp releasedefinition:generate -n release -b release-definition -d release-definitions -f ${{ github.event.inputs.configFile }} -c main | tee ./release.log
@@ -60,9 +63,6 @@ jobs:
             cat cleaned_release.log | sed -n '/release: release/,/workItemUrl: https:\/\/jira.apps.eop.gov\/browse/p' > release-definitions/release.yml
         env:
          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Configure Git Safe Directory
-        run: git config --global --add safe.directory /__w/dxtestdrive/dxtestdrive
 
       - name: Commit required content and push
         run: |
