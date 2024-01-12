@@ -40,7 +40,6 @@ RELEASE_NAME="release"
 DIRECTORY="release-definitions"
 BRANCH="release-definition"
 SOURCE_TAG="main"
-ROOT_DIR="/"
 
 
 # Check if releaseName is the placeholder and replace it with today's date
@@ -58,7 +57,7 @@ echo "Source Tag: $SOURCE_TAG"
 #git checkout release-definition
 
 # Generate Release Definition
-sfp releasedefinition:generate -n "$RELEASE_NAME" -b "$BRANCH" -d "$DIRECTORY" -f "$CONFIG_FILE" -c "$SOURCE_TAG" | tee $ROOT_DIR/release.log
-sed 's/\x1b\[[0-9;]*m//g' $ROOT_DIR/release.log > $ROOT_DIR/cleaned_release.log
-cat $ROOT_DIR/cleaned_release.log | sed -n '/release: release/,/workItemUrl: https:\/\/jira.apps.eop.gov\/browse/p' > $DIRECTORY/release.yml
+sfp releasedefinition:generate -n "$RELEASE_NAME" -b "$BRANCH" -d "$DIRECTORY" -f "$CONFIG_FILE" -c "$SOURCE_TAG" | tee $DIRECTORY/release.log
+sed 's/\x1b\[[0-9;]*m//g' $DIRECTORY/release.log > $DIRECTORY/cleaned_release.log
+cat $DIRECTORY/cleaned_release.log | sed -n '/release: release/,/workItemUrl: https:\/\/jira.apps.eop.gov\/browse/p' > $DIRECTORY/release.yml
 
