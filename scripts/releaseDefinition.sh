@@ -54,7 +54,7 @@ echo "Directory: $DIRECTORY"
 echo "Source Tag: $SOURCE_TAG"
 
 # Checkout to the new branch
-git checkout release-definition
+#git checkout release-definition
 
 # Generate Release Definition
 sfp releasedefinition:generate -n "$RELEASE_NAME" -b "$BRANCH" -d "$DIRECTORY" -f "$CONFIG_FILE" -c "$SOURCE_TAG"
