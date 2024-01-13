@@ -64,6 +64,9 @@ jobs:
         env:
          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Configure Git Safe Directory
+        run: git config --global --add safe.directory /__w/dxtestdrive/dxtestdrive
+
       - name: Commit and Push Changes
         run: |
           git add .
