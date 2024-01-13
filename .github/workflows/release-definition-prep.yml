@@ -71,13 +71,20 @@ jobs:
 
       - name: Copy Files from the Dynamic Temporary Directory
         run: |
-          # Find the temporary directory and copy its contents
+          echo "Listing all tmp-* directories in /tmp:"
+          find /tmp -type d -name "tmp-*"
+          
           temp_dir=$(find /tmp -type d -name "tmp-*" | head -n 1)
+          echo "Temporary directory found: $temp_dir"
+          
           if [ -d "$temp_dir/release-definitions" ]; then
             cp "$temp_dir/release-definitions/*" $GITHUB_WORKSPACE/release-definitions
+          else
+            echo "No directory found at $temp_dir/release-definitions"
           fi
-          echo "Contents of $temp_dir/release-definitions:"
-          ls -l $temp_dir/release-definitions
+          
+          echo "Contents of $GITHUB_WORKSPACE/release-definitions:"
+          ls -l $GITHUB_WORKSPACE/release-definitions
         
       - name: Configure Git Safe Directory
         run: git config --global --add safe.directory /__w/dxtestdrive/dxtestdrive
