@@ -53,34 +53,19 @@ jobs:
           git branch release-definition origin/main
           git push origin release-definition
 
+      - name: Set up Git
+        run: |
+          git config --global user.name 'softectonic'
+          git config --global user.email 'softectonic@gmail.com'
+
       - name: Generate Release Definition and Create Log File
         run: |
-          sfp releasedefinition:generate -n release -b release-definition -d release-definitions -f ${{ github.event.inputs.configFile }} -c main > release.log
-          cat release.log
+          sfp releasedefinition:generate -n release -b release-definition -d release-definitions -f ${{ github.event.inputs.configFile }} -c main
+        env:
+         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Clean Log File and Extract Content
+      - name: Commit and Push Changes
         run: |
-          sed 's/\x1b\[[0-9;]*m//g' release.log > cleaned_release.log
-          cat cleaned_release.log | sed -n '/release: release/,/workItemUrl: https:\/\/jira.apps.eop.gov\/browse/p' > release.yml
-
-      - name: List Current Directory Contents
-        run: ls -la
-
-      - name: Copy Release Log to Project Directory
-        run: |
-          cp release.yml /workspaces/dxtestdrive/release-definitions/release.yml
-
-      - name: Change Directory to Project Directory
-        run: cd /workspaces/dxtestdrive/release-definitions
-
-      - name: Configure Git Safe Directory
-        run: |
-          git config --global --add safe.directory /__w/dxtestdrive/dxtestdrive
-          git config --global user.email "softectonic@gmail.com"
-          git config --global user.name "softectonic"
-
-      - name: Git Add, Commit and Push
-        run: |
-          git add release.yml
-          git commit -m "Update release definition"
-          git push origin HEAD:release-definition
+          git add .
+          git commit -m "Add generated files"
+          git push
