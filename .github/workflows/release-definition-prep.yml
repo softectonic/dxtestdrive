@@ -36,7 +36,7 @@ jobs:
           persist-credentials: true
 
       - name: Configure Git Safe Directory
-        run: git config --global --add safe.directory /__w/dxtestdrive/dxtestdrive
+        run: git config --global --add safe.directory $GITHUB_WORKSPACE
 
       - name: Check if Release Definition Branch Exists
         id: check_branch
@@ -55,8 +55,8 @@ jobs:
 
       - name: Set up Git
         run: |
-          git config --global user.name 'softectonic'
-          git config --global user.email 'softectonic@gmail.com'
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
       - name: Checkout release-definition Branch
         run: |
@@ -76,11 +76,11 @@ jobs:
           cat cleaned_release.log | sed -n '/release: release/,/workItemUrl: https:\/\/jira.apps.eop.gov\/browse/p' > release-definitions/release.yml
         
       - name: Configure Git Safe Directory
-        run: git config --global --add safe.directory /__w/dxtestdrive/dxtestdrive
+        run: git config --global --add safe.directory $GITHUB_WORKSPACE
       
       - name: Commit and Push Changes to release-definition Branch
         run: |
           git add release-definitions/*
-          git commit -m "Add generated release definition files" || echo "No changes to commit"
+          git commit -m "Add generated release definition file" || echo "No changes to commit"
           git push origin release-definition
 
