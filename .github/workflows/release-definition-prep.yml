@@ -58,6 +58,11 @@ jobs:
           git config --global user.name 'softectonic'
           git config --global user.email 'softectonic@gmail.com'
 
+      - name: Checkout release-definition Branch
+        run: |
+          git fetch
+          git checkout release-definition
+
       - name: Generate Release Definition and Create Log File
         run: |
           sfp releasedefinition:generate -n release -b release-definition -d release-definitions -f ${{ github.event.inputs.configFile }} -c main
@@ -78,6 +83,6 @@ jobs:
       - name: Commit and Push Changes to release-definition Branch
         run: |
           git add release-definitions/*
-          git commit -m "Add generated release definition files"
+          git commit -m "Add generated release definition files" || echo "No changes to commit"
           git push origin release-definition
 
