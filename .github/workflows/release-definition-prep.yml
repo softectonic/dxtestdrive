@@ -69,22 +69,21 @@ jobs:
         env:
          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Copy Files from the Dynamic Temporary Directory
+      - name: Find and Copy Release Definition File
         run: |
-          echo "Listing all tmp-* directories in /tmp:"
-          find /tmp -type d -name "tmp-*"
+          echo "Searching for generated release.yml file"
           
-          temp_dir=$(find /tmp -type d -name "tmp-*" | head -n 1)
-          echo "Temporary directory found: $temp_dir"
+          release_yml_file=$(find /tmp -type f -name "release.yml")
+          echo "Release definition file found: $release_yml_file"
           
-          if [ -d "$temp_dir/release-definitions" ]; then
-            cp "$temp_dir/release-definitions/*" $GITHUB_WORKSPACE/release-definitions
+          if [ -f "$release_yml_file" ]; then
+            cp "$release_yml_file" $GITHUB_WORKSPACE/release-definitions/
           else
-            echo "No directory found at $temp_dir/release-definitions"
+            echo "No release.yml file found in /tmp directories"
           fi
-          
+
           echo "Contents of $GITHUB_WORKSPACE/release-definitions:"
-          ls -l $GITHUB_WORKSPACE/release-definitions
+          ls -l $GITHUB_WORKSPACE/release-definitions/
         
       - name: Configure Git Safe Directory
         run: git config --global --add safe.directory /__w/dxtestdrive/dxtestdrive
