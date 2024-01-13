@@ -73,6 +73,7 @@ jobs:
         run: |
           # Find the temporary directory and copy its contents
           temp_dir=$(find /tmp -type d -name "tmp-*" | head -n 1)
+          echo "tmp directory is: " temp_dir
           if [ -d "$temp_dir/release-definitions" ]; then
             cp "$temp_dir/release-definitions/*" $GITHUB_WORKSPACE/release-definitions
           fi
