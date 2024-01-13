@@ -64,17 +64,21 @@
                     "buildNumber": 5,
                     "hashId": "a9d010a40e9a25a11ec0e0b55288c423d7a9059c",
                     "date": "Wed, 20 Dec 2023 01:16:03 GMT"
+                },
+                {
+                    "names": [
+                        "release"
+                    ],
+                    "buildNumber": 6,
+                    "hashId": "883970e3c3fb67e3ab34ed885f9f41a79d995be7"
                 }
             ],
             "latestRelease": {
                 "names": [
-                    "release-2.5",
-                    "release-2.10",
-                    "release-def",
                     "release"
                 ],
-                "buildNumber": 4,
-                "hashId": "c1259b14d7c7dbf9a207173a2b96d0e0729859c6"
+                "buildNumber": 6,
+                "hashId": "883970e3c3fb67e3ab34ed885f9f41a79d995be7"
             },
             "retryCount": 0
         }
@@ -322,6 +326,100 @@
             ],
             "hashId": "a9d010a40e9a25a11ec0e0b55288c423d7a9059c",
             "date": "Sun Dec 17 2023 20:06:09 GMT+0000 (Coordinated Universal Time)"
+        },
+        {
+            "names": [
+                "release"
+            ],
+            "buildNumber": 6,
+            "workItems": {},
+            "artifacts": [
+                {
+                    "name": "es-space-mgmt",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-styles",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-objects",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-code",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "core",
+                    "from": "83635e7e",
+                    "to": "afcc5c5f",
+                    "version": "1.0.0.7497225625",
+                    "latestCommitId": "7e7d3abb",
+                    "commits": [
+                        {
+                            "commitId": "7e7d3abb",
+                            "date": "2024-01-12T00:55:30+00:00",
+                            "author": "softectonic",
+                            "message": "account length update",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "752c56e4",
+                            "date": "2024-01-12T00:53:46+00:00",
+                            "author": "softectonic",
+                            "message": "account number length update",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "f2f0bb2b",
+                            "date": "2024-01-12T00:51:53+00:00",
+                            "author": "softectonic",
+                            "message": "Account number length update",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "4111196e",
+                            "date": "2023-12-19T19:41:19-08:00",
+                            "author": "softectonic",
+                            "message": "release def pull request - negative test 3 (#68)",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "4af0d77f",
+                            "date": "2023-11-29T17:20:47+00:00",
+                            "author": "softectonic",
+                            "message": "Updated field length",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "ae000864",
+                            "date": "2023-11-29T17:15:38+00:00",
+                            "author": "softectonic",
+                            "message": "Changed field length",
+                            "body": ""
+                        }
+                    ]
+                }
+            ],
+            "hashId": "883970e3c3fb67e3ab34ed885f9f41a79d995be7",
+            "date": "Sat Jan 13 2024 07:58:05 GMT+0000 (Coordinated Universal Time)"
         }
     ]
 }

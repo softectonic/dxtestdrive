@@ -1,4 +1,27 @@
-[![sit-release-2.0-3(0)-green](https://img.shields.io/static/v1?label=sit&message=release-2.0-3(0)&color=green)](#a433f1804f9cfbb18e03546aeb4659eb1e932b1d) [![prod-release-4(0)-green](https://img.shields.io/static/v1?label=prod&message=release-4(0)&color=green)](#c1259b14d7c7dbf9a207173a2b96d0e0729859c6) 
+[![sit-release-2.0-3(0)-green](https://img.shields.io/static/v1?label=sit&message=release-2.0-3(0)&color=green)](#a433f1804f9cfbb18e03546aeb4659eb1e932b1d) [![prod-release-6(0)-green](https://img.shields.io/static/v1?label=prod&message=release-6(0)&color=green)](#883970e3c3fb67e3ab34ed885f9f41a79d995be7) 
+<a id=883970e3c3fb67e3ab34ed885f9f41a79d995be7></a>
+# release
+ Cumulative Release Number: <b>6</b> 
+
+Matching defintion first created or deployed to an org on: Sat Jan 13 2024 07:58:05 GMT+0000 (Coordinated Universal Time)
+ ### Artifacts :package:
+- **core**     v1.0.0.7497225625 (afcc5c5f)
+
+### Work Items :gem:
+N/A
+
+### Commits :book:
+
+#### core
+| Date       | Time     | Commit ID | Commit Message                                   |
+| ---------- | -------- | --------- | ------------------------------------------------ |
+| 12/01/2024 | 00:55:30 | 7e7d3abb  | account length update                            |
+| 12/01/2024 | 00:53:46 | 752c56e4  | account number length update                     |
+| 12/01/2024 | 00:51:53 | f2f0bb2b  | Account number length update                     |
+| 20/12/2023 | 03:41:19 | 4111196e  | release def pull request - negative test 3 (#68) |
+| 29/11/2023 | 17:20:47 | 4af0d77f  | Updated field length                             |
+| 29/11/2023 | 17:15:38 | ae000864  | Changed field length                             |
+
 <a id=a9d010a40e9a25a11ec0e0b55288c423d7a9059c></a>
 # release
  Cumulative Release Number: <b>5</b> 
