@@ -71,7 +71,10 @@ jobs:
           if [ -d "$temp_dir/release-definitions" ]; then
             cp "$temp_dir/release-definitions/*" $GITHUB_WORKSPACE/release-definitions
           fi
-
+        
+      - name: Configure Git Safe Directory
+        run: git config --global --add safe.directory /__w/dxtestdrive/dxtestdrive
+      
       - name: Commit and Push Changes to release-definition Branch
         run: |
           git add release-definitions/*
