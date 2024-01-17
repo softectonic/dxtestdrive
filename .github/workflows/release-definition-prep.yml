@@ -1,18 +1,7 @@
-# Generate Release Definition Workflow
-#
-# This workflow is responsible for automatically generating the release definition file.
-# It is triggered when changes to 'release-vars-file.json' are merged into the main branch.
-# The workflow runs a script that generates a release definition file based on the 
-# parameters specified in 'release-vars-file.json'. The generated file is committed to the 
-# repository, allowing for manual review and modifications before the deployment process.
-#
-# Workflow Triggers:
-# - Pull request merge into the main branch, specifically when changes are made to 'release-vars-file.json'.
-#
-# Workflow Steps:
-# 1. Checkout the repository.
-# 2. Run the script to generate the release definition file
-#
+# Release Definition Prep Workflow
+# This GitHub Actions workflow is triggered manually. It prepares a release definition by creating a dedicated branch and generating the release configuration.
+# It includes steps for setting up the environment, checking branch existence, branch management, generating the release configuration, and committing the changes.
+# Notably, it includes steps to parse and clean the output log, then extract the release configuration into a 'release.yml' file.
 
 name: Release Definition Prep
 
@@ -38,6 +27,11 @@ jobs:
       - name: Configure Git Safe Directory
         run: git config --global --add safe.directory $GITHUB_WORKSPACE
 
+      - name: Set up Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
       - name: Check if Release Definition Branch Exists
         id: check_branch
         run: |
@@ -52,11 +46,6 @@ jobs:
         run: |
           git branch release-definition origin/main
           git push origin release-definition
-
-      - name: Set up Git
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
       - name: Checkout release-definition Branch
         run: |
@@ -75,8 +64,8 @@ jobs:
           sed 's/\x1b\[[0-9;]*m//g' release.log > cleaned_release.log
           cat cleaned_release.log | sed -n '/release: release/,/workItemUrl: https:\/\/jira.apps.eop.gov\/browse/p' > release-definitions/release.yml
         
-      - name: Configure Git Safe Directory
-        run: git config --global --add safe.directory $GITHUB_WORKSPACE
+      #- name: Configure Git Safe Directory
+      #  run: git config --global --add safe.directory $GITHUB_WORKSPACE
       
       - name: Commit and Push Changes to release-definition Branch
         run: |
