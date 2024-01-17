@@ -24,13 +24,13 @@ jobs:
           fetch-depth: 0 
           persist-credentials: true
 
-      #- name: Configure Git Safe Directory
-      #  run: git config --global --add safe.directory $GITHUB_WORKSPACE
+      - name: Set up Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
-      #- name: Set up Git
-      #  run: |
-      #    git config --global user.name 'github-actions[bot]'
-       #   git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - name: Configure Git Safe Directory
+        run: git config --global --add safe.directory $GITHUB_WORKSPACE
 
       - name: Check if Release Definition Branch Exists
         id: check_branch
@@ -66,11 +66,6 @@ jobs:
         
       - name: Configure Git Safe Directory
         run: git config --global --add safe.directory $GITHUB_WORKSPACE
-
-      - name: Set up Git
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
       
       - name: Commit and Push Changes to release-definition Branch
         run: |
