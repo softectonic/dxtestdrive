@@ -72,3 +72,9 @@ jobs:
           git commit -m "Add generated release definition file" || echo "No changes to commit"
           git push origin release-definition
 
+      - name: Generate Change Log
+        run: |
+          sfp changelog:generate -n release -w 'SFDC-[0-9]{3,10}' -b changelog --directory release-definitions
+        env:
+           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
