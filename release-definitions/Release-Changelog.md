@@ -1,4 +1,29 @@
 
+<a id=bffdfbadfaedfe1bfb06bc1bffbdebd7843b225c></a>
+# release
+ Cumulative Release Number: <b>2</b> 
+
+Matching defintion first created or deployed to an org on: Sat Jan 20 2024 05:17:22 GMT+0000 (Coordinated Universal Time)
+ ### Artifacts :package:
+- **es-base-objects**     v1.0.0.6 (1aaaac88)
+
+- **core**     v1.0.0.7592274142 (1aaaac88)
+
+### Work Items :gem:
+N/A
+
+### Commits :book:
+
+#### es-base-objects
+| Date       | Time     | Commit ID | Commit Message  |
+| ---------- | -------- | --------- | --------------- |
+| 20/01/2024 | 05:01:11 | 1aaaac88  | packages update |
+
+#### core
+| Date       | Time     | Commit ID | Commit Message  |
+| ---------- | -------- | --------- | --------------- |
+| 20/01/2024 | 05:01:11 | 1aaaac88  | packages update |
+
 <a id=7f60a5708867bda67e73cd2dfc4e71c024a130fe></a>
 # release
  Cumulative Release Number: <b>1</b> 

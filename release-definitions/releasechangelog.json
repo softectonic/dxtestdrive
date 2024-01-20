@@ -163,6 +163,73 @@
             ],
             "hashId": "7f60a5708867bda67e73cd2dfc4e71c024a130fe",
             "date": "Sat Jan 20 2024 04:33:02 GMT+0000 (Coordinated Universal Time)"
+        },
+        {
+            "names": [
+                "release"
+            ],
+            "buildNumber": 2,
+            "workItems": {},
+            "artifacts": [
+                {
+                    "name": "es-space-mgmt",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-styles",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-objects",
+                    "from": "0c42568b",
+                    "to": "1aaaac88",
+                    "version": "1.0.0.6",
+                    "latestCommitId": "1aaaac88",
+                    "commits": [
+                        {
+                            "commitId": "1aaaac88",
+                            "date": "2024-01-20T05:01:11+00:00",
+                            "author": "softectonic",
+                            "message": "packages update",
+                            "body": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "es-base-code",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "core",
+                    "from": "af32fe57",
+                    "to": "1aaaac88",
+                    "version": "1.0.0.7592274142",
+                    "latestCommitId": "1aaaac88",
+                    "commits": [
+                        {
+                            "commitId": "1aaaac88",
+                            "date": "2024-01-20T05:01:11+00:00",
+                            "author": "softectonic",
+                            "message": "packages update",
+                            "body": ""
+                        }
+                    ]
+                }
+            ],
+            "hashId": "bffdfbadfaedfe1bfb06bc1bffbdebd7843b225c",
+            "date": "Sat Jan 20 2024 05:17:22 GMT+0000 (Coordinated Universal Time)"
         }
     ]
 }
