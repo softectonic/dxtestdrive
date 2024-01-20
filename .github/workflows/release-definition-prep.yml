@@ -72,6 +72,27 @@ jobs:
           git commit -m "Add generated release definition file" || echo "No changes to commit"
           git push origin release-definition
 
+      - name: Delete old changelog branch
+        run: |
+          if git ls-remote --heads origin changelog; then
+            git push origin --delete changelog
+          fi
+
+      - name: Create new changelog branch from main
+        run: |
+          git checkout main
+          git checkout -b changelog
+          git push -u origin changelog
+
+      - name: Remove specified files
+        run: |
+          git rm --ignore-unmatch releasechangelog.json
+          git rm --ignore-unmatch Release_Changelog.md
+          git rm --ignore-unmatch release-definitions/releasechangelog.json
+          git rm --ignore-unmatch release-definitions/Release_Changelog.md
+          git commit -m "Remove change logs"
+          git push
+
       # Authenticate to npm
       - uses: actions/setup-node@v3
         with:
