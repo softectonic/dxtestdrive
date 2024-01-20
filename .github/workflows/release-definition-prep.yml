@@ -72,9 +72,14 @@ jobs:
           git commit -m "Add generated release definition file" || echo "No changes to commit"
           git push origin release-definition
 
+      # Authenticate to npm
+      - uses: actions/setup-node@v3
+        with:
+         registry-url: 'https://npm.pkg.github.com'
+
       - name: Fetch Artifacts
         run: |
-          sfp artifacts:fetch -p release-definitions/release.yml --npm --scope @softectonic
+          sfp artifacts:fetch -p release-definitions/release.yml --npm --scope ${{ github.repository_owner }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
