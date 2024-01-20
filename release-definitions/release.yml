@@ -1,8 +1,8 @@
 release: release
-skipIfAlreadyInstalled: false
+skipIfAlreadyInstalled: true
 skipArtifactUpdate: false
 artifacts:
-  core: 1.0.0-7497225625
+  core: 1.0.0-7591638764
   es-base-code: 1.0.0-4
   es-base-objects: 1.0.0-4
   es-base-styles: 1.0.0-4
