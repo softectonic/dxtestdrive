@@ -74,7 +74,7 @@ jobs:
 
       - name: Fetch Artifacts
         run: |
-          sfp artifacts:fetch -p release-definitions/release.yml --npm --scope softectonic
+          sfp artifacts:fetch -p release-definitions/release.yml --npm --scope @softectonic
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
