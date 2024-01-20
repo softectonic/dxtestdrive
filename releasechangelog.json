@@ -71,14 +71,21 @@
                     ],
                     "buildNumber": 6,
                     "hashId": "883970e3c3fb67e3ab34ed885f9f41a79d995be7"
+                },
+                {
+                    "names": [
+                        "release"
+                    ],
+                    "buildNumber": 7,
+                    "hashId": "7f60a5708867bda67e73cd2dfc4e71c024a130fe"
                 }
             ],
             "latestRelease": {
                 "names": [
                     "release"
                 ],
-                "buildNumber": 6,
-                "hashId": "883970e3c3fb67e3ab34ed885f9f41a79d995be7"
+                "buildNumber": 7,
+                "hashId": "7f60a5708867bda67e73cd2dfc4e71c024a130fe"
             },
             "retryCount": 0
         }
@@ -420,6 +427,65 @@
             ],
             "hashId": "883970e3c3fb67e3ab34ed885f9f41a79d995be7",
             "date": "Sat Jan 13 2024 07:58:05 GMT+0000 (Coordinated Universal Time)"
+        },
+        {
+            "names": [
+                "release"
+            ],
+            "buildNumber": 7,
+            "workItems": {},
+            "artifacts": [
+                {
+                    "name": "es-space-mgmt",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-styles",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-objects",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-code",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "core",
+                    "from": "afcc5c5f",
+                    "to": "af32fe57",
+                    "version": "1.0.0.7591638764",
+                    "latestCommitId": "af32fe57",
+                    "commits": [
+                        {
+                            "commitId": "af32fe57",
+                            "date": "2024-01-20T02:41:31+00:00",
+                            "author": "softectonic",
+                            "message": "update field length",
+                            "body": ""
+                        }
+                    ]
+                }
+            ],
+            "hashId": "7f60a5708867bda67e73cd2dfc4e71c024a130fe",
+            "date": "Sat Jan 20 2024 03:11:25 GMT+0000 (Coordinated Universal Time)"
         }
     ]
 }

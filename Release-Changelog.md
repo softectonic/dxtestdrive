@@ -1,4 +1,22 @@
-[![sit-release-2.0-3(0)-green](https://img.shields.io/static/v1?label=sit&message=release-2.0-3(0)&color=green)](#a433f1804f9cfbb18e03546aeb4659eb1e932b1d) [![prod-release-6(0)-green](https://img.shields.io/static/v1?label=prod&message=release-6(0)&color=green)](#883970e3c3fb67e3ab34ed885f9f41a79d995be7) 
+[![sit-release-2.0-3(0)-green](https://img.shields.io/static/v1?label=sit&message=release-2.0-3(0)&color=green)](#a433f1804f9cfbb18e03546aeb4659eb1e932b1d) [![prod-release-7(0)-green](https://img.shields.io/static/v1?label=prod&message=release-7(0)&color=green)](#7f60a5708867bda67e73cd2dfc4e71c024a130fe) 
+<a id=7f60a5708867bda67e73cd2dfc4e71c024a130fe></a>
+# release
+ Cumulative Release Number: <b>7</b> 
+
+Matching defintion first created or deployed to an org on: Sat Jan 20 2024 03:11:25 GMT+0000 (Coordinated Universal Time)
+ ### Artifacts :package:
+- **core**     v1.0.0.7591638764 (af32fe57)
+
+### Work Items :gem:
+N/A
+
+### Commits :book:
+
+#### core
+| Date       | Time     | Commit ID | Commit Message      |
+| ---------- | -------- | --------- | ------------------- |
+| 20/01/2024 | 02:41:31 | af32fe57  | update field length |
+
 <a id=883970e3c3fb67e3ab34ed885f9f41a79d995be7></a>
 # release
  Cumulative Release Number: <b>6</b> 
