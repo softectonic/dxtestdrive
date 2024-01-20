@@ -5,7 +5,7 @@
     <externalId>false</externalId>
     <inlineHelpText>External account number</inlineHelpText>
     <label>Account Number</label>
-    <length>18</length>
+    <length>100</length>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <type>Text</type>

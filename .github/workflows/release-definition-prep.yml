@@ -85,7 +85,7 @@ jobs:
 
       - name: Generate Change Log
         run: |
-          sfp changelog:generate -n release -w 'SFDC-[0-9]{3,10}' -b changelog --directory release-definitions
+          sfp changelog:generate -n release -w 'SFDC-[0-9]{3,10}' -b changelog --directory release-definitions --workitemurl https://jira.apps.eop.gov/browse
         env:
            NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
