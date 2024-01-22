@@ -3,9 +3,9 @@
     <fullName>Account_Number__c</fullName>
     <description>Secondary Account number</description>
     <externalId>false</externalId>
-    <inlineHelpText>External account number</inlineHelpText>
-    <label>External Account Number</label>
-    <length>30</length>
+    <inlineHelpText>Secondary account number</inlineHelpText>
+    <label>Secondary Account Number</label>
+    <length>100</length>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <type>Text</type>
