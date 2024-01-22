@@ -1,0 +1,231 @@
+{
+    "orgs": [
+        {
+            "name": "prod",
+            "releases": [
+                {
+                    "names": [
+                        "release"
+                    ],
+                    "buildNumber": 1,
+                    "hashId": "7357129dac9a29380e4509287cc694b0df0b4824"
+                }
+            ],
+            "latestRelease": {
+                "names": [
+                    "release"
+                ],
+                "buildNumber": 1,
+                "hashId": "7357129dac9a29380e4509287cc694b0df0b4824"
+            },
+            "retryCount": 0
+        }
+    ],
+    "releases": [
+        {
+            "names": [
+                "release"
+            ],
+            "buildNumber": 1,
+            "workItems": {},
+            "artifacts": [
+                {
+                    "name": "es-space-mgmt",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": [
+                        {
+                            "commitId": "5812cb2f",
+                            "date": "2023-10-24T20:55:14-07:00",
+                            "author": "softectonic",
+                            "message": "sample app PR validation (#6)",
+                            "body": "* onfiguration files update\r\n\r\n* new packages added\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>\r\n\r\n* added more stuff\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>\r\n\r\n* sfdx-project.json file updated\r\n\r\n---------\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>"
+                        }
+                    ]
+                },
+                {
+                    "name": "es-base-styles",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": [
+                        {
+                            "commitId": "5812cb2f",
+                            "date": "2023-10-24T20:55:14-07:00",
+                            "author": "softectonic",
+                            "message": "sample app PR validation (#6)",
+                            "body": "* onfiguration files update\r\n\r\n* new packages added\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>\r\n\r\n* added more stuff\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>\r\n\r\n* sfdx-project.json file updated\r\n\r\n---------\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>"
+                        }
+                    ]
+                },
+                {
+                    "name": "es-base-objects",
+                    "to": "536ebfc0",
+                    "version": "1.0.0.8",
+                    "latestCommitId": "536ebfc0",
+                    "commits": [
+                        {
+                            "commitId": "536ebfc0",
+                            "date": "2024-01-20T09:34:48+00:00",
+                            "author": "softectonic",
+                            "message": "more packages updates",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "1aaaac88",
+                            "date": "2024-01-20T05:01:11+00:00",
+                            "author": "softectonic",
+                            "message": "packages update",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "5812cb2f",
+                            "date": "2023-10-24T20:55:14-07:00",
+                            "author": "softectonic",
+                            "message": "sample app PR validation (#6)",
+                            "body": "* onfiguration files update\r\n\r\n* new packages added\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>\r\n\r\n* added more stuff\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>\r\n\r\n* sfdx-project.json file updated\r\n\r\n---------\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>"
+                        }
+                    ]
+                },
+                {
+                    "name": "es-base-code",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": [
+                        {
+                            "commitId": "5812cb2f",
+                            "date": "2023-10-24T20:55:14-07:00",
+                            "author": "softectonic",
+                            "message": "sample app PR validation (#6)",
+                            "body": "* onfiguration files update\r\n\r\n* new packages added\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>\r\n\r\n* added more stuff\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>\r\n\r\n* sfdx-project.json file updated\r\n\r\n---------\r\n\r\nSigned-off-by: softectonic <softectonic@gmail.com>"
+                        }
+                    ]
+                },
+                {
+                    "name": "core",
+                    "to": "1763edc6",
+                    "version": "1.0.0.7617763904",
+                    "latestCommitId": "1763edc6",
+                    "commits": [
+                        {
+                            "commitId": "1763edc6",
+                            "date": "2024-01-22T13:48:06-08:00",
+                            "author": "softectonic",
+                            "message": "Account number description update (#75)",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "2ca8ef16",
+                            "date": "2024-01-22T21:44:15+00:00",
+                            "author": "softectonic",
+                            "message": "Account number label update",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "536ebfc0",
+                            "date": "2024-01-20T09:34:48+00:00",
+                            "author": "softectonic",
+                            "message": "more packages updates",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "1aaaac88",
+                            "date": "2024-01-20T05:01:11+00:00",
+                            "author": "softectonic",
+                            "message": "packages update",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "af32fe57",
+                            "date": "2024-01-20T02:41:31+00:00",
+                            "author": "softectonic",
+                            "message": "update field length",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "7e7d3abb",
+                            "date": "2024-01-12T00:55:30+00:00",
+                            "author": "softectonic",
+                            "message": "account length update",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "752c56e4",
+                            "date": "2024-01-12T00:53:46+00:00",
+                            "author": "softectonic",
+                            "message": "account number length update",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "f2f0bb2b",
+                            "date": "2024-01-12T00:51:53+00:00",
+                            "author": "softectonic",
+                            "message": "Account number length update",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "4111196e",
+                            "date": "2023-12-19T19:41:19-08:00",
+                            "author": "softectonic",
+                            "message": "release def pull request - negative test 3 (#68)",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "4af0d77f",
+                            "date": "2023-11-29T17:20:47+00:00",
+                            "author": "softectonic",
+                            "message": "Updated field length",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "ae000864",
+                            "date": "2023-11-29T17:15:38+00:00",
+                            "author": "softectonic",
+                            "message": "Changed field length",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "83635e7e",
+                            "date": "2023-10-19T05:47:43+00:00",
+                            "author": "softectonic",
+                            "message": "Account name change",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "7fe7d7e8",
+                            "date": "2023-10-19T05:38:18+00:00",
+                            "author": "softectonic",
+                            "message": "Account number updated",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "5c9a424e",
+                            "date": "2023-10-18T16:09:14-07:00",
+                            "author": "softectonic",
+                            "message": "Inline help text updated (#2)",
+                            "body": "* Field name updated\r\n\r\n* Field description updated\r\n\r\n* CI pool cofiguration updated\r\n\r\n* CI pool definition updated\r\n\r\n* Account number description updated\r\n\r\n* Inline help text updated\r\n\r\n* Inline help text updated"
+                        },
+                        {
+                            "commitId": "de2ed6f2",
+                            "date": "2023-10-17T23:20:48-07:00",
+                            "author": "softectonic",
+                            "message": "Feature/xyz (#1)",
+                            "body": "* Field name updated\r\n\r\n* Field description updated\r\n\r\n* CI pool cofiguration updated\r\n\r\n* CI pool definition updated\r\n\r\n* Account number description updated"
+                        },
+                        {
+                            "commitId": "713c156e",
+                            "date": "2023-10-17T19:25:54-07:00",
+                            "author": "softectonic",
+                            "message": "Initial commit",
+                            "body": ""
+                        }
+                    ]
+                }
+            ],
+            "hashId": "7357129dac9a29380e4509287cc694b0df0b4824",
+            "date": "Mon Jan 22 2024 22:02:45 GMT+0000 (Coordinated Universal Time)"
+        }
+    ]
+}
