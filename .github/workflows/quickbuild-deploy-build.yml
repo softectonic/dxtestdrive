@@ -13,9 +13,13 @@ name: 'CI Pipeline - Auto Triggered'
 
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - main
+    paths:
+      - "src*/**"
+      - "sfdx-project*"
 
 
   workflow_dispatch:
@@ -34,10 +38,10 @@ on:
 
 jobs:
   quickbuild:
+    if: github.event.pull_request.merged == true && github.ref == 'refs/heads/main'
     name: 'Quickbuild packages'
     runs-on: ubuntu-latest
     container: ghcr.io/dxatscale/sfpowerscripts
-    if: github.ref == 'refs/heads/main' 
     steps:
       - uses: actions/checkout@v2
         with:
