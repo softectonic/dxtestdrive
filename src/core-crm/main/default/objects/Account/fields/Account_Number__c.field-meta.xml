@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Account_Number__c</fullName>
-    <description>Secondary Account number</description>
+    <description>Primary Account number</description>
     <externalId>false</externalId>
-    <inlineHelpText>Secondary account number</inlineHelpText>
-    <label>Secondary Account Number</label>
+    <inlineHelpText>Primary account number</inlineHelpText>
+    <label>Primary Account Number</label>
     <length>100</length>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
