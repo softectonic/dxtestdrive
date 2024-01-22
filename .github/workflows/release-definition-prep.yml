@@ -72,20 +72,5 @@ jobs:
           git commit -m "Add generated release definition file" || echo "No changes to commit"
           git push origin release-definition
 
-      # Authenticate to npm
-      - uses: actions/setup-node@v3
-        with:
-         registry-url: 'https://npm.pkg.github.com'
-
-      - name: Fetch Artifacts
-        run: |
-          sfp artifacts:fetch -p release-definitions/release.yml --npm --scope ${{ github.repository_owner }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate Change Log
-        run: |
-          sfp changelog:generate -n release -w 'SFDC-[0-9]{3,10}' -b release-definition --directory release-definitions --workitemurl https://jira.apps.eop.gov/browse
-        env:
-           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
 
