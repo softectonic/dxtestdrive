@@ -88,9 +88,12 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Empty Commit
+      # Add an empty commit to bypass the "[skip ci]" comment
+      - name: Bypass "[skip ci]" with Empty Commit
         run: |
-          git commit --allow-empty -m "Trigger CI"
+          git fetch
+          git checkout release-definition
+          git commit --allow-empty -m "Bypass [skip ci] with empty commit"
           git push origin release-definition
 
       
