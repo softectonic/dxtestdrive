@@ -98,10 +98,10 @@ jobs:
         run: |
           git pull origin release-definition
   
-      # Add an empty commit to bypass the "[skip ci]" prefix
+      # Add an empty commit to bypass the "[skip ci]"
       - name: Bypass "[skip ci]" with Empty Commit
         run: |
-          git commit --allow-empty -m "Bypass [skip ci] with empty commit"
+          git commit --allow-empty -m "Bypass skip comment with empty commit"
           git push origin release-definition
 
       
