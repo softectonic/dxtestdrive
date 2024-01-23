@@ -91,8 +91,7 @@ jobs:
       # Add an empty commit to bypass the "[skip ci]" comment
       - name: Bypass "[skip ci]" with Empty Commit
         run: |
-          git fetch
-          git checkout release-definition
+          git pull
           git commit --allow-empty -m "Bypass [skip ci] with empty commit"
           git push origin release-definition
 
