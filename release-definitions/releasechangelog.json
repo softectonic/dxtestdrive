@@ -244,6 +244,72 @@
             ],
             "hashId": "d8a7b74d874c2b617dd37f0d6637f174f4960579",
             "date": "Mon Jan 22 2024 21:05:57 GMT+0000 (Coordinated Universal Time)"
+        },
+        {
+            "names": [
+                "release"
+            ],
+            "buildNumber": 3,
+            "workItems": {},
+            "artifacts": [
+                {
+                    "name": "es-space-mgmt",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-styles",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-objects",
+                    "from": "536ebfc0",
+                    "to": "536ebfc0",
+                    "version": "1.0.0.8",
+                    "latestCommitId": "536ebfc0",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-code",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "core",
+                    "from": "536ebfc0",
+                    "to": "1763edc6",
+                    "version": "1.0.0.7617763904",
+                    "latestCommitId": "1763edc6",
+                    "commits": [
+                        {
+                            "commitId": "1763edc6",
+                            "date": "2024-01-22T13:48:06-08:00",
+                            "author": "softectonic",
+                            "message": "Account number description update (#75)",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "2ca8ef16",
+                            "date": "2024-01-22T21:44:15+00:00",
+                            "author": "softectonic",
+                            "message": "Account number label update",
+                            "body": ""
+                        }
+                    ]
+                }
+            ],
+            "hashId": "7357129dac9a29380e4509287cc694b0df0b4824",
+            "date": "Tue Jan 23 2024 00:17:03 GMT+0000 (Coordinated Universal Time)"
         }
     ]
 }

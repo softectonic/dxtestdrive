@@ -1,4 +1,23 @@
 
+<a id=7357129dac9a29380e4509287cc694b0df0b4824></a>
+# release
+ Cumulative Release Number: <b>3</b> 
+
+Matching defintion first created or deployed to an org on: Tue Jan 23 2024 00:17:03 GMT+0000 (Coordinated Universal Time)
+ ### Artifacts :package:
+- **core**     v1.0.0.7617763904 (1763edc6)
+
+### Work Items :gem:
+N/A
+
+### Commits :book:
+
+#### core
+| Date       | Time     | Commit ID | Commit Message                          |
+| ---------- | -------- | --------- | --------------------------------------- |
+| 22/01/2024 | 21:48:06 | 1763edc6  | Account number description update (#75) |
+| 22/01/2024 | 21:44:15 | 2ca8ef16  | Account number label update             |
+
 <a id=d8a7b74d874c2b617dd37f0d6637f174f4960579></a>
 # release
  Cumulative Release Number: <b>2</b> 
