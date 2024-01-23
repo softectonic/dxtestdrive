@@ -1,4 +1,22 @@
 
+<a id=6bc1c5299475f9e4f23bcd57591001f298fe7e00></a>
+# release
+ Cumulative Release Number: <b>4</b> 
+
+Matching defintion first created or deployed to an org on: Tue Jan 23 2024 00:37:25 GMT+0000 (Coordinated Universal Time)
+ ### Artifacts :package:
+- **core**     v1.0.0.7619210114 (1348728b)
+
+### Work Items :gem:
+[SFDC-1122](https://jira.apps.eop.gov/browse/SFDC-1122)
+
+### Commits :book:
+
+#### core
+| Date       | Time     | Commit ID | Commit Message                             |
+| ---------- | -------- | --------- | ------------------------------------------ |
+| 23/01/2024 | 00:27:55 | 1348728b  | SFDC-1122 - Secondary account update (#78) |
+
 <a id=7357129dac9a29380e4509287cc694b0df0b4824></a>
 # release
  Cumulative Release Number: <b>3</b> 
