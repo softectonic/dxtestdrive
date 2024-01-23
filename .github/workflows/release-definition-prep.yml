@@ -88,10 +88,19 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Add an empty commit to bypass the "[skip ci]" comment
+      - name: Checkout release-definition Branch
+        run: |
+          git fetch
+          git checkout release-definition
+  
+      # Pull the latest changes from the remote branch
+      - name: Pull Latest Changes from Remote Branch
+        run: |
+          git pull origin release-definition
+  
+      # Add an empty commit to bypass the "[skip ci]" prefix
       - name: Bypass "[skip ci]" with Empty Commit
         run: |
-          git pull
           git commit --allow-empty -m "Bypass [skip ci] with empty commit"
           git push origin release-definition
 
