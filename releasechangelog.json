@@ -9,14 +9,21 @@
                     ],
                     "buildNumber": 1,
                     "hashId": "7357129dac9a29380e4509287cc694b0df0b4824"
+                },
+                {
+                    "names": [
+                        "release"
+                    ],
+                    "buildNumber": 2,
+                    "hashId": "6bc1c5299475f9e4f23bcd57591001f298fe7e00"
                 }
             ],
             "latestRelease": {
                 "names": [
                     "release"
                 ],
-                "buildNumber": 1,
-                "hashId": "7357129dac9a29380e4509287cc694b0df0b4824"
+                "buildNumber": 2,
+                "hashId": "6bc1c5299475f9e4f23bcd57591001f298fe7e00"
             },
             "retryCount": 0
         }
@@ -226,6 +233,69 @@
             ],
             "hashId": "7357129dac9a29380e4509287cc694b0df0b4824",
             "date": "Mon Jan 22 2024 22:02:45 GMT+0000 (Coordinated Universal Time)"
+        },
+        {
+            "names": [
+                "release"
+            ],
+            "buildNumber": 2,
+            "workItems": {
+                "SFDC-1122": [
+                    "1348728b"
+                ]
+            },
+            "artifacts": [
+                {
+                    "name": "es-space-mgmt",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-styles",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-objects",
+                    "from": "536ebfc0",
+                    "to": "536ebfc0",
+                    "version": "1.0.0.8",
+                    "latestCommitId": "536ebfc0",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-code",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "core",
+                    "from": "1763edc6",
+                    "to": "1348728b",
+                    "version": "1.0.0.7619210114",
+                    "latestCommitId": "1348728b",
+                    "commits": [
+                        {
+                            "commitId": "1348728b",
+                            "date": "2024-01-22T16:27:55-08:00",
+                            "author": "softectonic",
+                            "message": "SFDC-1122 - Secondary account update (#78)",
+                            "body": ""
+                        }
+                    ]
+                }
+            ],
+            "hashId": "6bc1c5299475f9e4f23bcd57591001f298fe7e00",
+            "date": "Tue Jan 23 2024 00:42:36 GMT+0000 (Coordinated Universal Time)"
         }
     ]
 }
