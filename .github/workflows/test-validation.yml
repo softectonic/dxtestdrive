@@ -58,6 +58,7 @@ jobs:
           else
             echo "No scratch org deletion detected."
             echo "SCRATCH_ORG_DELETED=false" >> $GITHUB_ENV
+          fi
 
       - name: 'Trigger Separate Workflow for Scratch Org Preparation'
         if: env.SCRATCH_ORG_DELETED == 'true'
