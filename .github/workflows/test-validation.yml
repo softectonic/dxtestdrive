@@ -45,26 +45,25 @@ jobs:
           echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url  -f authfile -a devhub
 
-       # Validate source and trigger test
-      #- name: 'Push source to scratch org'
-      #  run: 'sfp orchestrator:validate -p ci -v devhub -x' 
-
-      - name: 'Push source to scratch org'
+      - name: 'Validate source and trigger test'
         run: |
           sfp orchestrator:validate -p ci -v devhub -x > release.log
           cat release.log
 
       - name: 'Check for Deleting scratch org'
-        id: check_scratch_org
         run: |
           if grep -q "Deleting scratch org" release.log; then
             echo "Scratch org deleted. Preparing new one."
-            echo "::set-output name=scratch-org-deleted::true"
+            echo "SCRATCH_ORG_DELETED=true" >> $GITHUB_ENV
           else
             echo "No scratch org deletion detected."
-            echo "::set-output name=scratch-org-deleted::false"
-          fi
+            echo "SCRATCH_ORG_DELETED=false" >> $GITHUB_ENV
 
-      - name: 'Prepare a scratch org'
-        if: steps.check_scratch_org.outputs.scratch-org-deleted == 'true'
-        run: 'sfp orchestrator:prepare -f config/project-ci-single-pool-def.json -v devhub'
+      - name: 'Trigger Separate Workflow for Scratch Org Preparation'
+        if: env.SCRATCH_ORG_DELETED == 'true'
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${{ github.repository_owner }}/${{ github.repository }}/dispatches" \
+            -d '{"event_type": "prepare-scratch-org"}'

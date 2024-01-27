@@ -1,0 +1,42 @@
+name: 'Replenish CI Single Pool - Triggered by Repository Dispatch'
+
+on:
+  repository_dispatch:
+    types: [prepare-scratch-org]
+    branches:
+      - main
+
+jobs:
+  pool-ci-pool:
+    name: 'Replenish CI Pool'
+    runs-on: ubuntu-latest
+    container: ghcr.io/dxatscale/sfpowerscripts
+    timeout-minutes: 720 # Set to Maximum Time out
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: main # Here you can dynamically set the ref if it's passed in the dispatch payload
+          fetch-depth: 0
+   
+      - name: 'Authenticate Dev Hub'
+        run: |
+          echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
+          sf org login sfdx-url -f authfile -a devhub
+
+      # Authenticate to npm
+      - uses: actions/setup-node@v3
+        with:
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: 'Prepare a pool of scratch orgs'
+        run: 'sfp orchestrator:prepare -f config/project-ci-single-pool-def.json -v devhub'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+      # Publish artifacts
+      - uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: scratchorg-logs-pool-ci
+          path: .sfpowerscripts/prepare_logs
