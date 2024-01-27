@@ -30,7 +30,7 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
 
       - name: 'Prepare a pool of scratch orgs'
-        run: 'sfp orchestrator:prepare -f config/project-ci-single-pool-def.json -v devhub'
+        run: 'sfp orchestrator:prepare -f config/project-ci-pool-single-def.json -v devhub'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
