@@ -8,7 +8,11 @@
 # To know more on sfpowerkit, visit- https://github.com/Accenture/sfpowerkit
 
 
-# This pipeline is used to validate an incoming change using a dev environment fetched from the CI pool
+# This workflow automates the validation of changed packages in pull requests (PRs) targeting the main branch using a dev environment fetched from the CI pool. 
+# It activates on PR open and label events, focusing on 'src*' and 'sfdx-project*' paths. 
+# Features include repository checkout, Salesforce Dev Hub authentication, source validation, scratch org status check, 
+# and triggering a separate workflow for scratch org preparation if needed.
+# Purpose: Ensure code quality and compliance before final approval in Salesforce development.
 
 name: 'PR Validation on Initial and Final Approval - Auto Triggered'
 
