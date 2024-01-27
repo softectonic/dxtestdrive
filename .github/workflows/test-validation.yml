@@ -49,15 +49,22 @@ jobs:
       #- name: 'Push source to scratch org'
       #  run: 'sfp orchestrator:validate -p ci -v devhub -x' 
 
-      # Validate source and trigger test
       - name: 'Push source to scratch org'
-        id: validate
         run: |
-          output=$(sfp orchestrator:validate -p ci -v devhub -x)
-          echo "$output"
-          echo "::set-output name=scratch-org-deleted::$(echo '$output' | grep -q 'Deleting scratch org' && echo 'true' || echo 'false')"
+          sfp orchestrator:validate -p ci -v devhub -x > release.log
+          cat release.log
 
-      # Conditionally prepare a scratch org if "Deleting scratch org" is found
+      - name: 'Check for Deleting scratch org'
+        id: check_scratch_org
+        run: |
+          if grep -q "Deleting scratch org" release.log; then
+            echo "Scratch org deleted. Preparing new one."
+            echo "::set-output name=scratch-org-deleted::true"
+          else
+            echo "No scratch org deletion detected."
+            echo "::set-output name=scratch-org-deleted::false"
+          fi
+
       - name: 'Prepare a scratch org'
-        if: steps.validate.outputs.scratch-org-deleted == 'true'
+        if: steps.check_scratch_org.outputs.scratch-org-deleted == 'true'
         run: 'sfp orchestrator:prepare -f config/project-single-ci-pool-def.json -v devhub'
