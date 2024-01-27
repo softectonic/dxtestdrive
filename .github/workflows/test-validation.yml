@@ -14,10 +14,12 @@ name: 'PR Validation on Initial and Final Approval - Auto Triggered'
 
 on:
   pull_request:
-    types: [opened, synchronize, labeled]
+    types: [opened, labeled]
     branches:
       - main
-      - release/**
+    paths:
+      - "src*/**"
+      - "sfdx-project"
 
 
   workflow_dispatch:
@@ -34,7 +36,8 @@ jobs:
     container: ghcr.io/dxatscale/sfpowerscripts
 
     steps:
-      - uses: actions/checkout@v2
+      - name: "Checkout Repo"
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
@@ -43,8 +46,19 @@ jobs:
           echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url  -f authfile -a devhub
 
-
+      # Validate source and trigger test
+      #- name: 'Push source to scratch org'
+      #  run: 'sfp orchestrator:validate -p ci -v devhub -x' 
 
       # Validate source and trigger test
       - name: 'Push source to scratch org'
-        run: 'sfp orchestrator:validate -p ci -v devhub -x'
+        id: validate
+        run: |
+          output=$(sfp orchestrator:validate -p ci -v devhub -x)
+          echo "$output"
+          echo "::set-output name=scratch-org-deleted::$(echo '$output' | grep -q 'Deleting scratch org' && echo 'true' || echo 'false')"
+
+      # Conditionally prepare a scratch org if "Deleting scratch org" is found
+      - name: 'Prepare a scratch org'
+        if: steps.validate.outputs.scratch-org-deleted == 'true'
+        run: 'sfp orchestrator:prepare -f config/project-single-ci-pool-def.json -v devhub'
