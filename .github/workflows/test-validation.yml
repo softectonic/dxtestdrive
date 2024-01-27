@@ -67,4 +67,4 @@ jobs:
 
       - name: 'Prepare a scratch org'
         if: steps.check_scratch_org.outputs.scratch-org-deleted == 'true'
-        run: 'sfp orchestrator:prepare -f config/project-single-ci-pool-def.json -v devhub'
+        run: 'sfp orchestrator:prepare -f config/project-ci-single-pool-def.json -v devhub'
