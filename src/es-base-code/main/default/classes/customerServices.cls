@@ -1,5 +1,5 @@
 public class customerServices {
-    // Add comment here
+    // Add comment about the function here
     @auraEnabled(cacheable=true)
     public static Customer getCustomerFields(String objectType){
         Customer customer;
