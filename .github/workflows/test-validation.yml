@@ -52,6 +52,7 @@ jobs:
           fi
 
       - name: 'Authenticate Dev Hub'
+        if: env.SHOULD_RUN == 'true'
         run: |
           echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url  -f authfile -a devhub
