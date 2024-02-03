@@ -42,7 +42,9 @@ jobs:
           fetch-depth: 0
 
       - name: Fetch main branch
-        run: git fetch --no-tags --depth=1 origin +refs/heads/main:refs/remotes/origin/main
+        run: |
+          git config --global --add safe.directory /__w/dxtestdrive/dxtestdrive
+          git fetch --no-tags --depth=1 origin +refs/heads/main:refs/remotes/origin/main
   
       - name: Check changed files
         run: |
