@@ -50,7 +50,7 @@ jobs:
           else
             echo "SHOULD_RUN=false" >> $GITHUB_ENV
           fi
-        working-directory: ./dxtestdrive
+        working-directory: .github/workflows
         
 
       - name: 'Authenticate Dev Hub'
