@@ -50,6 +50,8 @@ jobs:
           else
             echo "SHOULD_RUN=false" >> $GITHUB_ENV
           fi
+        working-directory: ./dxtestdrive
+        
 
       - name: 'Authenticate Dev Hub'
         if: env.SHOULD_RUN == 'true'
