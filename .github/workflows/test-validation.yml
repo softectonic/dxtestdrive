@@ -48,7 +48,7 @@ jobs:
   
       - name: Check changed files
         run: |
-          echo "CHECKING FOR RELEVANT FILE CHANGES..."
+          echo "CHECKING FOR RELEVANT FILE CHANGES...."
           # Fallback to comparing against the main branch if this is a new branch with no prior commits
           if [ -z "${{ github.event.before }}" ] || [ "${{ github.event.before }}" == "0000000000000000000000000000000000000000" ]; then
             BASE_SHA="origin/main"
