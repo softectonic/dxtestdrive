@@ -27,7 +27,7 @@ on:
 
 # Set the environment variables for SF Org Wide Email Address
 env:
-  SF_ADDRESS: ${{ secrets.SF_EMAIL_ADDRESS }}
+  SF_EMAIL_ADDRESS: ${{ secrets.SF_EMAIL_ADDRESS }}
   SF_DISPLAY_NAME: ${{ secrets.SF_DISPLAY_NAME }}
 
 
