@@ -36,5 +36,5 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <startElementReference>Welcome_new_Contact</startElementReference>
-    <status>Active</status>
+    <status>Draft</status>
 </Flow>
