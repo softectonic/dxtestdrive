@@ -10,7 +10,7 @@
         <inputParameters>
             <name>SObjectRowId</name>
             <value>
-                <elementReference>$Record.Email</elementReference>
+                <elementReference>$Record.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
