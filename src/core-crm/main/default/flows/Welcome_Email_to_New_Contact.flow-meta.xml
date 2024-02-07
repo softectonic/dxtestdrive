@@ -11,7 +11,7 @@
     <processMetadataValues>
         <name>CanvasMode</name>
         <value>
-            <stringValue>FREE_FORM_CANVAS</stringValue>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
         </value>
     </processMetadataValues>
     <processMetadataValues>
@@ -22,12 +22,12 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <startElementReference>Welcome_Email_Subflow</startElementReference>
-    <status>Active</status>
+    <status>Draft</status>
     <subflows>
         <name>Welcome_Email_Subflow</name>
         <label>Welcome Email Subflow</label>
-        <locationX>726</locationX>
-        <locationY>483</locationY>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
         <flowName>Welcome_Email_Notification</flowName>
         <inputAssignments>
             <name>ContactRecord</name>
