@@ -8,7 +8,7 @@
             <field>Email</field>
             <type>email</type>
         </recipients>
-        <senderType>OrgWideEmailAddress</senderType>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Welcome_new_Contact</template>
     </alerts>
 </Workflow>
