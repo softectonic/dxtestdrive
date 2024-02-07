@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Welcome_new_Contact</name>
-        <label>Welcome new Contact</label>
+        <name>Welcome_new_Contact_Action</name>
+        <label>Welcome new Contact Action</label>
         <locationX>176</locationX>
         <locationY>323</locationY>
         <actionName>Contact.Welcome_Email_to_new_Contact</actionName>
@@ -35,6 +35,6 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <startElementReference>Welcome_new_Contact</startElementReference>
+    <startElementReference>Welcome_new_Contact_Action</startElementReference>
     <status>Draft</status>
 </Flow>
