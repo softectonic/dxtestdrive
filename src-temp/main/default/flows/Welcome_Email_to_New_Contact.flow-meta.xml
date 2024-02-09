@@ -1,25 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionCalls>
-        <name>Send_Welcome_Email</name>
-        <label>Send Welcome Email</label>
-        <locationX>176</locationX>
-        <locationY>539</locationY>
-        <actionName>emailSimple</actionName>
-        <actionType>emailSimple</actionType>
-        <inputParameters>
-            <name>recipientId</name>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailTemplateId</name>
-            <value>
-                <elementReference>Get_Email_Template.Id</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
     <interviewLabel>Welcome Email to New Contact {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Welcome Email to New Contact</label>
     <processMetadataValues>
@@ -65,9 +45,6 @@
         <locationX>176</locationX>
         <locationY>431</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Send_Welcome_Email</targetReference>
-        </connector>
         <filters>
             <field>IsVerified</field>
             <operator>EqualTo</operator>
