@@ -59,24 +59,6 @@
         </filters>
         <object>EmailTemplate</object>
     </recordLookups>
-    <recordLookups>
-        <name>Get_Org_Wide_Email</name>
-        <label>Get Org Wide Email</label>
-        <locationX>176</locationX>
-        <locationY>431</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Send_Welcome_Email</targetReference>
-        </connector>
-        <filters>
-            <field>IsVerified</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <object>OrgWideEmailAddress</object>
-    </recordLookups>
     <startElementReference>Get_Email_Template</startElementReference>
     <status>Active</status>
 </Flow>
