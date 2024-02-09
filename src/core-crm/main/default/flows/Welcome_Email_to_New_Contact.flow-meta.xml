@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Send_Welcome_Email</name>
         <label>Send Welcome Email</label>
-        <locationX>567</locationX>
-        <locationY>515</locationY>
+        <locationX>176</locationX>
+        <locationY>539</locationY>
         <actionName>emailSimple</actionName>
         <actionType>emailSimple</actionType>
         <inputParameters>
@@ -31,7 +31,7 @@
     <processMetadataValues>
         <name>CanvasMode</name>
         <value>
-            <stringValue>FREE_FORM_CANVAS</stringValue>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
         </value>
     </processMetadataValues>
     <processMetadataValues>
@@ -44,8 +44,8 @@
     <recordLookups>
         <name>Get_Email_Template</name>
         <label>Get Email Template</label>
-        <locationX>1031</locationX>
-        <locationY>364</locationY>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Org_Wide_Email</targetReference>
@@ -62,8 +62,8 @@
     <recordLookups>
         <name>Get_Org_Wide_Email</name>
         <label>Get Org Wide Email</label>
-        <locationX>867</locationX>
-        <locationY>523</locationY>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Send_Welcome_Email</targetReference>
