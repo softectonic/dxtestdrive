@@ -1,4 +1,4 @@
-name: 'Replenish CI Single Pool - Triggered by Repository Dispatch'
+name: 'Replenish CI Pool - Triggered by Repository Dispatch'
 
 on:
   repository_dispatch:

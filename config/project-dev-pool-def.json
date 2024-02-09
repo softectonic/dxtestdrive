@@ -1,9 +1,9 @@
 {
     "$schema": "https://raw.githubusercontent.com/Accenture/sfpowerscripts/develop/packages/sfpowerscripts-cli/resources/schemas/pooldefinition.schema.json",
     "tag": "dev",
-    "maxAllocation": 5,
-    "expiry": 10,
-    "batchSize": 5,
+    "maxAllocation": 2,
+    "expiry": 30,
+    "batchSize": 2,
     "configFilePath": "config/project-scratch-def.json",
     "relaxAllIPRanges": true,
     "enableSourceTracking": true,
@@ -12,7 +12,7 @@
     "installAll": true,
     "fetchArtifacts": {
         "npm": {
-          "scope": "EOP-DEVOPS"
+          "scope": "softectonic"
         }
       }
    
