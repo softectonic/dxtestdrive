@@ -47,7 +47,7 @@ jobs:
         uses: forcedotcom/run-code-analyzer@v1
         with:
           run-command: run
-          run-arguments: --normalize-severity --pmdconfig $GITHUB_WORKSPACE/rulesets/masterRuleset.xml --target . --outfile results.html
+          run-arguments: --normalize-severity --pmdconfig ${GITHUB_WORKSPACE}/rulesets/masterRuleset.xml --target . --outfile results.html
           results-artifact-name: salesforce-code-analyzer-results
 
       - name: Check the outputs to determine whether to fail
