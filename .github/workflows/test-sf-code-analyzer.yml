@@ -20,7 +20,7 @@ on:
 
 jobs:
   salesforce-code-analyzer-workflow:
-    name: 'Validate Changed Packages'
+    name: 'Code Analyzer Scan'
     if: >
       (github.event_name == 'pull_request' &&
       (github.event.action == 'opened' ||
@@ -36,8 +36,8 @@ jobs:
       - name: Check out files
         uses: actions/checkout@v4
 
-    #  - name: Install Salesforce CLI
-    #    run: npm install -g @salesforce/cli@latest
+      - name: Install Salesforce CLI
+        run: npm install -g @salesforce/cli@latest
 
       - name: Install Salesforce Code Analyzer Plugin
         run: sf plugins install @salesforce/sfdx-scanner@latest
