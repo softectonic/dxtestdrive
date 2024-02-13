@@ -49,7 +49,7 @@ jobs:
         with:
           #pmdconfig: masterRuleset.xml
           severity-threshold: 4
-          strictly-enforced-rules: '[{ "engine": "pmd", "category": "Performance", "rule": "AvoidDebugStatements" }]'
+          strictly-enforced-rules: '[{ "engine": "pmd", "category": "Error Prone", "rule": "AvoidHardcodingId" }]'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
