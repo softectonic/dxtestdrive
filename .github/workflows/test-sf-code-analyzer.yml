@@ -49,7 +49,7 @@ jobs:
         uses: forcedotcom/run-code-analyzer@v1
         with:
           run-command: run
-          run-arguments: --engine pmd --normalize-severity --severity-threshold 3 --category "Security,Design" --outfile results.html
+          run-arguments: --engine "eslint-lwc,pmd" --target "src*/**" --normalize-severity --severity-threshold 2 --category "Security,Design,Best Practices"  --outfile results.html
           results-artifact-name: salesforce-code-analyzer-results
 
       # - name: Check the outputs to determine whether to fail
