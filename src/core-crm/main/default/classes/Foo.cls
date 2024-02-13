@@ -21,7 +21,7 @@ public without sharing class Foo {
 
     public void bar() {
         try {
-          // empty !
+          // empty try!
         } catch (Exception e) {
             e.printStackTrace();
         }
