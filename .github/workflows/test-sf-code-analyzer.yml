@@ -50,6 +50,8 @@ jobs:
           #pmdconfig: masterRuleset.xml
           severity-threshold: 4
           strictly-enforced-rules: '[{ "engine": "pmd", "category": "Error Prone", "rule": "AvoidHardcodingId" }]'
+          report-mode: comments
+          delete-resolved-comments: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
