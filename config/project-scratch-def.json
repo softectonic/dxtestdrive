@@ -2,5 +2,17 @@
     "orgName": "DX@Scale Demo Org",
     "edition": "Developer",
     "hasSampleData": false,
-    "features": ["Communities", "ServiceCloud", "EinsteinGPTForDevelopers", "NumPlatformEvents:10"]
+    "features": ["Communities", "Sites", "FlowSites", "PersonAccounts", "StateAndCountryPicklist", "EinsteinGPTForDevelopers", "NumPlatformEvents:10"],
+    "settings": {
+        "communitiesSettings": {
+            "enableNetworkEnabled" : true
+        },
+        "experienceBundleSettings": {
+            "enableExperienceBundleMetadata": true
+        },
+        "lightningExperienceSettings": {
+            "enableS1DesktopEnabled": true,
+            "enableUsersAreLightningOnly": true
+        }
+    }
 }
