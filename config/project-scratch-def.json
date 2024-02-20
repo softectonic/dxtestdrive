@@ -5,7 +5,7 @@
     "features": ["Communities", "Sites", "FlowSites", "PersonAccounts", "StateAndCountryPicklist", "EinsteinGPTForDevelopers", "NumPlatformEvents:10"],
     "settings": {
         "communitiesSettings": {
-            "enableNetworkEnabled" : true
+            "enableNetworksEnabled" : true
         },
         "experienceBundleSettings": {
             "enableExperienceBundleMetadata": true
