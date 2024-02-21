@@ -135,7 +135,7 @@
   ],
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "44.0",
+  "sourceApiVersion": "60.0",
   "packageAliases": {
     "es-base-objects": "0Ho8b000000sXybCAE",
     "es-base-code": "0Ho8b000000sXygCAE",
