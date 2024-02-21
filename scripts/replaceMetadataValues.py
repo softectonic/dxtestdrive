@@ -82,9 +82,8 @@ def replace_xml_value(file_path, search_tag, new_value=None, email_address=None)
 
 def main():
     # Call the replace_xml_value function with arguments
-    replace_xml_value('src/apps/access-list-requests/external/networks/Access List.network-meta.xml', '{http://soap.sforce.com/2006/04/metadata}emailSenderAddress', 'dl.oa.oceasalesforcedevops@oa.eop.gov')
-    replace_xml_value('src/apps/access-list-requests/external/sites/Access_List.site-meta.xml', '{http://soap.sforce.com/2006/04/metadata}siteAdmin', email_address='dl.oa.oceasalesforcedevops@oa.eop.gov')
-    replace_xml_value('src/apps/access-list-requests/external/sites/Access_List.site-meta.xml', '{http://soap.sforce.com/2006/04/metadata}siteGuestRecordDefaultOwner', email_address='dl.oa.oceasalesforcedevops@oa.eop.gov')
+    replace_xml_value('src/core-crm/main/default/networks/accesslist.network-meta.xml', '{http://soap.sforce.com/2006/04/metadata}emailSenderAddress', 'aashiru@salesforce.com')
+    replace_xml_value('src/core-crm/main/default/sites/accesslist.site-meta.xml', '{http://soap.sforce.com/2006/04/metadata}siteAdmin', email_address='aashiru@salesforce.com')
 
 if __name__ == "__main__":
     main()

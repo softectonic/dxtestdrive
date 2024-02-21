@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the path to your Python script
-PYTHON_SCRIPT_PATH=".scripts/anonymous-apex/scratch-org/replaceMetadataValues.py"
+PYTHON_SCRIPT_PATH="scripts/replaceMetadataValues.py"
 
 # Check if the Python script exists
 if [ ! -f "$PYTHON_SCRIPT_PATH" ]; then

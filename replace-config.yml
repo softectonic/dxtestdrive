@@ -1,0 +1,36 @@
+regex_lib:
+    site_admin: '(<botUser>(?:(?!<botUser>).)*?virtual\.assistant@salesforce\.com\.TEST\.dev(?:(?!<botUser>).)*?<\/botUser>)'
+    site_guest_default_owner: '(<botUser>(?:(?!<botUser>).)*?virtual\.assistant@salesforce\.com\.TEST\.dev(?:(?!<botUser>).)*?<\/botUser>)'
+    email_sender_address: '(<botUser>(?:(?!<botUser>).)*?virtual\.assistant@salesforce\.com\.TEST\.dev(?:(?!<botUser>).)*?<\/botUser>)'
+rules:
+    replace_site_admin:
+        files:
+          - 'src/apps/access-list-requests/external/networks/Access List.network-meta.xml'
+        regex_name: 'site_admin'
+        replace_with: 
+            POOL: '<siteAdmin>virtual.assistant@salesforce.com.TEST.team</siteAdmin>'
+            DEV: '<siteAdmin>virtual.assistant@salesforce.com.TEST.sit</siteAdmin>'
+            UAT: '<siteAdmin>virtual.assistant@salesforce.com.TEST.uat</siteAdmin>'
+            STG: '<siteAdmin>virtual.assistant@salesforce.com.TEST.uat</siteAdmin>'
+            PROD: '<siteAdmin>virtual.assistant@salesforce.com</siteAdmin>'
+    replace_site_guest_default_owner:
+        files:
+          - 'src/apps/access-list-requests/external/networks/Access List.network-meta.xml'
+        regex_name: 'site_guest_default_owner'
+        replace_with: 
+            POOL: '<siteGuestRecordDefaultOwner>virtual.assistant@salesforce.com.TEST.team</siteGuestRecordDefaultOwner>'
+            DEV: '<siteGuestRecordDefaultOwner>virtual.assistant@salesforce.com.TEST.sit</siteGuestRecordDefaultOwner>'
+            UAT: '<siteGuestRecordDefaultOwner>virtual.assistant@salesforce.com.TEST.uat</siteGuestRecordDefaultOwner>'
+            STG: '<siteGuestRecordDefaultOwner>virtual.assistant@salesforce.com.TEST.uat</siteGuestRecordDefaultOwner>'
+            PROD: '<siteGuestRecordDefaultOwner>virtual.assistant@salesforce.com</siteGuestRecordDefaultOwner>'
+    replace_email_sender_address:
+        files:
+          - src/apps/access-list-requests/external/sites/Access_List.site-meta.xml
+        regex_name: 'email_sender_address'
+        replace_with: 
+            POOL: '<emailSenderAddress>dl.oa.oceasalesforcedevops@oa.eop.gov</emailSenderAddress>'
+            DEV: '<emailSenderAddress>dl.oa.oceasalesforcedevops@oa.eop.gov</emailSenderAddress>'
+            UAT: '<emailSenderAddress>dl.oa.oceasalesforcedevops@oa.eop.gov</emailSenderAddress>'
+            STG: '<emailSenderAddress>dl.oa.oceasalesforcedevops@oa.eop.gov</emailSenderAddress>'
+            PROD: '<emailSenderAddress>dl.oa.oceasalesforcedevops@oa.eop.gov</emailSenderAddress>'
+    

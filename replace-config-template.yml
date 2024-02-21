@@ -1,0 +1,123 @@
+regex_lib:
+    record-type-visibility: '(.[^\n]+<recordTypeVisibilities>(?:(?!<recordTypeVisibilities>).)*?<recordType>__REPLACE_VALUE__<\/recordType>(?:(?!<recordTypeVisibilities>).)*?<\/recordTypeVisibilities>)'
+    user-permission: '(.[^\n]+<userPermissions>(?:(?!<userPermissions>).)*?<name>__REPLACE_VALUE__<\/name>(?:(?!<userPermissions>).)*?<\/userPermissions>)'
+    skills: '(.[^\n]+<assignments>(?:(?!<assignments>).)*?<user>__REPLACE_VALUE__<\/user>(?:(?!<assignments>).)*?<\/assignments>)'    
+    knowledge-perm-set: '(.[^\n]+<objectPermissions>(?:(?!<objectPermissions>).)*?<object>__REPLACE_VALUE__<\/object>(?:(?!<objectPermissions>).)*?<\/objectPermissions>)'
+    analytics-settings: '(.[^\n]+<canShareAppsWithCommunities>(?:(?!<canShareAppsWithCommunities>).)*?(?:(?!<canShareAppsWithCommunities>).)*?<\/canShareAppsWithCommunities>)'
+    layout-folderid: '(.[^\n]+<layoutItems>(?:(?!<layoutItems>).)*?<field>FolderId<\/field>(?:(?!<layoutItems>).)*?<\/layoutItems>)'
+    routing_type: '(.[^\n]+<routingType xsi:nil="true"\/>)'
+    bot_user: '(<botUser>(?:(?!<botUser>).)*?virtual\.assistant@salesforce\.com\.TEST\.dev(?:(?!<botUser>).)*?<\/botUser>)'
+    saml_enabled: '/(.[^\n]+<enableSamlLogin>(?:(?!<enableSamlLogin>).)*?false(?:(?!<enableSamlLogin>).)*?<\/enableSamlLogin>)'
+    fedid_enabled: '/(.[^\n]+<enableCaseInsensitiveFederationID>(?:(?!<enableCaseInsensitiveFederationID>).)*?false(?:(?!<enableCaseInsensitiveFederationID>).)*?<\/enableCaseInsensitiveFederationID>)'
+    bot_step_id: '(.[^\n]+<stepIdentifier>)(.*)(<\/stepIdentifier>)\n'
+    bot_msg_id: '(.[^\n]+<messageIdentifier>)(.*)(<\/messageIdentifier>)\n'
+    bot_var_id: '(.[^\n]+<variableOperationIdentifier>)(.*)(<\/variableOperationIdentifier>)\n' 
+    bot_qreply_id: '(.[^\n]+<quickReplyOptionIdentifier>)(.*)(<\/quickReplyOptionIdentifier>)\n'  
+rules:
+    replace_bot_step_id:
+        directories:
+            - cs-va-chat/main/default/bots/GEICO_Virtual_Assistant
+            - cs-va-chat/main/default/bots/GEICO_Virtual_Assistant_2
+        excludes:
+            - GEICO_Virtual_Assistant*
+            - "*.bkup"
+        regex_name: 'bot_step_id'
+    replace_bot_msg_id:
+        directories:
+            - cs-va-chat/main/default/bots/GEICO_Virtual_Assistant
+            - cs-va-chat/main/default/bots/GEICO_Virtual_Assistant_2
+        excludes:
+            - GEICO_Virtual_Assistant*
+            - "*.bkup"
+        regex_name: 'bot_msg_id'
+    replace_bot_var_id:
+        directories:
+            - cs-va-chat/main/default/bots/GEICO_Virtual_Assistant
+            - cs-va-chat/main/default/bots/GEICO_Virtual_Assistant_2
+        excludes:
+            - GEICO_Virtual_Assistant*
+            - "*.bkup"
+        regex_name: 'bot_var_id'
+    replace_bot_qreply_id:
+        directories:
+            - cs-va-chat/main/default/bots/GEICO_Virtual_Assistant
+            - cs-va-chat/main/default/bots/GEICO_Virtual_Assistant_2
+        excludes:
+            - GEICO_Virtual_Assistant*
+            - "*.bkup"
+        regex_name: 'bot_qreply_id'
+    replace_chatbot_user:
+        files:
+          - bots/TEST_Virtual_Assistant/TEST_Virtual_Assistant.bot-meta.xml
+        regex_name: 'bot_user'
+        replace_with: 
+            TEAM: '<botUser>virtual.assistant@salesforce.com.TEST.team</botUser>'
+            SIT: '<botUser>virtual.assistant@salesforce.com.TEST.sit</botUser>'
+            UAT: '<botUser>virtual.assistant@salesforce.com.TEST.uat</botUser>'
+            PROD: '<botUser>virtual.assistant@salesforce.com</botUser>'
+    record_type_visibility:
+        regex_name: 'record-type-visibility'
+        files:
+            - force-app/main/default/profiles/Admin.profile-meta.xml
+        replace_values:
+            - Knowledge__kav.FAQ
+
+    invalid_user_permissions: 
+        directories:
+            - force-app/main/default/profiles
+        excludes:
+            - "*.bkup"
+            - CSR*
+            - End User*
+            - Cloning*
+            - Executive Spon*
+            - End User*
+            - Read Only*
+            - Virtual*
+        regex_name: 'user-permission' # name must exist on the regex-lib section
+        replace_values:
+            - ArchiveArticles
+            - EditTranslation
+            - PublishArticles
+            - PublishTranslation
+            - SubmitForTranslation
+            - ViewArchivedArticles
+            - ViewDraftArticles
+            - ManageSandboxes
+    replace_skills: 
+        files:
+            - force-app/main/default/skills/NJ.skill-meta.xml
+        regex_name: 'skills' # name must exist on the regex-lib section
+        replace_values:
+            - ramintha@salesforce.com
+    replace_knowlwedge_permset: 
+        files:
+          - force-app/main/default/permissionsets/TCRM_Custom_Permissions.permissionset-meta.xml
+        regex_name: 'knowledge-perm-set' # name must exist on the regex-lib section
+        replace_values:
+            - Knowledge__kav
+    replace_analytics_settings: 
+        files:
+          - force-app/main/default/settings/Analytics.settings-meta.xml
+        regex_name: 'analytics-settings' # name must exist on the regex-lib section
+    replace-layout-folderid:
+        files:
+          - force-app/main/default/layouts/Macro-Macro Layout.layout-meta.xml
+        regex_name: 'layout-folderid' # name must exist on the regex-lib section
+        replace_values:
+            - FolderId
+    replace_routing_options:
+        files:
+          - force-app/main/default/liveChatButtons/Virtual_Assistant_Application.liveChatButton-meta.xml
+        regex_name: 'routing_type'
+        replace_with: '<routingType>Choice</routingType>'
+    enable_saml:
+        files:
+            - settings/Security.settings-meta.xml
+        regex_name: 'saml_enabled'
+        replace_with: '<enableSamlLogin>true</enableSamlLogin>'
+    fedid_case_insensitive:
+        files:
+            - force-app/main/default/settings/Security.settings-meta.xml
+        regex_name: 'fedid_enabled'
+        replace_with: '<enableCaseInsensitiveFederationID>true</enableCaseInsensitiveFederationID>'

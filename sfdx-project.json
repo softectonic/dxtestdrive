@@ -6,7 +6,8 @@
       "versionName": "Base Objects - Version 1.0.0",
       "versionNumber": "1.0.0.NEXT",
       "default": false,
-      "versionDescription": ""
+      "versionDescription": "",
+      "preDeploymentScript": "scripts/replace-metadata-values.sh"
     },
     {
       "path": "src/es-base-code",
