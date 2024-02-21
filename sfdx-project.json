@@ -6,7 +6,13 @@
       "versionName": "Base Objects - Version 1.0.0",
       "versionNumber": "1.0.0.NEXT",
       "default": false,
-      "versionDescription": ""
+      "versionDescription": "",
+      "ignoreOnStage": [
+        "prepare",
+        "validate",
+        "quickbuild",
+        "build"
+      ]
     },
     {
       "path": "src/es-base-code",
@@ -90,7 +96,8 @@
       "versionName": "Version 1.0.0",
       "versionNumber": "1.0.0.NEXT",
       "default": false,
-      "versionDescription": ""
+      "versionDescription": "",
+      "preDeploymentScript": "scripts/replace-metadata-values.sh"
     },
     {
       "path": "./src-ui",
@@ -134,7 +141,7 @@
   ],
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "44.0",
+  "sourceApiVersion": "60.0",
   "packageAliases": {
     "es-base-objects": "0Ho8b000000sXybCAE",
     "es-base-code": "0Ho8b000000sXygCAE",
