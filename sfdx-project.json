@@ -7,7 +7,12 @@
       "versionNumber": "1.0.0.NEXT",
       "default": false,
       "versionDescription": "",
-      "preDeploymentScript": "scripts/replace-metadata-values.sh"
+      "ignoreOnStage": [
+        "prepare",
+        "validate",
+        "quickbuild",
+        "build"
+      ]
     },
     {
       "path": "src/es-base-code",
@@ -91,7 +96,8 @@
       "versionName": "Version 1.0.0",
       "versionNumber": "1.0.0.NEXT",
       "default": false,
-      "versionDescription": ""
+      "versionDescription": "",
+      "preDeploymentScript": "scripts/replace-metadata-values.sh"
     },
     {
       "path": "./src-ui",
