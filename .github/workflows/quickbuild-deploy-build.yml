@@ -66,11 +66,12 @@ jobs:
   deploy:
     name: 'Deploy to Dev'
     runs-on: ubuntu-latest
+    env:
+      TARGET_ENVIRONMENT: 'DEV'
     container: ghcr.io/dxatscale/sfpowerscripts
     needs: quickbuild
+    
     if: github.ref == 'refs/heads/main'
-    environment:
-      name: DEV
     concurrency: dev
     steps:
       - uses: actions/checkout@v2
@@ -96,8 +97,6 @@ jobs:
         run: |
           sfp dependency:install -u dev -v devhub
           sfp orchestrator:deploy -u dev  --skipifalreadyinstalled -g "::group::,::endgroup::" 
-        env:
-          TARGET_ENVIRONMENT: ${{ job.environment.name }}
 
   buildAndPublish:
     name: 'Build and Publish'
