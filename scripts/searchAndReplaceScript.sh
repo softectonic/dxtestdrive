@@ -8,7 +8,6 @@
 
 # Export the TARGET_ENVIRONMENT variable to make it available globally
 #export TARGET_ENVIRONMENT=$TARGET_ENVIRONMENT
-export TARGET_ENVIRONMENT="$1"
 
 echo "The TARGET_ENVIRONMENT is set to: $TARGET_ENVIRONMENT"
 
