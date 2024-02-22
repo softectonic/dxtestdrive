@@ -77,18 +77,18 @@
           "package": "es-base-styles",
           "versionNumber": "1.0.0.LATEST"
         }
+      ],
+      "ignoreOnStage": [
+        "prepare",
+        "validate",
+        "quickbuild",
+        "build"
       ]
     },
     {
       "path": "./src-env-specific-pre",
       "package": "src-env-specific-pre",
       "versionNumber": "1.0.0.0",
-      "ignoreOnStage": [
-        "prepare",
-        "validate",
-        "quickbuild",
-        "build"
-      ],
       "ignoreOnStage": [
         "prepare",
         "validate",
