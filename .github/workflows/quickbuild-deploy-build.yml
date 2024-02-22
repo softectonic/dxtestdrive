@@ -41,8 +41,6 @@ jobs:
     if: github.event.pull_request.merged == true && github.ref == 'refs/heads/main'
     name: 'Quickbuild packages'
     runs-on: ubuntu-latest
-    env:
-      TARGET_ENVIRONMENT: 'DEV'
     container: ghcr.io/dxatscale/sfpowerscripts
     steps:
       - uses: actions/checkout@v2
@@ -68,6 +66,8 @@ jobs:
   deploy:
     name: 'Deploy to Dev'
     runs-on: ubuntu-latest
+    env:
+      TARGET_ENVIRONMENT: 'DEV'
     container: ghcr.io/dxatscale/sfpowerscripts
     needs: quickbuild
     
@@ -100,6 +100,10 @@ jobs:
         run: |
           echo "${{ secrets.DEV_SFDX_AUTH_URL }}" > ./dev_authfile
           sf org login sfdx-url  -f ./dev_authfile -a dev
+
+      - name: Export Environment Variable and Run Script
+        run: |
+          export TARGET_ENVIRONMENT=${{ env.TARGET_ENVIRONMENT }}
 
       - name: 'Deploy to DEV'
         run: |

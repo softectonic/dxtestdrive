@@ -7,7 +7,9 @@
 # It concludes by reporting the success or failure of the XML values replacement operation.
 
 # Export the TARGET_ENVIRONMENT variable to make it available globally
-export TARGET_ENVIRONMENT=$TARGET_ENVIRONMENT
+#export TARGET_ENVIRONMENT=$TARGET_ENVIRONMENT
+
+echo "The TARGET_ENVIRONMENT is set to: $TARGET_ENVIRONMENT"
 
 # Define the path to the Python script
 PYTHON_SCRIPT_PATH="scripts/searchAndReplace.py"
