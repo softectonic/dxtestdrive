@@ -67,7 +67,7 @@ jobs:
     name: 'Deploy to Dev'
     runs-on: ubuntu-latest
     env:
-      TARGET_ENVIRONMENT: 'DEV'
+      TARGET_ENVIRONMENT: 'POOL'
     container: ghcr.io/dxatscale/sfpowerscripts
     needs: quickbuild
     
