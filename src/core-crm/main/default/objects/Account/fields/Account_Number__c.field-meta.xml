@@ -5,7 +5,7 @@
     <externalId>false</externalId>
     <inlineHelpText>Secondary account number</inlineHelpText>
     <label>Secondary Account Number</label>
-    <length>50</length>
+    <length>20</length>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <type>Text</type>
