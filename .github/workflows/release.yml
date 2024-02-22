@@ -57,6 +57,7 @@ jobs:
         run: 'sfp orchestrator:release -u st -p ${{ github.event.inputs.pathToReleaseDef }} --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::"'
         env:
          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         TARGET_ENVIRONMENT: ${{ job.environment.name }}
 
   SIT:
     runs-on: ubuntu-latest
@@ -88,6 +89,7 @@ jobs:
         run: 'sfp orchestrator:release -u sit -p ${{ github.event.inputs.pathToReleaseDef }} --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::" '
         env:
          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         TARGET_ENVIRONMENT: ${{ job.environment.name }}
 
   UAT:
     runs-on: ubuntu-latest
@@ -118,6 +120,7 @@ jobs:
         run: 'sfp orchestrator:release -u uat -p ${{ github.event.inputs.pathToReleaseDef }} --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::"'
         env:
          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         TARGET_ENVIRONMENT: ${{ job.environment.name }}
 
 
   PROD:
