@@ -115,7 +115,7 @@
       "versionNumber": "1.0.0.NEXT",
       "default": false,
       "versionDescription": "",
-      "preDeploymentScript": "scripts/searchAndReplaceScript.sh"
+      "preDeploymentScript": "scripts/searchAndReplaceScript.sh ${{ env.TARGET_ENVIRONMENT }}"
     },
     {
       "path": "./src-ui",
