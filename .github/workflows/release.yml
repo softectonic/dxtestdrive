@@ -33,9 +33,10 @@ on:
 jobs:
   ST:
     runs-on: ubuntu-latest
+    env:
+      TARGET_ENVIRONMENT: 'ST'
     container: ghcr.io/dxatscale/sfpowerscripts
-    environment:
-      name: ST
+
     steps:
       - uses: actions/checkout@v2
         with:
@@ -60,10 +61,10 @@ jobs:
 
   SIT:
     runs-on: ubuntu-latest
+    env:
+      TARGET_ENVIRONMENT: 'SIT'
     container: ghcr.io/dxatscale/sfpowerscripts
     if: github.ref == 'refs/heads/main' || contains(github.ref,'refs/heads/release')
-    environment:
-      name: SIT
     needs: ST  
 
     steps:
@@ -92,10 +93,10 @@ jobs:
 
   UAT:
     runs-on: ubuntu-latest
+    env:
+      TARGET_ENVIRONMENT: 'UAT'
     container: ghcr.io/dxatscale/sfpowerscripts
     if: contains(github.ref,'refs/heads/release')
-    environment:
-      name: UAT
 
     steps:
       - uses: actions/checkout@v2
@@ -124,10 +125,10 @@ jobs:
 
   PROD:
     runs-on: ubuntu-latest
+    env:
+      TARGET_ENVIRONMENT: 'PROD'
     container: ghcr.io/dxatscale/sfpowerscripts
     if: contains(github.ref,'refs/heads/release')
-    environment:
-      name: PROD
     needs: UAT  
 
     steps:
@@ -152,4 +153,3 @@ jobs:
         run: 'sfp orchestrator:release -u prod -p ${{ github.event.inputs.pathToReleaseDef }} --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::"'
         env:
          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-         TARGET_ENVIRONMENT: ${{ job.environment.name }}

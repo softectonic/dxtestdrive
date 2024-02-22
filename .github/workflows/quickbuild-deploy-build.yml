@@ -66,11 +66,12 @@ jobs:
   deploy:
     name: 'Deploy to Dev'
     runs-on: ubuntu-latest
+    env:
+      TARGET_ENVIRONMENT: 'DEV'
     container: ghcr.io/dxatscale/sfpowerscripts
     needs: quickbuild
+    
     if: github.ref == 'refs/heads/main'
-    environment:
-      name: DEV
     concurrency: dev
     steps:
       - uses: actions/checkout@v2
