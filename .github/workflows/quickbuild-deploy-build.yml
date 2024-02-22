@@ -101,6 +101,10 @@ jobs:
           echo "${{ secrets.DEV_SFDX_AUTH_URL }}" > ./dev_authfile
           sf org login sfdx-url  -f ./dev_authfile -a dev
 
+      - name: Export Environment Variable and Run Script
+        run: |
+          export TARGET_ENVIRONMENT=${{ env.TARGET_ENVIRONMENT }}
+
       - name: 'Deploy to DEV'
         run: |
           sfp dependency:install -u dev -v devhub
