@@ -26,7 +26,13 @@
           "versionNumber": "1.0.0.LATEST"
         }
       ],
-      "versionDescription": ""
+      "versionDescription": "",
+      "ignoreOnStage": [
+        "prepare",
+        "validate",
+        "quickbuild",
+        "build"
+      ]
     },
     {
       "path": "src/es-base-styles",
@@ -44,7 +50,13 @@
           "versionNumber": "1.0.0.LATEST"
         }
       ],
-      "versionDescription": ""
+      "versionDescription": "",
+      "ignoreOnStage": [
+        "prepare",
+        "validate",
+        "quickbuild",
+        "build"
+      ]
     },
     {
       "path": "./src/es-space-mgmt",
@@ -71,6 +83,12 @@
       "path": "./src-env-specific-pre",
       "package": "src-env-specific-pre",
       "versionNumber": "1.0.0.0",
+      "ignoreOnStage": [
+        "prepare",
+        "validate",
+        "quickbuild",
+        "build"
+      ],
       "ignoreOnStage": [
         "prepare",
         "validate",
