@@ -6,6 +6,9 @@
 # then executes the Python script, passing the path to the YAML configuration as an argument. 
 # It concludes by reporting the success or failure of the XML values replacement operation.
 
+# Export the TARGET_ENVIRONMENT variable to make it available globally
+export TARGET_ENVIRONMENT=$TARGET_ENVIRONMENT
+
 # Define the path to the Python script
 PYTHON_SCRIPT_PATH="scripts/searchAndReplace.py"
 

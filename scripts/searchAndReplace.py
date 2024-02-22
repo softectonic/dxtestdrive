@@ -64,8 +64,7 @@ def process_replacements(config, environment):
 
 def main(config_path):
     # Debug print
-    print(f"Received TARGET_ENVIRONMENT (os.getenv): {os.getenv('TARGET_ENVIRONMENT')}")
-    print(f"Received TARGET_ENVIRONMENT (os.environ): {os.environ.get('TARGET_ENVIRONMENT')}")
+    print(f"Received TARGET_ENVIRONMENT: {os.getenv('TARGET_ENVIRONMENT')}")
 
     # Use an environment variable to determine the current environment
     environment = os.getenv('TARGET_ENVIRONMENT', 'DEV').upper()
