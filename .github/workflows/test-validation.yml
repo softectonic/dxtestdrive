@@ -39,9 +39,8 @@ jobs:
       (github.event.action == 'opened' ||
        github.event.action == 'labeled' && github.event.label.name == 'ready-for-final-test')
     runs-on: ubuntu-latest
-    environment: POOL
     env:
-      TARGET_ENVIRONMENT: ${{ job.environment.name }}
+      TARGET_ENVIRONMENT: 'POOL'
     container: ghcr.io/dxatscale/sfpowerscripts
 
     steps:
