@@ -67,7 +67,7 @@ jobs:
     name: 'Deploy to Dev'
     runs-on: ubuntu-latest
     env:
-      TARGET_ENVIRONMENT: 'DEV'
+      TARGET_ENVIRONMENT: 'POOL'
     container: ghcr.io/dxatscale/sfpowerscripts
     needs: quickbuild
     
@@ -103,7 +103,6 @@ jobs:
 
       - name: 'Deploy to DEV'
         run: |
-          export TARGET_ENVIRONMENT=${{ env.TARGET_ENVIRONMENT }}
           sfp dependency:install -u dev -v devhub
           sfp orchestrator:deploy -u dev  --skipifalreadyinstalled -g "::group::,::endgroup::" 
         env:
