@@ -41,6 +41,8 @@ jobs:
     if: github.event.pull_request.merged == true && github.ref == 'refs/heads/main'
     name: 'Quickbuild packages'
     runs-on: ubuntu-latest
+    env:
+      TARGET_ENVIRONMENT: 'DEV'
     container: ghcr.io/dxatscale/sfpowerscripts
     steps:
       - uses: actions/checkout@v2
@@ -66,8 +68,6 @@ jobs:
   deploy:
     name: 'Deploy to Dev'
     runs-on: ubuntu-latest
-    env:
-      TARGET_ENVIRONMENT: 'DEV'
     container: ghcr.io/dxatscale/sfpowerscripts
     needs: quickbuild
     
