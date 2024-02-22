@@ -39,6 +39,7 @@ jobs:
       (github.event.action == 'opened' ||
        github.event.action == 'labeled' && github.event.label.name == 'ready-for-final-test')
     runs-on: ubuntu-latest
+    environment: POOL
     container: ghcr.io/dxatscale/sfpowerscripts
 
     steps:
@@ -77,6 +78,8 @@ jobs:
         if: env.SHOULD_RUN == 'true'
         run: |
           sfp orchestrator:validate -p ci -v devhub -x
+        env:
+          TARGET_ENVIRONMENT: ${{ job.environment.name }}
 
       - name: 'Trigger Separate Workflow for Scratch Org Replenish'
         if: env.SHOULD_RUN == 'true'

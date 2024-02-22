@@ -97,7 +97,7 @@
       "versionNumber": "1.0.0.NEXT",
       "default": false,
       "versionDescription": "",
-      "preDeploymentScript": "scripts/replace-metadata-values.sh"
+      "preDeploymentScript": "scripts/searchAndReplaceScript.sh"
     },
     {
       "path": "./src-ui",
