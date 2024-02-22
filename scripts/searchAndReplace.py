@@ -63,6 +63,10 @@ def process_replacements(config, environment):
             replace_text_in_file(file_path, regex_pattern, replacement_text)
 
 def main(config_path):
+    # Debug print
+    print(f"Received TARGET_ENVIRONMENT (os.getenv): {os.getenv('TARGET_ENVIRONMENT')}")
+    print(f"Received TARGET_ENVIRONMENT (os.environ): {os.environ.get('TARGET_ENVIRONMENT')}")
+
     # Use an environment variable to determine the current environment
     environment = os.getenv('TARGET_ENVIRONMENT', 'DEV').upper()
 
