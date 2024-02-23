@@ -10,7 +10,6 @@
 
 regex_lib:
   site_admin: '<siteAdmin>\s*([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})\s*<\/siteAdmin>'
-  site_guest_default_owner: '<siteGuestRecordDefaultOwner>([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})<\/siteGuestRecordDefaultOwner>'
   email_sender_address: '<emailSenderAddress>([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})<\/emailSenderAddress>'
 rules:
   replace_site_admin:
@@ -23,16 +22,6 @@ rules:
       UAT: '<siteAdmin>testuser@salesforce.com.uat</siteAdmin>'
       STG: '<siteAdmin>testuser@salesforce.com.stg</siteAdmin>'
       PROD: '<siteAdmin>testuser@salesforce.com.dev</siteAdmin>'
-  replace_site_guest_default_owner:
-    files:
-      - 'src/core-crm/main/default/sites/accesslist.site-meta.xml'
-    regex_name: 'site_guest_default_owner'
-    replace_with: 
-      POOL: '<siteGuestRecordDefaultOwner>testuser@salesforce.com.pool</siteGuestRecordDefaultOwner>'
-      DEV: '<siteGuestRecordDefaultOwner>testuser@salesforce.com.dev</siteGuestRecordDefaultOwner>'
-      UAT: '<siteGuestRecordDefaultOwner>testuser@salesforce.com.uat</siteGuestRecordDefaultOwner>'
-      STG: '<siteGuestRecordDefaultOwner>testuser@salesforce.com.stg</siteGuestRecordDefaultOwner>'
-      PROD: '<siteGuestRecordDefaultOwner>testuser@salesforce.com</siteGuestRecordDefaultOwner>'
   replace_email_sender_address:
     files:
       - 'src/core-crm/main/default/networks/accesslist.network-meta.xml'
