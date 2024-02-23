@@ -36,6 +36,8 @@ def replace_text_in_file(file_path, regex_pattern, replacement_text):
         with open(file_path, 'r', encoding='utf-8') as file:
             file_contents = file.read()
 
+        print(f"Original file contents: {file_contents}")
+
         # Perform the replacement
         new_contents = re.sub(regex_pattern, replacement_text, file_contents)
 
@@ -46,6 +48,12 @@ def replace_text_in_file(file_path, regex_pattern, replacement_text):
             print(f"Updated file: {file_path}")
         else:
             print(f"No changes made to: {file_path}")
+        
+        with open(file_path, 'r', encoding='utf-8') as file:
+            file_contents_post = file.read()
+        
+        print(f"Updated file contents: {file_contents_post}")
+
     except FileNotFoundError:
         print(f"File not found: {file_path}")
 

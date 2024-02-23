@@ -164,7 +164,8 @@
     "es-base-objects": "0Ho8b000000sXybCAE",
     "es-base-code": "0Ho8b000000sXygCAE",
     "es-base-styles": "0Ho8b000000sXylCAE",
-    "es-space-mgmt": "0Ho8b000000sXyqCAE"
+    "es-space-mgmt": "0Ho8b000000sXyqCAE",
+    "core-crm": "0Ho8b000000sXyqCAE"
   },
   "plugins": {}
 }
