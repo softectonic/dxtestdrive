@@ -93,5 +93,7 @@ if __name__ == "__main__":
     
     config_path = sys.argv[1]
     full_path = sys.argv[2]+"/"+sys.argv[3]+"/"
+    print(f"Working directory: {sys.argv[2]}")
+    print(f"Package directory: {sys.argv[3]}")
     main(config_path, full_path)
 
