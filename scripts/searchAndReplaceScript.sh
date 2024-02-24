@@ -9,6 +9,12 @@
 # Export the TARGET_ENVIRONMENT variable to make it available globally
 #export TARGET_ENVIRONMENT=$TARGET_ENVIRONMENT
 
+# $1 package name
+# $2 org
+# $3 alias
+# $4 working directory
+# $5 package directory
+
 echo "The TARGET_ENVIRONMENT is set to: $TARGET_ENVIRONMENT"
 
 # Define the path to the Python script
@@ -19,12 +25,12 @@ REPLACE_CONFIG_PATH="replace-config.yml"
 
 # Check if the Python script exists
 if [ ! -f "$PYTHON_SCRIPT_PATH" ]; then
-    echo "Python script not found at $PYTHON_SCRIPT_PATH"
+    echo "Python script not found at $PYTHON_SCRIPT_PATH" 
     exit 1
 fi
 
 # Execute the Python script with the YAML configuration path as an argument
-python3 "$PYTHON_SCRIPT_PATH" "$REPLACE_CONFIG_PATH"
+python3 "$PYTHON_SCRIPT_PATH" "$REPLACE_CONFIG_PATH" $4 $5
 
 # Check the exit status of the Python script
 if [ $? -eq 0 ]; then
