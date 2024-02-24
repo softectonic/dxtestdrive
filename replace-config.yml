@@ -14,7 +14,7 @@ regex_lib:
 rules:
   replace_site_admin:
     files:
-      - '/main/default/sites/accesslist.site-meta.xml'
+      - 'main/default/sites/accesslist.site-meta.xml'
     regex_name: 'site_admin'
     replace_with: 
       POOL: '<siteAdmin>testuser@salesforce.com.pool</siteAdmin>' 
@@ -24,7 +24,7 @@ rules:
       PROD: '<siteAdmin>testuser@salesforce.com.dev</siteAdmin>'
   replace_email_sender_address:
     files:
-      - '/main/default/networks/accesslist.network-meta.xml'
+      - 'main/default/networks/accesslist.network-meta.xml'
     regex_name: 'email_sender_address'
     replace_with: 
       POOL: '<emailSenderAddress>testuser@salesforce.com</emailSenderAddress>'
