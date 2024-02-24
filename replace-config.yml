@@ -18,7 +18,7 @@ rules:
     regex_name: 'site_admin'
     replace_with: 
       POOL: '<siteAdmin>testuser@salesforce.com.pool</siteAdmin>' 
-      DEV: '<siteAdmin>testuser@salesforce.com.dev</siteAdmin>'
+      DEV: '<siteAdmin>aashiru@empathetic-shark-h20ulw.com</siteAdmin>'
       UAT: '<siteAdmin>testuser@salesforce.com.uat</siteAdmin>'
       STG: '<siteAdmin>testuser@salesforce.com.stg</siteAdmin>'
       PROD: '<siteAdmin>testuser@salesforce.com.dev</siteAdmin>'
@@ -28,7 +28,7 @@ rules:
     regex_name: 'email_sender_address'
     replace_with: 
       POOL: '<emailSenderAddress>testuser@salesforce.com</emailSenderAddress>'
-      DEV: '<emailSenderAddress>testuser@salesforce.com</emailSenderAddress>'
+      DEV: '<emailSenderAddress>aashiru@salesforce.com</emailSenderAddress>'
       UAT: '<emailSenderAddress>testuser@salesforce.com</emailSenderAddress>'
       STG: '<emailSenderAddress>testuser@salesforce.com</emailSenderAddress>'
       PROD: '<emailSenderAddress>testuser@salesforce.com</emailSenderAddress>'
