@@ -57,7 +57,7 @@ def replace_text_in_file(file_path, regex_pattern, replacement_text):
     except FileNotFoundError:
         print(f"File not found: {file_path}")
 
-def process_replacements(config, environment):
+def process_replacements(config, environment, full_path):
     """Process replacement rules for the given environment."""
     regex_lib = config['regex_lib']
     rules = config['rules']
@@ -68,9 +68,11 @@ def process_replacements(config, environment):
         replacement_text = rule_details['replace_with'][environment]
         
         for file_path in rule_details['files']:
+            file_path = full_path + file_path
+            print(f"File full path: {file_path}")
             replace_text_in_file(file_path, regex_pattern, replacement_text)
 
-def main(config_path):
+def main(config_path, full_path):
     # Debug print
     print(f"Received TARGET_ENVIRONMENT: {os.getenv('TARGET_ENVIRONMENT')}")
 
@@ -82,13 +84,14 @@ def main(config_path):
         exit(1)
     
     config = load_config(config_path)
-    process_replacements(config, environment)
+    process_replacements(config, environment, full_path)
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python script.py <path_to_config.yml>")
+    if len(sys.argv) != 4:
+        print("Usage: python script.py <path_to_config.yml> <working_directory> <package_directory>")
         exit(1)
     
     config_path = sys.argv[1]
-    main(config_path)
+    full_path = sys.argv[2]+"/"+sys.argv[3]+"/"
+    main(config_path, full_path)
 
