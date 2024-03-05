@@ -87,26 +87,26 @@ jobs:
         run: | 
           echo "SF_LOG_LEVEL=debug" >> $GITHUB_ENV
 
-      - name: Echo Working Directory
-        run: pwd
+      # - name: Echo Working Directory
+      #   run: pwd
   
-      - name: List directories in Working Directory
-        run: |
-          echo "Listing directories in the working directory:"
-          find . -maxdepth 1 -type d
+      # - name: List directories in Working Directory
+      #   run: |
+      #     echo "Listing directories in the working directory:"
+      #     find . -maxdepth 1 -type d
   
-      - name: Echo Home Directory
-        run: echo $HOME
+      # - name: Echo Home Directory
+      #   run: echo $HOME
   
-      - name: List directories in Home Directory
-        run: |
-          echo "Listing directories in the home directory:"
-          find $HOME -maxdepth 1 -type d
+      # - name: List directories in Home Directory
+      #   run: |
+      #     echo "Listing directories in the home directory:"
+      #     find $HOME -maxdepth 1 -type d
 
-      - name: List Items in $HOME/.sf Directory
-        run: |
-          echo "Listing items in the \$HOME/.sf directory:"
-          ls -la $HOME/.sf/
+      # - name: List Items in $HOME/.sf Directory
+      #   run: |
+      #     echo "Listing items in the \$HOME/.sf directory:"
+      #     ls -la $HOME/.sf/
 
       - name: 'Validate source and trigger test'
         if: env.SHOULD_RUN == 'true'
