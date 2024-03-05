@@ -111,14 +111,14 @@ jobs:
       - name: 'Validate source and trigger test'
         if: env.SHOULD_RUN == 'true'
         run: |
-          sfp orchestrator:validate -p ci -v devhub -x > sf.log 2>&1
+          sfp orchestrator:validate -p ci -v devhub -x
 
       - name: Upload SF CLI Log as Artifact
         uses: actions/upload-artifact@v2
         if: always()
         with:
           name: sf-logs
-          path: sf.log
+          path: $HOME/.sf/sf*
 
       - name: 'Trigger Separate Workflow for Scratch Org Replenish'
         if: env.SHOULD_RUN == 'true'
