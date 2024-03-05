@@ -113,12 +113,18 @@ jobs:
         run: |
           sfp orchestrator:validate -p ci -v devhub -x
 
+      - name: Prepare Artifact Directory
+        run: |
+          mkdir artifacts
+          cp $HOME/.sf/sf* artifacts/
+        shell: bash
+
       - name: Upload SF CLI Log as Artifact
         uses: actions/upload-artifact@v2
         if: always()
         with:
           name: sf-logs
-          path: $HOME/.sf/sf*
+          path: artifacts/
 
       - name: 'Trigger Separate Workflow for Scratch Org Replenish'
         if: env.SHOULD_RUN == 'true'
