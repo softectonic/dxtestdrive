@@ -87,29 +87,29 @@ jobs:
         run: | 
           echo "SF_LOG_LEVEL=debug" >> $GITHUB_ENV
 
+      - name: Echo Working Directory
+        run: pwd
+  
+      - name: List directories in Working Directory
+        run: ls -l */
+  
+      - name: Echo Home Directory
+        run: echo $HOME
+  
+      - name: List directories in Home Directory
+        run: ls -l $HOME
+
       - name: 'Validate source and trigger test'
         if: env.SHOULD_RUN == 'true'
         run: |
           sfp orchestrator:validate -p ci -v devhub -x
-
-      - name: Echo Working Directory
-        run: pwd
-
-      - name: List directories in Working Directory
-        run: ls -l */
-
-      - name: Echo Home Directory
-        run: echo $HOME
-
-      - name: List directories in Home Directory
-        run: ls -l $HOME/*/
 
       - name: Upload SF CLI Log as Artifact
         uses: actions/upload-artifact@v2
         if: always()
         with:
           name: sf-logs
-          path: /.sf/sf.log
+          path: .sf/sf.log
 
       - name: 'Trigger Separate Workflow for Scratch Org Replenish'
         if: env.SHOULD_RUN == 'true'
