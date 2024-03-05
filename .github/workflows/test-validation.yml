@@ -97,7 +97,7 @@ jobs:
         if: always()
         with:
           name: sf-logs
-          path: ~/.sf/sf.log
+          path: /__w/.sf/sf.log
 
       - name: 'Trigger Separate Workflow for Scratch Org Replenish'
         if: env.SHOULD_RUN == 'true'
