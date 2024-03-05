@@ -52,6 +52,11 @@ jobs:
           echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url  -f authfile -a devhub
 
+      - name: Configure SF CLI Logging
+        if: ${{vars.ENABLE_SF_LOGGING == 'true'}} 
+        run: | 
+          echo "SF_LOG_LEVEL=debug" >> $GITHUB_ENV
+  
       - name: 'Create packages'
         id: sfpowerscripts-build
         run: |
@@ -101,6 +106,11 @@ jobs:
           echo "${{ secrets.DEV_SFDX_AUTH_URL }}" > ./dev_authfile
           sf org login sfdx-url  -f ./dev_authfile -a dev
 
+      - name: Configure SF CLI Logging
+        if: ${{vars.ENABLE_SF_LOGGING == 'true'}} 
+        run: | 
+          echo "SF_LOG_LEVEL=debug" >> $GITHUB_ENV
+
       - name: 'Deploy to DEV'
         run: |
           sfp dependency:install -u dev -v devhub
@@ -127,6 +137,20 @@ jobs:
         id: sfpowerscripts-build
         run: |
           sfp orchestrator:build -v devhub --diffcheck --branch ${GITHUB_REF#refs/heads/} --buildnumber ${GITHUB_RUN_ID}
+
+      - name: Prepare Artifact Directory
+        if: env.SHOULD_RUN == 'true' && ${{vars.ENABLE_SF_LOGGING == 'true'}}
+        run: |
+          mkdir sf-logs
+          cp $HOME/.sf/sf* sf-logs/
+        shell: bash
+  
+      - name: Upload SF CLI Log as Artifact
+        if:  env.SHOULD_RUN == 'true' && ${{vars.ENABLE_SF_LOGGING == 'true'}}
+        uses: actions/upload-artifact@v2
+        with:
+          name: sf-logs
+          path: sf-logs/
 
       # Publish artifacts
       - uses: actions/upload-artifact@v2
