@@ -115,7 +115,7 @@ jobs:
 
       - name: Prepare Artifact Directory
         run: |
-          mkdir artifacts
+          mkdir sf-logs
           cp $HOME/.sf/sf* sf-logs/
         shell: bash
 
