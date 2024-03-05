@@ -82,10 +82,22 @@ jobs:
           echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url  -f authfile -a devhub
 
+      - name: Configure SF CLI Logging
+        if: env.SHOULD_RUN == 'true'
+        run: | 
+          echo "SF_LOG_LEVEL=debug" >> $GITHUB_ENV
+
       - name: 'Validate source and trigger test'
         if: env.SHOULD_RUN == 'true'
         run: |
           sfp orchestrator:validate -p ci -v devhub -x
+
+      - name: Upload SF CLI Log as Artifact
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: sf-logs
+          path: ~/.sf/sf.log
 
       - name: 'Trigger Separate Workflow for Scratch Org Replenish'
         if: env.SHOULD_RUN == 'true'
