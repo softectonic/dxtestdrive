@@ -83,7 +83,7 @@ jobs:
           sf org login sfdx-url  -f authfile -a devhub
 
       - name: Configure SF CLI Logging
-        if: env.SHOULD_RUN == 'true'
+        if: env.SHOULD_RUN == 'true' && ${{vars.ENABLE_SF_LOGGING == 'true'}}
         run: | 
           echo "SF_LOG_LEVEL=debug" >> $GITHUB_ENV
 
@@ -114,6 +114,7 @@ jobs:
           sfp orchestrator:validate -p ci -v devhub -x
 
       - name: Prepare Artifact Directory
+        if: env.SHOULD_RUN == 'true' && ${{vars.ENABLE_SF_LOGGING == 'true'}}
         run: |
           mkdir sf-logs
           cp $HOME/.sf/sf* sf-logs/
@@ -121,7 +122,7 @@ jobs:
 
       - name: Upload SF CLI Log as Artifact
         uses: actions/upload-artifact@v2
-        if: always()
+        if:  env.SHOULD_RUN == 'true' && ${{vars.ENABLE_SF_LOGGING == 'true'}} && always()
         with:
           name: sf-logs
           path: sf-logs/
