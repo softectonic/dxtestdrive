@@ -116,7 +116,7 @@ jobs:
       - name: Prepare Artifact Directory
         run: |
           mkdir artifacts
-          cp $HOME/.sf/sf* artifacts/
+          cp $HOME/.sf/sf* sf-logs/
         shell: bash
 
       - name: Upload SF CLI Log as Artifact
@@ -124,7 +124,7 @@ jobs:
         if: always()
         with:
           name: sf-logs
-          path: artifacts/
+          path: sf-logs/
 
       - name: 'Trigger Separate Workflow for Scratch Org Replenish'
         if: env.SHOULD_RUN == 'true'
