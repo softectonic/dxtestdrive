@@ -103,6 +103,11 @@ jobs:
           echo "Listing directories in the home directory:"
           find $HOME -maxdepth 1 -type d
 
+      - name: List Items in $HOME/.sf Directory
+        run: |
+          echo "Listing items in the \$HOME/.sf directory:"
+          ls -la $HOME/.sf/
+
       - name: 'Validate source and trigger test'
         if: env.SHOULD_RUN == 'true'
         run: |
