@@ -91,13 +91,17 @@ jobs:
         run: pwd
   
       - name: List directories in Working Directory
-        run: ls -l */
+        run: |
+          echo "Listing directories in the working directory:"
+          find . -maxdepth 1 -type d
   
       - name: Echo Home Directory
         run: echo $HOME
   
       - name: List directories in Home Directory
-        run: ls -l $HOME
+        run: |
+          echo "Listing directories in the home directory:"
+          find $HOME -maxdepth 1 -type d
 
       - name: 'Validate source and trigger test'
         if: env.SHOULD_RUN == 'true'
@@ -109,7 +113,7 @@ jobs:
         if: always()
         with:
           name: sf-logs
-          path: .sf/sf.log
+          path: ~/.sf/sf.log
 
       - name: 'Trigger Separate Workflow for Scratch Org Replenish'
         if: env.SHOULD_RUN == 'true'
