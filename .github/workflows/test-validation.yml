@@ -29,6 +29,7 @@ on:
 env:
   SF_EMAIL_ADDRESS: ${{ secrets.SF_EMAIL_ADDRESS }}
   SF_DISPLAY_NAME: ${{ secrets.SF_DISPLAY_NAME }}
+  ENABLE_SF_LOGGING: ${{ vars.ENABLE_SF_LOGGING }}
   
 
 
@@ -42,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TARGET_ENVIRONMENT: 'POOL'
-      ENABLE_SF_LOGGING: ${{ secrets.ENABLE_SF_LOGGING }}
+      # ENABLE_SF_LOGGING: ${{ secrets.ENABLE_SF_LOGGING }}
     container: ghcr.io/dxatscale/sfpowerscripts
 
     steps:
