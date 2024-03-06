@@ -27,7 +27,8 @@ on:
 
 
 #Set the environment variables for tracking metrics
-#env:
+env:
+  ENABLE_SF_LOGGING: ${{secrets.ENABLE_SF_LOGGING}}
   #SFPOWERSCRIPTS_NEWRELIC: 'true'
   #SFPOWERSCRIPTS_NEWRELIC_API_KEY: '${{ secrets.NEWRELIC_INSIGHT_INSERT_KEYS }}'
   #SFPOWERSCRIPTS_DATADOG: 'true'
@@ -53,7 +54,7 @@ jobs:
           sf org login sfdx-url  -f authfile -a devhub
 
       - name: Configure SF CLI Logging
-        if: ${{vars.ENABLE_SF_LOGGING == 'true'}} 
+        if: env.ENABLE_SF_LOGGING == 'true'
         run: | 
           echo "SF_LOG_LEVEL=debug" >> $GITHUB_ENV
   
@@ -61,6 +62,20 @@ jobs:
         id: sfpowerscripts-build
         run: |
           sfp orchestrator:quickbuild -v devhub --diffcheck --buildnumber ${GITHUB_RUN_ID} --branch ${GITHUB_REF#refs/heads/}
+
+      - name: Prepare Artifact Directory
+        if: env.ENABLE_SF_LOGGING == 'true'
+        run: |
+          mkdir sf-logs
+          cp $HOME/.sf/sf* sf-logs/
+        shell: bash
+    
+      - name: Upload SF CLI Log as Artifact
+        if:  env.ENABLE_SF_LOGGING == 'true'
+        uses: actions/upload-artifact@v2
+        with:
+          name: sf-logs
+          path: sf-logs/
 
       # Publish artifacts
       - uses: actions/upload-artifact@v2
@@ -107,7 +122,7 @@ jobs:
           sf org login sfdx-url  -f ./dev_authfile -a dev
 
       - name: Configure SF CLI Logging
-        if: ${{vars.ENABLE_SF_LOGGING == 'true'}} 
+        if: env.ENABLE_SF_LOGGING == 'true' 
         run: | 
           echo "SF_LOG_LEVEL=debug" >> $GITHUB_ENV
 
@@ -115,6 +130,20 @@ jobs:
         run: |
           sfp dependency:install -u dev -v devhub
           sfp orchestrator:deploy -u dev  --skipifalreadyinstalled -g "::group::,::endgroup::" 
+
+      - name: Prepare Artifact Directory
+        if: env.ENABLE_SF_LOGGING == 'true'
+        run: |
+          mkdir sf-logs
+          cp $HOME/.sf/sf* sf-logs/
+        shell: bash
+      
+      - name: Upload SF CLI Log as Artifact
+        if:  env.ENABLE_SF_LOGGING == 'true'
+        uses: actions/upload-artifact@v2
+        with:
+          name: sf-logs
+          path: sf-logs/
 
   buildAndPublish:
     name: 'Build and Publish'
@@ -133,20 +162,25 @@ jobs:
           echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url  -f authfile -a devhub
 
+      - name: Configure SF CLI Logging
+        if: env.ENABLE_SF_LOGGING == 'true'
+        run: | 
+          echo "SF_LOG_LEVEL=debug" >> $GITHUB_ENV
+
       - name: 'Create packages'
         id: sfpowerscripts-build
         run: |
           sfp orchestrator:build -v devhub --diffcheck --branch ${GITHUB_REF#refs/heads/} --buildnumber ${GITHUB_RUN_ID}
 
       - name: Prepare Artifact Directory
-        if: env.SHOULD_RUN == 'true' && ${{vars.ENABLE_SF_LOGGING == 'true'}}
+        if: env.ENABLE_SF_LOGGING == 'true'
         run: |
           mkdir sf-logs
           cp $HOME/.sf/sf* sf-logs/
         shell: bash
   
       - name: Upload SF CLI Log as Artifact
-        if:  env.SHOULD_RUN == 'true' && ${{vars.ENABLE_SF_LOGGING == 'true'}}
+        if:  env.ENABLE_SF_LOGGING == 'true'
         uses: actions/upload-artifact@v2
         with:
           name: sf-logs
