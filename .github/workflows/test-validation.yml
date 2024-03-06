@@ -119,7 +119,7 @@ jobs:
       - name: Prepare Artifact Directory
         if: env.SHOULD_RUN == 'true' && env.ENABLE_SF_LOGGING == 'true'
         run: |
-          mkdir sf-logs
+          mkdir -p sf-logs
           cp $HOME/.sf/sf* sf-logs/
         shell: bash
 
