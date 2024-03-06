@@ -29,6 +29,7 @@ on:
 env:
   SF_EMAIL_ADDRESS: ${{ secrets.SF_EMAIL_ADDRESS }}
   SF_DISPLAY_NAME: ${{ secrets.SF_DISPLAY_NAME }}
+  
 
 
 jobs:
@@ -41,6 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TARGET_ENVIRONMENT: 'POOL'
+      ENABLE_SF_LOGGING: ${{ secrets.ENABLE_SF_LOGGING }}
     container: ghcr.io/dxatscale/sfpowerscripts
 
     steps:
@@ -82,10 +84,51 @@ jobs:
           echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url  -f authfile -a devhub
 
+      - name: Configure SF CLI Logging
+        if: env.SHOULD_RUN == 'true' && env.ENABLE_SF_LOGGING == 'true' 
+        run: | 
+          echo "SF_LOG_LEVEL=debug" >> $GITHUB_ENV
+
+      # - name: Echo Working Directory
+      #   run: pwd
+  
+      # - name: List directories in Working Directory
+      #   run: |
+      #     echo "Listing directories in the working directory:"
+      #     find . -maxdepth 1 -type d
+  
+      # - name: Echo Home Directory
+      #   run: echo $HOME
+  
+      # - name: List directories in Home Directory
+      #   run: |
+      #     echo "Listing directories in the home directory:"
+      #     find $HOME -maxdepth 1 -type d
+
+      # - name: List Items in $HOME/.sf Directory
+      #   run: |
+      #     echo "Listing items in the \$HOME/.sf directory:"
+      #     ls -la $HOME/.sf/
+
       - name: 'Validate source and trigger test'
         if: env.SHOULD_RUN == 'true'
         run: |
+          echo "Enable SF Logging is set to: env.ENABLE_SF_LOGGING"
           sfp orchestrator:validate -p ci -v devhub -x
+
+      - name: Prepare Artifact Directory
+        if: env.SHOULD_RUN == 'true' && env.ENABLE_SF_LOGGING == 'true'
+        run: |
+          mkdir sf-logs
+          cp $HOME/.sf/sf* sf-logs/
+        shell: bash
+
+      - name: Upload SF CLI Log as Artifact
+        if:  env.SHOULD_RUN == 'true' && env.ENABLE_SF_LOGGING == 'true'
+        uses: actions/upload-artifact@v2
+        with:
+          name: sf-logs
+          path: sf-logs/
 
       - name: 'Trigger Separate Workflow for Scratch Org Replenish'
         if: env.SHOULD_RUN == 'true'
