@@ -59,53 +59,21 @@ jobs:
 
       - name: Find and Copy release.yml File
         run: |
-          set -e # Exit immediately if a command exits with a non-zero status.
-          set -o pipefail # Makes the script fail if any command in a pipeline fails.
+          # Find the directory that matches the pattern and contains the 'release.yml' file within a 'release-definitions' subdirectory
+          TEMP_FOLDER=$(find /tmp -type f -name "release.yml" -path "*/release-definitions/*" -print | head -n 1 | xargs dirname)
       
-          # Find the temporary folder that matches the pattern and contains release-definitions
-          TEMP_FOLDER=$(find /tmp -type d -name "tmp-*" -print | grep 'release-definitions' || true)
-      
-          if [ -z "$TEMP_FOLDER" ]; then
-            echo "Temporary folder not found."
-            exit 1
-          fi
-      
-          echo "Found temporary folder: $TEMP_FOLDER"
-          
-          # Checking if the release.yml file exists in the found folder
-          if [ ! -f "${TEMP_FOLDER}/release.yml" ]; then
-            echo "release.yml file not found in $TEMP_FOLDER."
-            exit 1
-          fi
-      
-          # Specify the destination directory where you want to copy the file
-          DESTINATION_DIR="./desired/location"
-          mkdir -p "$DESTINATION_DIR"
-          
-          # Copy the release.yml file to the destination directory
-          cp "${TEMP_FOLDER}/release.yml" "$DESTINATION_DIR"
-          
-          echo "File copied successfully to ${DESTINATION_DIR}"
-
-      # - name: Find and Copy release.yml File
-      #   run: |
-      #     # Find the temporary folder that matches the pattern
-      #     # This assumes that there is only one such folder at a time
-      #     TEMP_FOLDER=$(find /tmp -type d -name "tmp-*" -print | grep -m 1 'release-definitions')
-      
-      #     if [ ! -z "$TEMP_FOLDER" ]; then
-      #       # Specify the destination directory where you want to copy the file
-      #       # Ensure this directory exists or create it with `mkdir -p`
-      #       DESTINATION_DIR="./tmp-release-definitions"
-      #       mkdir -p $DESTINATION_DIR
+          if [ ! -z "$TEMP_FOLDER" ] && [ -f "${TEMP_FOLDER}/release.yml" ]; then
+            # Specify the destination directory where you want to copy the file
+            DESTINATION_DIR="./desired/location"
+            mkdir -p "${DESTINATION_DIR}"
             
-      #       # Copy the release.yml file to the destination directory
-      #       cp "${TEMP_FOLDER}/release.yml" $DESTINATION_DIR
+            # Copy the release.yml file to the destination directory
+            cp "${TEMP_FOLDER}/release.yml" "${DESTINATION_DIR}/"
             
-      #       echo "File copied successfully to ${DESTINATION_DIR}"
-      #     else
-      #       echo "Temporary folder not found."
-      #     fi
+            echo "File copied successfully to ${DESTINATION_DIR}"
+          else
+            echo "Temporary folder not found or release.yml does not exist."
+          fi
 
       - name: Clean Log File and Extract Content
         run: |
