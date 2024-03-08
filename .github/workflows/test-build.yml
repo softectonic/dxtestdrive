@@ -22,8 +22,7 @@ jobs:
       github.event_name == 'pull_request' &&
       github.event.action == 'opened' &&
       github.event.action == 'labeled' &&
-      github.event.label.name == 'test the build' &&
-      github.ref == 'refs/heads/main'
+      github.event.label.name == 'test the build' 
     runs-on: ubuntu-latest
     env:
       ENABLE_SF_LOGGING: ${{ vars.ENABLE_SF_LOGGING }}
