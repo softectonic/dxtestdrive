@@ -1,0 +1,62 @@
+#-----------------------------------------------------------------------------
+# This GitHub Actions workflow triggers on pull requests opened or labeled
+# for testing the build against the 'main' branch.
+#-----------------------------------------------------------------------------
+
+name: "Test the Build"
+
+on:
+  pull_request:
+    types: [labeled]
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  testBuild:
+    name: "Test Build"
+    # Condition to ensure this job runs only for PRs against the 'main' branch,
+    # and when they are opened and labeled specifically for build test
+    if: >
+      github.event_name == 'pull_request' &&
+      github.event.action == 'opened' &&
+      github.event.action == 'labeled' &&
+      github.event.label.name == 'test the build' &&
+      github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    env:
+      ENABLE_SF_LOGGING: ${{ vars.ENABLE_SF_LOGGING }}
+    container: ghcr.io/dxatscale/sfpowerscripts
+    concurrency: build
+    steps:
+      - name: "Checkout Repo"
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: "Authenticate Dev Hub"
+        run: 'sf org login sfdx-url -f  <(echo "${{secrets.DEVHUB_SFDX_AUTH_URL}}") -a devhub'
+
+      - name: Configure SF CLI Logging
+        if: env.ENABLE_SF_LOGGING == 'true'
+        run: |
+          echo "SF_LOG_LEVEL=debug" >> $GITHUB_ENV
+
+      - name: "Build Packages"
+        id: sfpowerscripts-build
+        run: "sfp orchestrator:build -v devhub --diffcheck --branch ${GITHUB_REF#refs/heads/} --buildnumber ${GITHUB_RUN_ID} -f .config/scratch-orgs/project-scratch-def.json"
+
+      - name: "Prepare SF Log Directory"
+        if: env.ENABLE_SF_LOGGING == 'true'
+        run: |
+          mkdir -p sf_logs
+          cp $HOME/.sf/sf* sf_logs/
+        shell: bash
+
+      - name: "Upload SF Log Artifact"
+        if: env.ENABLE_SF_LOGGING == 'true'
+        uses: actions/upload-artifact@v2
+        with:
+          name: sf-logs
+          path: sf_logs/
