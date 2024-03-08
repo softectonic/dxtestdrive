@@ -7,7 +7,7 @@ name: "Test the Build"
 
 on:
   pull_request:
-    types: [opened, labeled]
+    types: [labeled]
     branches:
       - main
 
