@@ -3,11 +3,11 @@
 # for testing the build against the 'main' branch.
 #-----------------------------------------------------------------------------
 
-name: "👾☁️ Test the Build"
+name: "Test the Build"
 
 on:
   pull_request:
-    types: [opened, labeled]
+    types: [labeled]
     branches:
       - main
 
@@ -17,13 +17,11 @@ jobs:
   testBuild:
     name: "Test Build"
     # Condition to ensure this job runs only for PRs against the 'main' branch,
-    # and when they are opened or labeled specifically for build test
     if: >
       github.event_name == 'pull_request' &&
       github.event.action == 'opened' &&
       github.event.action == 'labeled' &&
-      github.event.label.name == 'test the build' &&
-      github.ref == 'refs/heads/main'
+      github.event.label.name == 'test the build' 
     runs-on: ubuntu-latest
     env:
       ENABLE_SF_LOGGING: ${{ vars.ENABLE_SF_LOGGING }}
