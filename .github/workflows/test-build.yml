@@ -18,11 +18,7 @@ jobs:
     name: "Test Build"
     # Condition to ensure this job runs only for PRs against the 'main' branch,
     # and when they are opened and labeled specifically for build test
-    if: >
-      github.event_name == 'pull_request' &&
-      github.event.action == 'opened' &&
-      github.event.action == 'labeled' &&
-      github.event.label.name == 'test the build' 
+    if: github.event.label.name == 'test the build'
     runs-on: ubuntu-latest
     env:
       ENABLE_SF_LOGGING: ${{ vars.ENABLE_SF_LOGGING }}
