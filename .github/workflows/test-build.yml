@@ -3,7 +3,7 @@
 # for testing the build against the 'main' branch.
 #-----------------------------------------------------------------------------
 
-name: "👾☁️ Test the Build"
+name: "Test the Build"
 
 on:
   pull_request:
@@ -17,7 +17,7 @@ jobs:
   testBuild:
     name: "Test Build"
     # Condition to ensure this job runs only for PRs against the 'main' branch,
-    # and when they are opened or labeled specifically for build test
+    # and when they are opened and labeled specifically for build test
     if: >
       github.event_name == 'pull_request' &&
       github.event.action == 'opened' &&
