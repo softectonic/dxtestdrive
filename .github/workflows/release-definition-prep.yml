@@ -57,6 +57,26 @@ jobs:
         env:
          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Find and Copy release.yml File
+        run: |
+          # Find the temporary folder that matches the pattern
+          # This assumes that there is only one such folder at a time
+          TEMP_FOLDER=$(find /tmp -type d -name "tmp-*" -print | grep -m 1 'release-definitions')
+      
+          if [ ! -z "$TEMP_FOLDER" ]; then
+            # Specify the destination directory where you want to copy the file
+            # Ensure this directory exists or create it with `mkdir -p`
+            DESTINATION_DIR="tmp-release-definitions"
+            mkdir -p $DESTINATION_DIR
+            
+            # Copy the release.yml file to the destination directory
+            cp "${TEMP_FOLDER}/release.yml" $DESTINATION_DIR
+            
+            echo "File copied successfully to ${DESTINATION_DIR}"
+          else
+            echo "Temporary folder not found."
+          fi
+
       - name: Clean Log File and Extract Content
         run: |
           sed 's/\x1b\[[0-9;]*m//g' release.log > cleaned_release.log
