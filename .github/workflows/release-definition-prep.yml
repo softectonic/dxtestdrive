@@ -59,20 +59,23 @@ jobs:
 
       - name: Find and Copy release.yml File
         run: |
-          # Find the directory that matches the pattern and contains the 'release.yml' file within a 'release-definitions' subdirectory
-          TEMP_FOLDER=$(find /tmp -type f -name "release.yml" -path "*/release-definitions/*" -print | head -n 1 | xargs dirname)
+          # Find the directory that contains the release.yml file
+          TEMP_FOLDER=$(find /tmp -type f -name "release.yml" -path "*/release-definitions/*" -print | head -n 1)
       
-          if [ ! -z "$TEMP_FOLDER" ] && [ -f "${TEMP_FOLDER}/release.yml" ]; then
+          if [ ! -z "$TEMP_FOLDER" ] && [ -f "$TEMP_FOLDER" ]; then
+            # Extract the directory part from the file path
+            TEMP_DIR=$(dirname "$TEMP_FOLDER")
+            
             # Specify the destination directory where you want to copy the file
             DESTINATION_DIR="./desired/location"
-            mkdir -p "${DESTINATION_DIR}"
+            mkdir -p "$DESTINATION_DIR"
             
             # Copy the release.yml file to the destination directory
-            cp "${TEMP_FOLDER}/release.yml" "${DESTINATION_DIR}/"
+            cp "$TEMP_FOLDER" "$DESTINATION_DIR"
             
-            echo "File copied successfully to ${DESTINATION_DIR}"
+            echo "File copied successfully to $DESTINATION_DIR"
           else
-            echo "Temporary folder not found or release.yml does not exist."
+            echo "release.yml file not found in any temporary folder."
           fi
 
       - name: Clean Log File and Extract Content
