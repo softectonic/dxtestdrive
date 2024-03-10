@@ -24,7 +24,7 @@ jobs:
       TARGET_ENVIRONMENT: ${{ github.event.inputs.target_environment || 'UAT' }}
     container: ghcr.io/dxatscale/sfpowerscripts
     environment:
-      name: ${{ env.TARGET_ENVIRONMENT }}
+      name: env.TARGET_ENVIRONMENT
     steps:
       - uses: actions/checkout@v2
         with:
