@@ -87,21 +87,19 @@ jobs:
 
       - name: Authenticate to Org
         run: |
-          auth_url_secret_key="${{ github.event.inputs.target_environment || 'UAT' }}_SFDX_AUTH_URL"
-          echo "${{ secrets."${{ github.event.inputs.target_environment || 'UAT' }}_SFDX_AUTH_URL" }}" > ./authfile
-          sf org login sfdx-url -f ./authfile -a ${{ github.event.inputs.target_environment || 'UAT' }}.toLowerCase()
+          echo "${{ secrets.DEV_SFDX_AUTH_URL" }}" > ./authfile
+          sf org login sfdx-url -f ./authfile -a dev
 
       # Authenticate to npm
       - uses: actions/setup-node@v3
         with:
          registry-url: 'https://npm.pkg.github.com'
 
-
       # Release to environment
       - name: 'Release to Sandbox'
         run: |
           RELEASE_DEF_PATH="release-definitions/release.yml"
-          sfp orchestrator:release -u ${{ github.event.inputs.target_environment || 'UAT' }}.toLowerCase() -v devhub -p $RELEASE_DEF_PATH --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::" 
+          sfp orchestrator:release -u dev -v devhub -p $RELEASE_DEF_PATH --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::" 
         env:
          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
