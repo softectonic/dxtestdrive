@@ -94,14 +94,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
          registry-url: 'https://npm.pkg.github.com'
-
+      
       - name: Downcase environment
       - id: string
         uses: ASzc/change-string-case-action@v6
         with:
           string: env.TARGET_ENVIRONMENT
-      - id: step2
-        run: |
+      - run: |
             echo "ORG_ALIAS=${{ steps.string.outputs.lowercase }}" >> ${GITHUB_ENV}
 
       # Release to environment
