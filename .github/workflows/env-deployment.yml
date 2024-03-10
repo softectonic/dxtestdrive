@@ -24,7 +24,7 @@ jobs:
       TARGET_ENVIRONMENT: ${{ github.event.inputs.target_environment || 'UAT' }}
     container: ghcr.io/dxatscale/sfpowerscripts
     environment:
-      name: env.TARGET_ENVIRONMENT
+      name: ${{ github.event.inputs.target_environment || 'UAT' }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -82,14 +82,14 @@ jobs:
 
       - name:  'Authenticate Dev Hub'
         run: |
-          echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
+          echo "${{ secrets[DEVHUB_SFDX_AUTH_URL] }}" > ./authfile
           sf org login sfdx-url -f authfile -a devhub
 
       - name: Authenticate to Org
         run: |
-          auth_url_secret_key="env.TARGET_ENVIRONMENT_SFDX_AUTH_URL"
-          echo "${{ secrets.auth_url_secret_key }}" > ./authfile
-          sf org login sfdx-url -f ./authfile -a env.TARGET_ENVIRONMENT.toLowerCase()
+          auth_url_secret_key="${{ github.event.inputs.target_environment || 'UAT' }}_SFDX_AUTH_URL"
+          echo "${{ secrets[auth_url_secret_key] }}" > ./authfile
+          sf org login sfdx-url -f ./authfile -a ${{ github.event.inputs.target_environment || 'UAT' }}.toLowerCase()
 
       # Authenticate to npm
       - uses: actions/setup-node@v3
@@ -101,7 +101,7 @@ jobs:
       - name: 'Release to Sandbox'
         run: |
           RELEASE_DEF_PATH="release-definitions/release.yml"
-          sfp orchestrator:release -u env.TARGET_ENVIRONMENT.toLowerCase() -v devhub -p $RELEASE_DEF_PATH --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::" 
+          sfp orchestrator:release -u ${{ github.event.inputs.target_environment || 'UAT' }}.toLowerCase() -v devhub -p $RELEASE_DEF_PATH --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::" 
         env:
          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
