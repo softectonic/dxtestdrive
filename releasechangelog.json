@@ -46,6 +46,26 @@
                 "hashId": "4c17eefb9ac077fcb19592714d2688807b8e6f1b"
             },
             "retryCount": 1
+        },
+        {
+            "name": "env.org_alias",
+            "releases": [
+                {
+                    "names": [
+                        "release"
+                    ],
+                    "buildNumber": 3,
+                    "hashId": "4c17eefb9ac077fcb19592714d2688807b8e6f1b"
+                }
+            ],
+            "latestRelease": {
+                "names": [
+                    "release"
+                ],
+                "buildNumber": 3,
+                "hashId": "4c17eefb9ac077fcb19592714d2688807b8e6f1b"
+            },
+            "retryCount": 0
         }
     ],
     "releases": [
