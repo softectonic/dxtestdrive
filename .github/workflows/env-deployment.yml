@@ -86,7 +86,6 @@ jobs:
 
       - name: Authenticate to Org
         run: |
-          ORG_ALIAS=
           echo "${{ secrets[format('{0}_SFDX_AUTH_URL',env.TARGET_ENVIRONMENT)] }}" > ./authfile
           sf org login sfdx-url -f ./authfile -a dev
 
@@ -98,7 +97,7 @@ jobs:
       - id: string
         uses: ASzc/change-string-case-action@v6
         with:
-          string: env.TARGET_ENVIRONMENT
+          string: ${{ github.event.inputs.target_environment || 'UAT' }}
       - run: |
             echo "ORG_ALIAS=${{ steps.string.outputs.lowercase }}" >> ${GITHUB_ENV}
 
