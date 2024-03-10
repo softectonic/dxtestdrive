@@ -87,7 +87,7 @@ jobs:
 
       - name: Authenticate to Org
         run: |
-          echo "${{ secrets.DEV_SFDX_AUTH_URL" }}" > ./authfile
+          echo "${{ secrets.DEV_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url -f ./authfile -a dev
 
       # Authenticate to npm
