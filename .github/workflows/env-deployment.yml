@@ -87,9 +87,9 @@ jobs:
 
       - name: Authenticate to Org
         run: |
-          auth_url_secret_key="${{ env.TARGET_ENVIRONMENT }}_SFDX_AUTH_URL"
+          auth_url_secret_key="env.TARGET_ENVIRONMENT_SFDX_AUTH_URL"
           echo "${{ secrets[auth_url_secret_key] }}" > ./authfile
-          sf org login sfdx-url -f ./authfile -a ${{ env.TARGET_ENVIRONMENT | lowercase }}
+          sf org login sfdx-url -f ./authfile -a env.TARGET_ENVIRONMENT.toLowerCase()
 
       # Authenticate to npm
       - uses: actions/setup-node@v3
@@ -101,7 +101,7 @@ jobs:
       - name: 'Release to Sandbox'
         run: |
           RELEASE_DEF_PATH="release-definitions/release.yml"
-          sfp orchestrator:release -u ${{ env.TARGET_ENVIRONMENT | lowercase }} -v devhub -p $RELEASE_DEF_PATH --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::" 
+          sfp orchestrator:release -u env.TARGET_ENVIRONMENT.toLowerCase() -v devhub -p $RELEASE_DEF_PATH --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::" 
         env:
          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
