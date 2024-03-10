@@ -98,14 +98,16 @@ jobs:
 
       - name: Authenticate to Org
         run: |
+          ORG_ALIAS=env.ORG_ALIAS
           echo "${{ secrets[format('{0}_SFDX_AUTH_URL',env.TARGET_ENVIRONMENT)] }}" > ./authfile
-          sf org login sfdx-url -f ./authfile -a dev
+          sf org login sfdx-url -f ./authfile -a $ORG_ALIAS
 
       # Release to environment
       - name: 'Release to Sandbox'
         run: |
+          ORG_ALIAS=env.ORG_ALIAS
           RELEASE_DEF_PATH="release-definitions/release.yml"
-          sfp orchestrator:release -u env.ORG_ALIAS -v devhub -p $RELEASE_DEF_PATH --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::" 
+          sfp orchestrator:release -u $ORG_ALIAS -v devhub -p $RELEASE_DEF_PATH --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::" 
         env:
          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
