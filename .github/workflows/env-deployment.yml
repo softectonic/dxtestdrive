@@ -1,0 +1,115 @@
+# Release Definition Prep Workflow
+# This GitHub Actions workflow is triggered manually. It prepares a release definition by creating a dedicated branch and generating the release configuration.
+# It includes steps for setting up the environment, checking branch existence, branch management, generating the release configuration, and committing the changes.
+# Notably, it includes steps to parse and clean the output log, then extract the release configuration into a 'release.yml' file.
+
+name: Release Definition & Deployment
+
+on:
+  schedule:
+    - cron: '0 11,17 * * 1-5'
+  
+  workflow_dispatch:
+    inputs:
+      target_environment:
+        description: 'Target Environment (e.g., DEV, SIT, STG)'
+        required: false
+        default: 'UAT'
+
+jobs:
+  generate-release-definition-and-deploy:
+    name: 'Prepare Release Definition'
+    runs-on: ubuntu-latest
+    env:
+      TARGET_ENVIRONMENT: ${{ github.event.inputs.target_environment || 'UAT' }}
+    container: ghcr.io/dxatscale/sfpowerscripts
+    environment:
+      name: ${{ env.TARGET_ENVIRONMENT }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 
+          persist-credentials: true
+
+      - name: Set up Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git config --global --add safe.directory $GITHUB_WORKSPACE
+
+      - name: Check if Release Definition Branch Exists
+        id: check_branch
+        run: |
+          if git ls-remote --heads origin release-definition | grep -q 'refs/heads/release-definition'; then
+            echo "Branch exists, deleting..."
+            git push origin --delete release-definition
+          else
+            echo "Branch does not exist." 
+          fi
+
+      - name: Create Release Definition Branch
+        run: |
+          git branch release-definition origin/main
+          git push origin release-definition
+
+      - name: Checkout release-definition Branch
+        run: |
+          git fetch
+          git checkout release-definition
+
+      - name: Generate Release Definition and Create Log File
+        run: |
+          sfp releasedefinition:generate -n release -b release-definition -d release-definitions -f 'release-definitions/config.yml' -c main > release.log
+          cat release.log
+        env:
+         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Echo Working Directory
+        run: pwd
+
+      - name: Clean Log File and Extract Content
+        run: |
+          sed 's/\x1b\[[0-9;]*m//g' release.log > cleaned_release.log
+          cat cleaned_release.log | sed -n '/release: release/,/workItemUrl: https:\/\/jira.apps.eop.gov\/browse/p' > release-definitions/release.yml
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'  # Specify the Python version
+  
+      - name: Install PyYAML
+        run: python -m pip install pyyaml 
+
+      - name:  'Authenticate Dev Hub'
+        run: |
+          echo "${{ secrets['DEVHUB_SFDX_AUTH_URL'] }}" > ./authfile
+          sf org login sfdx-url -f authfile -a devhub
+
+      - name: Authenticate to Org
+        run: |
+          auth_url_secret_key="${{ env.TARGET_ENVIRONMENT }}_SFDX_AUTH_URL"
+          echo "${{ secrets[auth_url_secret_key] }}" > ./authfile
+          sf org login sfdx-url -f ./authfile -a ${{ env.TARGET_ENVIRONMENT | lowercase }}
+
+      # Authenticate to npm
+      - uses: actions/setup-node@v3
+        with:
+         registry-url: 'https://npm.pkg.github.com'
+
+
+      # Release to environment
+      - name: 'Release to Sandbox'
+        run: |
+          RELEASE_DEF_PATH="release-definitions/release.yml"
+          sfp orchestrator:release -u ${{ env.TARGET_ENVIRONMENT | lowercase }} -v devhub -p $RELEASE_DEF_PATH --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::" 
+        env:
+         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  
+
+      
+        
+      
+
+      
+
