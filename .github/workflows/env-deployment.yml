@@ -3,7 +3,7 @@
 # It includes steps for setting up the environment, checking branch existence, branch management, generating the release configuration, and committing the changes.
 # Notably, it includes steps to parse and clean the output log, then extract the release configuration into a 'release.yml' file.
 
-name: Release Definition & Deployment
+name: Generate Release Definition & Deploy
 
 on:
   schedule:
@@ -18,7 +18,7 @@ on:
 
 jobs:
   generate-release-definition-and-deploy:
-    name: 'Prepare Release Definition'
+    name: 'Generate Release Definition & Deploy'
     runs-on: ubuntu-latest
     env:
       TARGET_ENVIRONMENT: ${{ github.event.inputs.target_environment || 'UAT' }}
@@ -86,6 +86,7 @@ jobs:
 
       - name: Authenticate to Org
         run: |
+          ORG_ALIAS=
           echo "${{ secrets[format('{0}_SFDX_AUTH_URL',env.TARGET_ENVIRONMENT)] }}" > ./authfile
           sf org login sfdx-url -f ./authfile -a dev
 
@@ -94,11 +95,20 @@ jobs:
         with:
          registry-url: 'https://npm.pkg.github.com'
 
+      - name: Downcase environment
+      - id: string
+        uses: ASzc/change-string-case-action@v6
+        with:
+          string: env.TARGET_ENVIRONMENT
+      - id: step2
+        run: |
+            echo "ORG_ALIAS=${{ steps.string.outputs.lowercase }}" >> ${GITHUB_ENV}
+
       # Release to environment
       - name: 'Release to Sandbox'
         run: |
           RELEASE_DEF_PATH="release-definitions/release.yml"
-          sfp orchestrator:release -u dev -v devhub -p $RELEASE_DEF_PATH --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::" 
+          sfp orchestrator:release -u env.ORG_ALIAS -v devhub -p $RELEASE_DEF_PATH --npm --scope ${{ github.repository_owner }} --generatechangelog --branchname changelog -g "::group::,::endgroup::" 
         env:
          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
