@@ -82,13 +82,13 @@ jobs:
 
       - name:  'Authenticate Dev Hub'
         run: |
-          echo "${{ secrets[DEVHUB_SFDX_AUTH_URL] }}" > ./authfile
+          echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url -f authfile -a devhub
 
       - name: Authenticate to Org
         run: |
           auth_url_secret_key="${{ github.event.inputs.target_environment || 'UAT' }}_SFDX_AUTH_URL"
-          echo "${{ secrets[auth_url_secret_key] }}" > ./authfile
+          echo "${{ secrets."${{ github.event.inputs.target_environment || 'UAT' }}_SFDX_AUTH_URL" }}" > ./authfile
           sf org login sfdx-url -f ./authfile -a ${{ github.event.inputs.target_environment || 'UAT' }}.toLowerCase()
 
       # Authenticate to npm
