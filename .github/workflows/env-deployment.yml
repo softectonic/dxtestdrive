@@ -95,7 +95,6 @@ jobs:
         with:
          registry-url: 'https://npm.pkg.github.com'
       
-      - name: Downcase environment
       - id: string
         uses: ASzc/change-string-case-action@v6
         with:
