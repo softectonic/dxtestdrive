@@ -12,9 +12,9 @@ on:
   workflow_dispatch:
     inputs:
       target_environment:
-        description: 'Target Environment (e.g., DEV, SIT, STG)'
+        description: 'Target Environment (e.g., DEV, SIT)'
         required: false
-        default: 'UAT'
+        #default: 'UAT'
 
 jobs:
   generate-release-definition-and-deploy:
@@ -23,8 +23,7 @@ jobs:
     env:
       TARGET_ENVIRONMENT: ${{ github.event.inputs.target_environment || 'UAT' }}
     container: ghcr.io/dxatscale/sfpowerscripts
-    environment:
-      name: ${{ github.event.inputs.target_environment || 'UAT' }}
+    environment: ${{ github.event.inputs.target_environment || 'UAT' }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -87,7 +86,7 @@ jobs:
 
       - name: Authenticate to Org
         run: |
-          echo "${{ secrets.DEV_SFDX_AUTH_URL }}" > ./authfile
+          echo "${{ secrets[format('{0}_SFDX_AUTH_URL',env.TARGET_ENVIRONMENT)] }}" > ./authfile
           sf org login sfdx-url -f ./authfile -a dev
 
       # Authenticate to npm
