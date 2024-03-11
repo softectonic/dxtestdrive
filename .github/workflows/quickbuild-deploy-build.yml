@@ -74,7 +74,7 @@ jobs:
         if:  env.ENABLE_SF_LOGGING == 'true'
         uses: actions/upload-artifact@v2
         with:
-          name: sf-logs
+          name: sf-logs-quickbuild
           path: sf-logs/
 
       # Publish artifacts
@@ -142,7 +142,7 @@ jobs:
         if:  env.ENABLE_SF_LOGGING == 'true'
         uses: actions/upload-artifact@v2
         with:
-          name: sf-logs
+          name: sf-logs-deploy
           path: sf-logs/
 
   buildAndPublish:
@@ -183,7 +183,7 @@ jobs:
         if:  env.ENABLE_SF_LOGGING == 'true'
         uses: actions/upload-artifact@v2
         with:
-          name: sf-logs
+          name: sf-logs-buildAndPublish
           path: sf-logs/
 
       # Publish artifacts
