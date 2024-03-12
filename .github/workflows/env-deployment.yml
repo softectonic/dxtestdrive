@@ -21,9 +21,9 @@ jobs:
     name: 'Release Definition & Deploy'
     runs-on: ubuntu-latest
     env:
-      TARGET_ENVIRONMENT: ${{ github.event.inputs.target_environment || 'UAT' }}
+      TARGET_ENVIRONMENT: ${{ github.event.inputs.target_environment || 'SIT' }}
     container: ghcr.io/dxatscale/sfpowerscripts
-    environment: ${{ github.event.inputs.target_environment || 'UAT' }}
+    environment: ${{ github.event.inputs.target_environment || 'SIT' }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -87,7 +87,7 @@ jobs:
       - id: string
         uses: ASzc/change-string-case-action@v6
         with:
-          string: ${{ github.event.inputs.target_environment || 'UAT' }}
+          string: ${{ github.event.inputs.target_environment || 'SIT' }}
       - run: |
             echo "ORG_ALIAS=${{ steps.string.outputs.lowercase }}" >> ${GITHUB_ENV}
 
@@ -99,8 +99,8 @@ jobs:
       - name: Authenticate to Org
         run: |
           ORG_ALIAS=env.ORG_ALIAS
-          echo "${{ secrets[format('{0}_SFDX_AUTH_URL',env.TARGET_ENVIRONMENT)] }}" > ./authfile
-          sf org login sfdx-url -f ./authfile -a $ORG_ALIAS
+          #echo "${{ secrets[format('{0}_SFDX_AUTH_URL',env.TARGET_ENVIRONMENT)] }}" > ./authfile
+          sf org login sfdx-url -f <(echo "${{ secrets[format('{0}_SFDX_AUTH_URL',env.TARGET_ENVIRONMENT)] }}") -a $ORG_ALIAS
 
       # Release to environment
       - name: 'Release to Sandbox'
