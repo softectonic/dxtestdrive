@@ -88,7 +88,7 @@ jobs:
         uses: ASzc/change-string-case-action@v6
         with:
           string: ${{ github.event.inputs.target_environment || 'SIT' }}
-      - run: |
+        run: |
             echo "ORG_ALIAS=${{ steps.string.outputs.lowercase }}" >> ${GITHUB_ENV}
 
       - name:  'Authenticate Dev Hub'
