@@ -56,16 +56,23 @@
                     ],
                     "buildNumber": 3,
                     "hashId": "4c17eefb9ac077fcb19592714d2688807b8e6f1b"
+                },
+                {
+                    "names": [
+                        "release"
+                    ],
+                    "buildNumber": 4,
+                    "hashId": "1eb03e6f4d0b71b39afdcd265eec8aaf5ed71b24"
                 }
             ],
             "latestRelease": {
                 "names": [
                     "release"
                 ],
-                "buildNumber": 3,
-                "hashId": "4c17eefb9ac077fcb19592714d2688807b8e6f1b"
+                "buildNumber": 4,
+                "hashId": "1eb03e6f4d0b71b39afdcd265eec8aaf5ed71b24"
             },
-            "retryCount": 1
+            "retryCount": 0
         }
     ],
     "releases": [
@@ -710,6 +717,72 @@
             ],
             "hashId": "4c17eefb9ac077fcb19592714d2688807b8e6f1b",
             "date": "Sun Mar 10 2024 10:32:28 GMT+0000 (Coordinated Universal Time)"
+        },
+        {
+            "names": [
+                "release"
+            ],
+            "buildNumber": 4,
+            "workItems": {},
+            "artifacts": [
+                {
+                    "name": "es-space-mgmt",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-styles",
+                    "from": "0c42568b",
+                    "to": "0c42568b",
+                    "version": "1.0.0.4",
+                    "latestCommitId": "5812cb2f",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-objects",
+                    "from": "536ebfc0",
+                    "to": "536ebfc0",
+                    "version": "1.0.0.8",
+                    "latestCommitId": "536ebfc0",
+                    "commits": []
+                },
+                {
+                    "name": "es-base-code",
+                    "from": "8ab1f700",
+                    "to": "8ab1f700",
+                    "version": "1.0.0.6",
+                    "latestCommitId": "8ab1f700",
+                    "commits": []
+                },
+                {
+                    "name": "core-crm",
+                    "from": "5a161851",
+                    "to": "83639290",
+                    "version": "1.0.0.8237514981",
+                    "latestCommitId": "83639290",
+                    "commits": [
+                        {
+                            "commitId": "83639290",
+                            "date": "2024-03-11T10:56:56-07:00",
+                            "author": "softectonic",
+                            "message": "Update field length (#140)",
+                            "body": ""
+                        },
+                        {
+                            "commitId": "701f0aa8",
+                            "date": "2024-03-11T10:41:39-07:00",
+                            "author": "softectonic",
+                            "message": "Update Account_Number__c.field-meta.xml",
+                            "body": ""
+                        }
+                    ]
+                }
+            ],
+            "hashId": "1eb03e6f4d0b71b39afdcd265eec8aaf5ed71b24",
+            "date": "Fri Mar 15 2024 18:41:45 GMT+0000 (Coordinated Universal Time)"
         }
     ]
 }
