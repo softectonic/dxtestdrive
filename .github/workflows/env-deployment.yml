@@ -85,6 +85,7 @@ jobs:
          registry-url: 'https://npm.pkg.github.com'
       
       - id: string
+        name: "Downcase Environment Alias"
         uses: ASzc/change-string-case-action@v6
         with:
           string: ${{ github.event.inputs.target_environment || 'SIT' }}
