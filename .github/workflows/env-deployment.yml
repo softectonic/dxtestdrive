@@ -84,13 +84,15 @@ jobs:
         with:
          registry-url: 'https://npm.pkg.github.com'
       
-      - id: string
+      - id: lowercase_string
         name: "Downcase Environment Alias"
         uses: ASzc/change-string-case-action@v6
         with:
           string: ${{ github.event.inputs.target_environment || 'SIT' }}
+
+      - name: Set environment variable
         run: |
-            echo "ORG_ALIAS=${{ steps.string.outputs.lowercase }}" >> ${GITHUB_ENV}
+          echo "ORG_ALIAS=${{ steps.lowercase_string.outputs.lowercase }}" >> $GITHUB_ENV
 
       - name:  'Authenticate Dev Hub'
         run: |
