@@ -43,7 +43,7 @@ jobs:
     env:
       TARGET_ENVIRONMENT: 'POOL'
       ENABLE_SF_LOGGING: ${{ vars.ENABLE_SF_LOGGING }}
-      CI_POOL_THRESHOLD: ${{ vars.CI_POOL_THRESHOLD }}
+      CI_POOL_THRESHOLD: ${{ vars.CI_POOL_THRESHOLD || '5' }}
     container: ghcr.io/dxatscale/sfpowerscripts
 
     steps:
