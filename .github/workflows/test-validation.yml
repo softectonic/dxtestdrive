@@ -135,7 +135,7 @@ jobs:
         if:  env.SHOULD_RUN == 'true'
         id: scratch_orgs
         run: |
-          SCRATCH_ORG_COUNT=$(sfp pool:list -t eoppra-ci -v devhub | grep -Po 'Unused Scratch Orgs in the Pool : \K\d+')
+          SCRATCH_ORG_COUNT=$(sfp pool:list -t ci -v devhub | grep -Po 'Unused Scratch Orgs in the Pool : \K\d+')
           echo "SCRATCH_ORG_COUNT=$SCRATCH_ORG_COUNT" >> $GITHUB_ENV
 
       - name: "Set REPLENISH_POOL Based on Threshold"
