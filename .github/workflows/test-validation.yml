@@ -42,7 +42,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TARGET_ENVIRONMENT: 'POOL'
-      ENABLE_SF_LOGGING: ${{ secrets.ENABLE_SF_LOGGING }}
+      ENABLE_SF_LOGGING: ${{ vars.ENABLE_SF_LOGGING }}
+      CI_POOL_THRESHOLD: ${{ vars.CI_POOL_THRESHOLD }}
     container: ghcr.io/dxatscale/sfpowerscripts
 
     steps:
@@ -127,11 +128,25 @@ jobs:
         if:  env.SHOULD_RUN == 'true' && env.ENABLE_SF_LOGGING == 'true'
         uses: actions/upload-artifact@v2
         with:
-          name: sf-logs
+          name: sf-logs-validate
           path: sf-logs/
 
+      - name: "Available Scratch Orgs in the Pool"
+        id: scratch_orgs
+        run: |
+          SCRATCH_ORG_COUNT=$(sfp pool:list -t eoppra-ci -v devhub | grep -Po 'Unused Scratch Orgs in the Pool : \K\d+')
+          echo "SCRATCH_ORG_COUNT=$SCRATCH_ORG_COUNT" >> $GITHUB_ENV
+
+      - name: "Set REPLENISH_POOL Based on Threshold"
+        run: |
+          if [[ $SCRATCH_ORG_COUNT -lt $CI_POOL_THRESHOLD ]]; then
+            echo "REPLENISH_POOL=true" >> $GITHUB_ENV
+          else
+            echo "REPLENISH_POOL=false" >> $GITHUB_ENV
+          fi
+
       - name: 'Trigger Separate Workflow for Scratch Org Replenish'
-        if: env.SHOULD_RUN == 'true'
+        if: env.SHOULD_RUN == 'true' && env.REPLENISH_POOL == 'true'
         run: |
           curl -X POST \
             -H "Accept: application/vnd.github+json" \
