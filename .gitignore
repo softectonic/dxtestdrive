@@ -5,3 +5,5 @@ artifacts
 .npmrc
 
 authFile.json
+
+src-temp

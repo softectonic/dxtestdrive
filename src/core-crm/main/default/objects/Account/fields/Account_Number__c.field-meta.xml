@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Account_Number__c</fullName>
+    <encryptionScheme>ProbabilisticEncryption</encryptionScheme>
     <description>Secondary Account number</description>
     <externalId>false</externalId>
     <inlineHelpText>Secondary account number</inlineHelpText>
