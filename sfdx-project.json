@@ -1,6 +1,24 @@
 {
   "packageDirectories": [
     {
+      "path": "src/core-objects",
+      "package": "core-crm",
+      "versionName": "",
+      "versionNumber": "1.0.0.NEXT",
+      "default": false,
+      "versionDescription": "",
+      "enableFHT": true
+    },
+    {
+      "path": "src/core-crm",
+      "package": "core-crm",
+      "versionName": "Version 1.0.0",
+      "versionNumber": "1.0.0.NEXT",
+      "default": false,
+      "versionDescription": "",
+      "preDeploymentScript": "scripts/searchAndReplaceScript.sh"
+    },
+    {
       "path": "src/es-base-objects",
       "package": "es-base-objects",
       "versionName": "Base Objects - Version 1.0.0",
@@ -59,7 +77,7 @@
       ]
     },
     {
-      "path": "./src/es-space-mgmt",
+      "path": "src/es-space-mgmt",
       "package": "es-space-mgmt",
       "versionName": "Space Mgmt - Version 1.0.0",
       "versionNumber": "1.0.0.NEXT",
@@ -86,7 +104,7 @@
       ]
     },
     {
-      "path": "./src-env-specific-pre",
+      "path": "src-env-specific-pre",
       "package": "src-env-specific-pre",
       "versionNumber": "1.0.0.0",
       "ignoreOnStage": [
@@ -97,7 +115,7 @@
       ]
     },
     {
-      "path": "./src-env-specific-alias-pre",
+      "path": "src-env-specific-alias-pre",
       "package": "src-env-specific-alias-pre",
       "versionNumber": "1.0.0.0",
       "aliasfy": true,
@@ -109,17 +127,7 @@
       ]
     },
     {
-      "path": "./src/core-crm",
-      "package": "core-crm",
-      "versionName": "Version 1.0.0",
-      "versionNumber": "1.0.0.NEXT",
-      "default": false,
-      "versionDescription": "",
-      "preDeploymentScript": "scripts/searchAndReplaceScript.sh",
-      "enableFHT": true
-    },
-    {
-      "path": "./src-ui",
+      "path": "src-ui",
       "package": "src-ui",
       "versionNumber": "1.1.0.0",
       "ignoreOnStage": [
@@ -130,7 +138,7 @@
       ]
     },
     {
-      "path": "./src-access-management",
+      "path": "src-access-management",
       "package": "src-access-management",
       "versionNumber": "1.0.0.0",
       "ignoreOnStage": [
@@ -141,7 +149,7 @@
       ]
     },
     {
-      "path": "./src-env-specific-alias-post",
+      "path": "src-env-specific-alias-post",
       "package": "src-env-specific-alias-post",
       "versionNumber": "1.0.0.0",
       "aliasfy": true,
@@ -154,8 +162,16 @@
       ]
     },
     {
-      "path": "./src-temp",
+      "path": "src-temp",
       "default": true
+    },
+    {
+      "path": "src/core-objects",
+      "package": "core-objects",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "default": false,
+      "versionDescription": ""
     }
   ],
   "namespace": "",
@@ -165,7 +181,8 @@
     "es-base-objects": "0Ho8b000000sXybCAE",
     "es-base-code": "0Ho8b000000sXygCAE",
     "es-base-styles": "0Ho8b000000sXylCAE",
-    "es-space-mgmt": "0Ho8b000000sXyqCAE"
+    "es-space-mgmt": "0Ho8b000000sXyqCAE",
+    "core-objects": "0Ho8b000000sY0XCAU"
   },
   "plugins": {}
 }
