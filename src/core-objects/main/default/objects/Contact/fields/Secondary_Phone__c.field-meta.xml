@@ -7,7 +7,7 @@
     <inlineHelpText>Secondary Phone Number</inlineHelpText>
     <label>Secondary Phone Number</label>
     <required>false</required>
-    <trackHistory>true</trackHistory>
+    <trackHistory>false</trackHistory>
     <type>Phone</type>
     <unique>false</unique>
 </CustomField>
