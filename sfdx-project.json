@@ -16,13 +16,7 @@
       "versionNumber": "1.0.0.NEXT",
       "default": false,
       "versionDescription": "",
-      "preDeploymentScript": "scripts/searchAndReplaceScript.sh",
-      "ignoreOnStage": [
-        "prepare",
-        "validate",
-        "quickbuild",
-        "build"
-      ]
+      "preDeploymentScript": "scripts/searchAndReplaceScript.sh"
     },
     {
       "path": "src/es-base-objects",
