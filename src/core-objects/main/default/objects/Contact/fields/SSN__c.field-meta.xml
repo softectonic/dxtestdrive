@@ -6,9 +6,9 @@
     <externalId>false</externalId>
     <inlineHelpText>Social Security Number</inlineHelpText>
     <label>Social Security Number</label>
-    <length>20</length>
+    <length>9</length>
     <required>false</required>
-    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
     <type>Text</type>
-    <unique>true</unique>
+    <unique>false</unique>
 </CustomField>
