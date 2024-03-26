@@ -140,7 +140,7 @@ jobs:
           sf org login sfdx-url  -f ./dev_authfile -a dev
 
       - name: Configure SF CLI Logging
-        if: env.ENABLE_SF_LOGGING == 'true' 
+        if: ${{ !steps.download-artifacts.outcome == 'failure' }} && env.ENABLE_SF_LOGGING == 'true' 
         run: | 
           echo "SF_LOG_LEVEL=debug" >> $GITHUB_ENV
 
@@ -151,14 +151,14 @@ jobs:
           sfp orchestrator:deploy -u dev  --skipifalreadyinstalled -g "::group::,::endgroup::" 
 
       - name: Prepare Artifact Directory
-        if: env.ENABLE_SF_LOGGING == 'true'
+        if: ${{ !steps.download-artifacts.outcome == 'failure' }} && env.ENABLE_SF_LOGGING == 'true'
         run: |
           mkdir -p sf-logs
           cp $HOME/.sf/sf* sf-logs/
         shell: bash
       
       - name: Upload SF CLI Log as Artifact
-        if:  env.ENABLE_SF_LOGGING == 'true'
+        if:  ${{ !steps.download-artifacts.outcome == 'failure' }} && env.ENABLE_SF_LOGGING == 'true'
         uses: actions/upload-artifact@v2
         with:
           name: sf-logs-deploy
