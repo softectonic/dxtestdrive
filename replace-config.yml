@@ -31,5 +31,4 @@ rules:
       DEV: '<emailSenderAddress>aashiru@salesforce.com</emailSenderAddress>'
       UAT: '<emailSenderAddress>testuser@salesforce.com</emailSenderAddress>'
       STG: '<emailSenderAddress>testuser@salesforce.com</emailSenderAddress>'
-      PROD: '<emailSenderAddress>testuser@salesforce.com</emailSenderAddress>'
       
