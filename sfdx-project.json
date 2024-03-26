@@ -170,14 +170,6 @@
     {
       "path": "src-temp",
       "default": true
-    },
-    {
-      "path": "src/core-objects",
-      "package": "core-objects",
-      "versionName": "ver 0.1",
-      "versionNumber": "0.1.0.NEXT",
-      "default": false,
-      "versionDescription": ""
     }
   ],
   "namespace": "",
