@@ -93,6 +93,8 @@ jobs:
     
     if: github.ref == 'refs/heads/main'
     concurrency: dev
+    outputs:
+      should_run_builld_and_publish: ${{ steps.set_output.outputs.should_run_builld_and_publish }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -106,18 +108,33 @@ jobs:
       - name: Install PyYAML
         run: python -m pip install pyyaml 
 
-      - uses: actions/download-artifact@v2
+      - name: "Download Quickbuild Artifacts"
+        id: download-artifacts  
+        uses: actions/download-artifact@v2
         with:
           name: quickbuild-artifacts
           path: artifacts 
         continue-on-error: true
 
+      - name: "Set job output based on artifact download outcome"
+        id: set_output
+        run: |
+          if [ "${{ steps.download-artifacts.outcome }}" == "failure" ]; then
+            echo "Setting job output to false."
+            echo "should_run_build_and_publish=false" >> $GITHUB_OUTPUT
+          else
+            echo "Setting job output to true."
+            echo "should_run_build_and_publish=true" >> $GITHUB_OUTPUT
+          fi
+
       - name:  'Authenticate Dev Hub'
+        if: ${{ !steps.download-artifacts.outcome == 'failure' }}
         run: |
           echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url  -f authfile -a devhub
 
       - name: Authenticate to DEV sandbox
+        if: ${{ !steps.download-artifacts.outcome == 'failure' }}
         run: |
           echo "${{ secrets.DEV_SFDX_AUTH_URL }}" > ./dev_authfile
           sf org login sfdx-url  -f ./dev_authfile -a dev
@@ -128,6 +145,7 @@ jobs:
           echo "SF_LOG_LEVEL=debug" >> $GITHUB_ENV
 
       - name: 'Deploy to DEV'
+        if: ${{ !steps.download-artifacts.outcome == 'failure' }} 
         run: |
           sfp dependency:install -u dev -v devhub
           sfp orchestrator:deploy -u dev  --skipifalreadyinstalled -g "::group::,::endgroup::" 
@@ -152,7 +170,7 @@ jobs:
     container: ghcr.io/dxatscale/sfpowerscripts
     needs: deploy
     concurrency: build 
-    if: github.ref == 'refs/heads/main'
+    if: ${{ needs.your_job_name.outputs.should_run_next_job == 'true' }} && github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v2
         with:
