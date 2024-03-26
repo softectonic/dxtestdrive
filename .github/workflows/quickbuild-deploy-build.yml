@@ -28,7 +28,7 @@ on:
 
 #Set the environment variables for tracking metrics
 env:
-  ENABLE_SF_LOGGING: ${{secrets.ENABLE_SF_LOGGING}}
+  ENABLE_SF_LOGGING: ${{vars.ENABLE_SF_LOGGING}}
   #SFPOWERSCRIPTS_NEWRELIC: 'true'
   #SFPOWERSCRIPTS_NEWRELIC_API_KEY: '${{ secrets.NEWRELIC_INSIGHT_INSERT_KEYS }}'
   #SFPOWERSCRIPTS_DATADOG: 'true'
@@ -94,7 +94,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     concurrency: dev
     outputs:
-      should_run_builld_and_publish: ${{ steps.set_output.outputs.should_run_build_and_publish }}
+      should_run_build_and_publish: ${{ steps.set_output.outputs.should_run_build_and_publish }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -128,37 +128,37 @@ jobs:
           fi
 
       - name:  'Authenticate Dev Hub'
-        if: ${{ !steps.download-artifacts.outcome == 'failure' }}
+        if: ${{ steps.download-artifacts.outcome != 'failure' }}
         run: |
           echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url  -f authfile -a devhub
 
       - name: Authenticate to DEV sandbox
-        if: ${{ !steps.download-artifacts.outcome == 'failure' }}
+        if: ${{ steps.download-artifacts.outcome != 'failure' }}
         run: |
           echo "${{ secrets.DEV_SFDX_AUTH_URL }}" > ./dev_authfile
           sf org login sfdx-url  -f ./dev_authfile -a dev
 
       - name: Configure SF CLI Logging
-        if: ${{ !steps.download-artifacts.outcome == 'failure' }} && env.ENABLE_SF_LOGGING == 'true' 
+        if: ${{ steps.download-artifacts.outcome != 'failure' && env.ENABLE_SF_LOGGING == 'true' }}
         run: | 
           echo "SF_LOG_LEVEL=debug" >> $GITHUB_ENV
 
       - name: 'Deploy to DEV'
-        if: ${{ !steps.download-artifacts.outcome == 'failure' }} 
+        if: ${{ steps.download-artifacts.outcome != 'failure' }} 
         run: |
           sfp dependency:install -u dev -v devhub
           sfp orchestrator:deploy -u dev  --skipifalreadyinstalled -g "::group::,::endgroup::" 
 
       - name: Prepare Artifact Directory
-        if: ${{ !steps.download-artifacts.outcome == 'failure' }} && env.ENABLE_SF_LOGGING == 'true'
+        if: ${{ steps.download-artifacts.outcome != 'failure' && env.ENABLE_SF_LOGGING == 'true' }}
         run: |
           mkdir -p sf-logs
           cp $HOME/.sf/sf* sf-logs/
         shell: bash
       
       - name: Upload SF CLI Log as Artifact
-        if:  ${{ !steps.download-artifacts.outcome == 'failure' }} && env.ENABLE_SF_LOGGING == 'true'
+        if: ${{ steps.download-artifacts.outcome != 'failure' && env.ENABLE_SF_LOGGING == 'true' }}
         uses: actions/upload-artifact@v2
         with:
           name: sf-logs-deploy
@@ -170,7 +170,7 @@ jobs:
     container: ghcr.io/dxatscale/sfpowerscripts
     needs: deploy
     concurrency: build 
-    if: ${{ needs.deploy.outputs.should_run_build_and_publish == 'true' }} && github.ref == 'refs/heads/main'
+    if: ${{ needs.deploy.outputs.should_run_build_and_publish == 'true' && github.ref == 'refs/heads/main' }}
     steps:
       - uses: actions/checkout@v2
         with:
