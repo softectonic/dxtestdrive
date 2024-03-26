@@ -82,6 +82,7 @@ jobs:
         with:
           name: quickbuild-artifacts
           path: artifacts
+          if-no-files-found: 'warn'
 
   deploy:
     name: 'Deploy to Dev'
