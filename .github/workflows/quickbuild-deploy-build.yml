@@ -94,7 +94,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     concurrency: dev
     outputs:
-      should_run_builld_and_publish: ${{ steps.set_output.outputs.should_run_builld_and_publish }}
+      should_run_builld_and_publish: ${{ steps.set_output.outputs.should_run_build_and_publish }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -170,7 +170,7 @@ jobs:
     container: ghcr.io/dxatscale/sfpowerscripts
     needs: deploy
     concurrency: build 
-    if: ${{ needs.your_job_name.outputs.should_run_next_job == 'true' }} && github.ref == 'refs/heads/main'
+    if: ${{ needs.deploy.outputs.should_run_build_and_publish == 'true' }} && github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v2
         with:
