@@ -82,7 +82,7 @@ jobs:
       - name: Check for artifacts to upload
         id: artifact_check
         run: |
-          if [ "$(ls -A artifacts/)" ]; then
+          if [ "$(ls -A artifacts)" ]; then
             echo "Artifacts exist for upload."
             echo "artifacts_exist=true" >> $GITHUB_ENV
           else
