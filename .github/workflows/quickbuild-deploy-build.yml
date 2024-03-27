@@ -88,6 +88,7 @@ jobs:
           else
             echo "No artifacts exist for upload."
             echo "artifacts_exist=false" >> $GITHUB_ENV
+          fi
 
       # Publish artifacts
       - uses: actions/upload-artifact@v2  
