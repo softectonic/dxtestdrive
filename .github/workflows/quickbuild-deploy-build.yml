@@ -43,7 +43,7 @@ jobs:
     name: 'Quickbuild packages'
     runs-on: ubuntu-latest
     container: ghcr.io/dxatscale/sfpowerscripts
-     outputs:
+    outputs:
       artifacts_uploaded: ${{ steps.set_upload_flag.outputs.artifacts_uploaded }}
     steps:
       - uses: actions/checkout@v2
