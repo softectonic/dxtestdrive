@@ -43,6 +43,8 @@ jobs:
     name: 'Quickbuild packages'
     runs-on: ubuntu-latest
     container: ghcr.io/dxatscale/sfpowerscripts
+     outputs:
+      artifacts_uploaded: ${{ steps.set_uploaded_flag.outputs.artifacts_uploaded }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -77,11 +79,26 @@ jobs:
           name: sf-logs-quickbuild
           path: sf-logs/
 
+      - name: Check for artifacts to upload
+        id: artifact_check
+        run: |
+          if [ "$(ls -A artifacts/)" ]; then
+            echo "Artifacts exist for upload."
+            echo "artifacts_exist=true" >> $GITHUB_ENV
+          else
+            echo "No artifacts exist for upload."
+            echo "artifacts_exist=false" >> $GITHUB_ENV
+
       # Publish artifacts
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v2  
+        if: env.artifacts_exist == 'true'
         with:
           name: quickbuild-artifacts
           path: artifacts
+
+      - name: Set upload flag
+        id: set_upload_flag
+        run: echo "artifacts_uploaded=${{ env.artifacts_exist }}" >> $GITHUB_OUTPUT
 
   deploy:
     name: 'Deploy to Dev'
@@ -93,8 +110,7 @@ jobs:
     
     if: github.ref == 'refs/heads/main'
     concurrency: dev
-    outputs:
-      should_run_build_and_publish: ${{ steps.set_output.outputs.should_run_build_and_publish }}
+    if: ${{ needs.quickbuild.outputs.artifacts_uploaded == 'true' }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -114,51 +130,36 @@ jobs:
         with:
           name: quickbuild-artifacts
           path: artifacts 
-        continue-on-error: true
-
-      - name: "Set job output based on artifact download outcome"
-        id: set_output
-        run: |
-          if [ "${{ steps.download-artifacts.outcome }}" == "failure" ]; then
-            echo "Setting job output to false."
-            echo "should_run_build_and_publish=false" >> $GITHUB_OUTPUT
-          else
-            echo "Setting job output to true."
-            echo "should_run_build_and_publish=true" >> $GITHUB_OUTPUT
-          fi
 
       - name:  'Authenticate Dev Hub'
-        if: ${{ steps.download-artifacts.outcome != 'failure' }}
         run: |
           echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url  -f authfile -a devhub
 
       - name: Authenticate to DEV sandbox
-        if: ${{ steps.download-artifacts.outcome != 'failure' }}
         run: |
           echo "${{ secrets.DEV_SFDX_AUTH_URL }}" > ./dev_authfile
           sf org login sfdx-url  -f ./dev_authfile -a dev
 
       - name: Configure SF CLI Logging
-        if: ${{ steps.download-artifacts.outcome != 'failure' && env.ENABLE_SF_LOGGING == 'true' }}
+        if: ${{ env.ENABLE_SF_LOGGING == 'true' }}
         run: | 
           echo "SF_LOG_LEVEL=debug" >> $GITHUB_ENV
 
       - name: 'Deploy to DEV'
-        if: ${{ steps.download-artifacts.outcome != 'failure' }} 
         run: |
           sfp dependency:install -u dev -v devhub
           sfp orchestrator:deploy -u dev  --skipifalreadyinstalled -g "::group::,::endgroup::" 
 
       - name: Prepare Artifact Directory
-        if: ${{ steps.download-artifacts.outcome != 'failure' && env.ENABLE_SF_LOGGING == 'true' }}
+        if: ${{ env.ENABLE_SF_LOGGING == 'true' }}
         run: |
           mkdir -p sf-logs
           cp $HOME/.sf/sf* sf-logs/
         shell: bash
       
       - name: Upload SF CLI Log as Artifact
-        if: ${{ steps.download-artifacts.outcome != 'failure' && env.ENABLE_SF_LOGGING == 'true' }}
+        if: ${{ env.ENABLE_SF_LOGGING == 'true' }}
         uses: actions/upload-artifact@v2
         with:
           name: sf-logs-deploy
@@ -168,9 +169,9 @@ jobs:
     name: 'Build and Publish'
     runs-on: ubuntu-latest
     container: ghcr.io/dxatscale/sfpowerscripts
-    needs: deploy
+    needs: [deploy, quickbuild]
     concurrency: build 
-    if: ${{ needs.deploy.outputs.should_run_build_and_publish == 'true' && github.ref == 'refs/heads/main' }}
+    if: ${{ needs.quickbuild.outputs.artifacts_uploaded == 'true' && github.ref == 'refs/heads/main' }}
     steps:
       - uses: actions/checkout@v2
         with:
