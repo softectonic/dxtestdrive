@@ -107,10 +107,8 @@ jobs:
       TARGET_ENVIRONMENT: 'DEV'
     container: ghcr.io/dxatscale/sfpowerscripts
     needs: quickbuild
-    
-    if: github.ref == 'refs/heads/main'
     concurrency: dev
-    if: ${{ needs.quickbuild.outputs.artifacts_uploaded == 'true' }}
+    if: ${{ needs.quickbuild.outputs.artifacts_uploaded == 'true' && github.ref == 'refs/heads/main' }}
     steps:
       - uses: actions/checkout@v2
         with:
