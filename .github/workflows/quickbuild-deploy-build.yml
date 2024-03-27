@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     container: ghcr.io/dxatscale/sfpowerscripts
      outputs:
-      artifacts_uploaded: ${{ steps.set_uploaded_flag.outputs.artifacts_uploaded }}
+      artifacts_uploaded: ${{ steps.set_upload_flag.outputs.artifacts_uploaded }}
     steps:
       - uses: actions/checkout@v2
         with:
